@@ -60,7 +60,7 @@ import com.publiccms.common.cache.CacheEntityFactory;
 @PropertySource({ "classpath:" + CMS_CONFIG_FILE })
 @EnableTransactionManagement
 @EnableScheduling
-public class ApplicationConfig extends Base {
+public class ApplicationConfig implements Base {
 
     @Autowired
     private Environment env;
@@ -76,11 +76,12 @@ public class ApplicationConfig extends Base {
     @Bean
     public DataSource dataSource() throws PropertyVetoException {
         CmsDataSource bean = new CmsDataSource(getDirPath("") + DATABASE_CONFIG_FILENAME);
-//        try {
-//            bean.put("other", CmsDataSource.initDataSource(loadAllProperties("config/database-other.properties")));
-//        } catch (IOException e1) {
-//            e1.printStackTrace();
-//        }
+        // try {
+        // bean.put("other",
+        // CmsDataSource.initDataSource(loadAllProperties("config/database-other.properties")));
+        // } catch (IOException e1) {
+        // e1.printStackTrace();
+        // }
         if (CmsVersion.isInitialized()) {
             try {
                 CmsDataSource.initDefautlDataSource();
@@ -241,7 +242,7 @@ public class ApplicationConfig extends Base {
         bean.setFreemarkerSettings(properties);
         return bean;
     }
-    
+
     /**
      * 
      * 任务计划工厂

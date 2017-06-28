@@ -1,5 +1,6 @@
 package org.publiccms.views.method.tools;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static com.publiccms.common.tools.VerificationUtils.encode;
 
 import java.util.List;

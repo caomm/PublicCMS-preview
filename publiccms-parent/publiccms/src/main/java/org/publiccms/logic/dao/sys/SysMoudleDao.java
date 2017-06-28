@@ -1,9 +1,10 @@
 package org.publiccms.logic.dao.sys;
 
-import org.publiccms.entities.sys.SysMoudle;
-
 // Generated 2015-7-22 13:48:39 by com.publiccms.common.source.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 
+import org.publiccms.entities.sys.SysMoudle;
 import org.springframework.stereotype.Repository;
 
 import com.publiccms.common.base.BaseDao;

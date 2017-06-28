@@ -1,10 +1,9 @@
 package org.publiccms.logic.dao.cms;
 
+//Generated 2016-3-3 17:43:34 by com.publiccms.common.source.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import org.publiccms.entities.cms.CmsVoteItem;
-
-// Generated 2016-3-3 17:43:34 by com.publiccms.common.source.SourceGenerator
-
-
 import org.springframework.stereotype.Repository;
 
 import com.publiccms.common.base.BaseDao;

@@ -38,8 +38,9 @@ import freemarker.template.TemplateModel;
  *
  */
 @Component
-public class TemplateCacheComponent extends Base implements Cache {
+public class TemplateCacheComponent implements Cache, Base {
     
+    protected final Log log = getLog(getClass());
     /**
      * 
      */
@@ -143,7 +144,7 @@ public class TemplateCacheComponent extends Base implements Cache {
     }
 }
 
-class NoCacheDirective extends Base implements TemplateDirectiveModel {
+class NoCacheDirective implements TemplateDirectiveModel {
     protected final Log log = getLog(getClass());
 
     @Override

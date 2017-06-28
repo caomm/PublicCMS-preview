@@ -1168,7 +1168,9 @@ INSERT INTO `sys_moudle` VALUES ('151', '保存', NULL, 'cmsVote/save', NULL, '1
 INSERT INTO `sys_moudle` VALUES ('152', '删除', NULL, 'cmsVote/delete', NULL, '1013', '1', '0');
 INSERT INTO `sys_moudle` VALUES ('153', '查看', 'cmsVote/view', NULL, NULL, '1013', '1', '0');
 INSERT INTO `sys_moudle` VALUES ('154', '投票用户', 'cmsVoteUser/list', 'sysUser/lookup', NULL, '1013', '1', '0');
-
+INSERT INTO `sys_moudle` VALUES ('155', '内容回收站', 'cmsRecycleContent/list', 'sysUser/lookup', '<i class=\"icon-qrcode icon-large\"></i>', '13', '1', '0');
+INSERT INTO `sys_moudle` VALUES ('156', '删除', NULL, 'cmsContent/realDelete', NULL, '155', '1', '0');
+INSERT INTO `sys_moudle` VALUES ('157', '还原', NULL, 'cmsContent/recycle', NULL, '155', '1', '0');
 -- ----------------------------
 -- Table structure for sys_role
 -- ----------------------------

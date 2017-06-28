@@ -1,8 +1,8 @@
 package org.publiccms.views.directive.sys;
 
-import static org.publiccms.common.tools.ExtendUtils.getExtendMap;
-
 // Generated 2016-7-16 11:54:15 by com.publiccms.common.source.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+import static org.publiccms.common.tools.ExtendUtils.getExtendMap;
 
 import java.io.IOException;
 import java.util.HashMap;

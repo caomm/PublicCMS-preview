@@ -71,6 +71,14 @@ public interface Config {
      * 
      */
     public static final String INPUTTYPE_CONTENT = "content";
+    /**
+     * 
+     */
+    public static final String INPUTTYPE_CATEGORY = "category";
+    /**
+     * 
+     */
+    public static final String INPUTTYPE_DICTIONARY = "dictionary";
 
     /**
      * 

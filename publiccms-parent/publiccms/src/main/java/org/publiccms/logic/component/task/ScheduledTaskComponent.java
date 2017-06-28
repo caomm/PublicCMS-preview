@@ -1,11 +1,13 @@
 package org.publiccms.logic.component.task;
-
+import static com.publiccms.common.tools.CommonUtils.getDate;
 import static org.apache.commons.lang3.time.DateUtils.addMinutes;
-import static org.apache.commons.lang3.time.DateUtils.addYears;
 import static org.apache.commons.lang3.time.DateUtils.addMonths;
+import static org.apache.commons.lang3.time.DateUtils.addYears;
+import static org.apache.commons.logging.LogFactory.getLog;
 
 import java.util.Date;
 
+import org.apache.commons.logging.Log;
 import org.publiccms.common.constants.CmsVersion;
 import org.publiccms.logic.component.cache.CacheComponent;
 import org.publiccms.logic.service.log.LogLoginService;
@@ -18,15 +20,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.publiccms.common.base.Base;
-
 /**
  *
  * ScheduledTaskComponent
  * 
  */
 @Component
-public class ScheduledTaskComponent extends Base {
+public class ScheduledTaskComponent {
+    protected final Log log = getLog(getClass());
     
     @Autowired
     private SysAppTokenService appTokenService;

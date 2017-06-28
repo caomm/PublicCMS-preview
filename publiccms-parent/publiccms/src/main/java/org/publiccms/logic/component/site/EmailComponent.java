@@ -1,5 +1,6 @@
 package org.publiccms.logic.component.site;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static com.publiccms.common.tools.LanguagesUtils.getMessage;
 import static org.apache.commons.logging.LogFactory.getLog;
 
@@ -36,8 +37,8 @@ import com.publiccms.common.cache.CacheEntityFactory;
  *
  */
 @Component
-public class EmailComponent extends Base implements SiteCache, Config {
-    
+public class EmailComponent implements SiteCache, Config, Base {
+
     /**
      * 
      */
@@ -203,12 +204,13 @@ public class EmailComponent extends Base implements SiteCache, Config {
 
     /**
      * @param cacheEntityFactory
-     * @throws IllegalAccessException 
-     * @throws InstantiationException 
-     * @throws ClassNotFoundException 
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws ClassNotFoundException
      */
     @Autowired
-    public void initCache(CacheEntityFactory cacheEntityFactory) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public void initCache(CacheEntityFactory cacheEntityFactory)
+            throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         cache = cacheEntityFactory.createCacheEntity(CONFIG_CODE, CacheEntityFactory.MEMORY_CACHE_ENTITY);
     }
 }

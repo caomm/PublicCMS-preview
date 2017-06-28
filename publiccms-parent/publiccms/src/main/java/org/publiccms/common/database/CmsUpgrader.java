@@ -4,7 +4,7 @@ import static config.spring.CmsConfig.CMS_FILEPATH;
 import static org.publiccms.logic.component.site.SiteComponent.MODEL_FILE;
 import static org.publiccms.logic.component.site.SiteComponent.SITE_PATH_PREFIX;
 import static org.publiccms.logic.component.site.SiteComponent.TEMPLATE_PATH;
-
+import static com.publiccms.common.tools.CommonUtils.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,7 +27,6 @@ import org.publiccms.views.pojo.CmsModel;
 import org.publiccms.views.pojo.ExtendField;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.publiccms.common.api.Json;
 import com.publiccms.common.base.Base;
 
 /**
@@ -35,7 +34,7 @@ import com.publiccms.common.base.Base;
  * CmsUpgrader
  *
  */
-public class CmsUpgrader extends Base implements Json {
+public class CmsUpgrader implements Base {
     /**
      * 主键策略
      */
@@ -162,12 +161,12 @@ public class CmsUpgrader extends Base implements Json {
         version = toVersion;
     }
 
-    public static void setDataBaseUrl(Properties dbconfig, String host, String port,
-            String database) throws IOException, URISyntaxException {
+    public static void setDataBaseUrl(Properties dbconfig, String host, String port, String database)
+            throws IOException, URISyntaxException {
         StringBuilder sb = new StringBuilder();
         sb.append("jdbc:mysql://");
         sb.append(host);
-        if (Base.notEmpty(port) && !"3306".equals(port)) {
+        if (notEmpty(port) && !"3306".equals(port)) {
             sb.append(":");
             sb.append(port);
         }

@@ -1,8 +1,10 @@
 package org.publiccms.common.constants;
 
 import java.util.UUID;
+
+import com.publiccms.common.base.Copyright;
+
 import static config.spring.CmsConfig.CMS_FILEPATH;
-import com.publiccms.common.api.Copyright;
 
 /**
  *

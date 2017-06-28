@@ -1,9 +1,12 @@
 package org.publiccms.logic.component.template;
-
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.getDate;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static com.publiccms.common.tools.FreeMarkerUtils.generateFileByFile;
 import static com.publiccms.common.tools.FreeMarkerUtils.generateStringByFile;
 import static com.publiccms.common.tools.FreeMarkerUtils.generateStringByString;
 import static org.apache.commons.lang3.StringUtils.splitByWholeSeparator;
+import static org.apache.commons.logging.LogFactory.getLog;
 import static org.publiccms.common.base.AbstractFreemarkerView.CONTEXT_SITE;
 import static org.publiccms.common.base.AbstractFreemarkerView.exposeSite;
 import static org.publiccms.common.constants.CommonConstants.getDefaultPageBreakTag;
@@ -19,6 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.commons.logging.Log;
 import org.publiccms.common.api.Cache;
 import org.publiccms.common.base.AbstractTaskDirective;
 import org.publiccms.common.base.AbstractTemplateDirective;
@@ -42,7 +46,6 @@ import org.publiccms.views.pojo.CmsPlaceMetadata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
-import com.publiccms.common.base.Base;
 import com.publiccms.common.handler.PageHandler;
 
 import freemarker.template.Configuration;
@@ -54,7 +57,8 @@ import freemarker.template.TemplateModelException;
  * 模板处理组件 Template Component
  *
  */
-public class TemplateComponent extends Base implements Cache {
+public class TemplateComponent implements Cache {
+    protected final Log log = getLog(getClass());
     /**
      * 包含目录 include directory
      */

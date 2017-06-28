@@ -98,7 +98,7 @@
 				</td>
 				<td>
 					<#if modelMap[a.modelId]?has_content&&modelMap[a.modelId].hasChild>
-						<a href="cmsContent/push_content_list.html?contentId=${contentId!}&parentId=${a.id}&categoryId=${a.categoryId}" target="navTab" rel="push_content_list">子内容列表</a>
+						<a href="cmsContent/push_content_list.html?contentId=${contentId!}&parentId=${a.id}&categoryId=${a.categoryId}" target="ajax" rel="push_content_list">子内容列表</a>
 					</#if>
 				</td>
 			</tr>

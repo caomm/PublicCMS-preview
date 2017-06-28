@@ -11,7 +11,7 @@ import com.publiccms.common.base.Base;
  * VerificationUtils
  *
  */
-public class VerificationUtils extends Base {
+public class VerificationUtils implements Base {
 
     /**
      * @param text

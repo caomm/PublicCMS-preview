@@ -1,9 +1,11 @@
 package com.publiccms.common.handler;
 
+import static org.apache.commons.logging.LogFactory.getLog;
+
 import java.io.IOException;
 import java.io.Writer;
 
-import com.publiccms.common.base.Base;
+import org.apache.commons.logging.Log;
 
 import freemarker.core.Environment;
 import freemarker.template.TemplateException;
@@ -14,8 +16,9 @@ import freemarker.template.TemplateExceptionHandler;
  * ShortMessageTemplateExceptionHandler
  * 
  */
-public class ShortMessageTemplateExceptionHandler extends Base implements TemplateExceptionHandler {
-    
+public class ShortMessageTemplateExceptionHandler implements TemplateExceptionHandler {
+    protected final Log log = getLog(getClass());
+
     @Override
     public void handleTemplateException(TemplateException templateexception, Environment environment, Writer writer)
             throws TemplateException {

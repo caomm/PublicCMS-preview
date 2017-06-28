@@ -1,5 +1,6 @@
 package com.publiccms.common.base;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static com.publiccms.common.tools.TemplateModelUtils.converBoolean;
 import static com.publiccms.common.tools.TemplateModelUtils.converDate;
 import static com.publiccms.common.tools.TemplateModelUtils.converDouble;
@@ -9,10 +10,13 @@ import static com.publiccms.common.tools.TemplateModelUtils.converMap;
 import static com.publiccms.common.tools.TemplateModelUtils.converShort;
 import static com.publiccms.common.tools.TemplateModelUtils.converString;
 import static com.publiccms.common.tools.TemplateModelUtils.converStringArray;
+import static org.apache.commons.logging.LogFactory.getLog;
 
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.logging.Log;
 
 import freemarker.template.TemplateHashModelEx;
 import freemarker.template.TemplateMethodModelEx;
@@ -24,9 +28,10 @@ import freemarker.template.TemplateModelException;
  * BaseMethod FreeMarker自定义方法基类
  *
  */
-public abstract class BaseMethod extends Base implements TemplateMethodModelEx {
+public abstract class BaseMethod implements TemplateMethodModelEx, Base {
+    protected final Log log = getLog(getClass());
     private String name;
-    
+
     private static TemplateModel getModel(int index, List<TemplateModel> arguments) {
         if (notEmpty(arguments) && index < arguments.size()) {
             return arguments.get(index);
@@ -179,7 +184,7 @@ public abstract class BaseMethod extends Base implements TemplateMethodModelEx {
      * @return
      */
     public abstract boolean needAppToken();
-    
+
     /**
      * @return
      */

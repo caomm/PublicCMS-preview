@@ -1,6 +1,6 @@
 package org.publiccms.common.base;
 
-import static com.publiccms.common.base.Base.notEmpty;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 
 import java.util.Enumeration;
 import java.util.Map;

@@ -1,5 +1,8 @@
 package com.publiccms.common.tools;
 
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
@@ -16,7 +19,7 @@ import com.publiccms.common.base.Base;
  * RequestUtils 
  * 
  */
-public class RequestUtils extends Base {
+public class RequestUtils implements Base {
     /**
      * @param parameterMap
      * @param key

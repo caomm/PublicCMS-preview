@@ -1,5 +1,6 @@
 package org.publiccms.common.view;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static com.publiccms.common.tools.TemplateModelUtils.converString;
 import static org.publiccms.logic.component.site.SiteComponent.getFullFileName;
 
@@ -21,8 +22,8 @@ import freemarker.template.TemplateModel;
  * MultiSiteIncludeDirective
  * 
  */
-public class MultiSiteIncludeDirective extends Base implements TemplateDirectiveModel {
-    
+public class MultiSiteIncludeDirective implements TemplateDirectiveModel, Base {
+
     private SysSite site;
 
     /**

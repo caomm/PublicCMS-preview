@@ -1,5 +1,6 @@
 package com.publiccms.common.handler;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static com.publiccms.common.tools.TemplateModelUtils.FULL_DATE_FORMAT;
 import static com.publiccms.common.tools.TemplateModelUtils.FULL_DATE_LENGTH;
 import static com.publiccms.common.tools.TemplateModelUtils.SHORT_DATE_FORMAT;
@@ -25,7 +26,7 @@ import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-import com.publiccms.common.api.Json;
+import com.publiccms.common.base.Base;
 import com.publiccms.common.base.BaseHandler;
 
 /**
@@ -33,13 +34,13 @@ import com.publiccms.common.base.BaseHandler;
  * HttpParameterHandler
  * 
  */
-public class HttpParameterHandler extends BaseHandler implements Json {
-    
+public class HttpParameterHandler extends BaseHandler implements Base {
+
     /**
      * 
      */
     public static final Pattern FUNCTIONNAME_PATTERN = Pattern.compile("[0-9A-Za-z_\\.]*");
-    
+
     private MediaType mediaType;
     private HttpMessageConverter<Object> httpMessageConverter;
     private HttpServletRequest request;

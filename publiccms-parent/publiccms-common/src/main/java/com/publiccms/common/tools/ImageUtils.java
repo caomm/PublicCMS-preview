@@ -1,5 +1,7 @@
 package com.publiccms.common.tools;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -19,7 +21,7 @@ import com.publiccms.common.base.Base;
  * ImageUtils
  * 
  */
-public class ImageUtils extends Base {
+public class ImageUtils implements Base {
 
     /**
      * @param width

@@ -1,9 +1,9 @@
 package org.publiccms.logic.dao.sys;
 
-import org.publiccms.entities.sys.SysRoleUser;
-
 // Generated 2015-7-20 11:46:39 by com.publiccms.common.source.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 
+import org.publiccms.entities.sys.SysRoleUser;
 import org.springframework.stereotype.Repository;
 
 import com.publiccms.common.base.BaseDao;

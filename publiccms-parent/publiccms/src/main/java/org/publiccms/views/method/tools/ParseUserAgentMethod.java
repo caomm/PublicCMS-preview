@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.publiccms.common.api.Json;
 import com.publiccms.common.base.BaseMethod;
 
 import eu.bitwalker.useragentutils.UserAgent;
@@ -16,7 +15,7 @@ import freemarker.template.TemplateModelException;
  * 
  */
 @Component
-public class ParseUserAgentMethod extends BaseMethod implements Json {
+public class ParseUserAgentMethod extends BaseMethod {
 
     @SuppressWarnings("unchecked")
     @Override

@@ -1,5 +1,13 @@
 package org.publiccms.controller.web.cms;
 
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.getDate;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+import static com.publiccms.common.tools.ControllerUtils.redirect;
+import static com.publiccms.common.tools.ControllerUtils.redirectPermanently;
+import static com.publiccms.common.tools.ControllerUtils.verifyCustom;
+import static com.publiccms.common.tools.ControllerUtils.verifyNotEmpty;
+import static com.publiccms.common.tools.ControllerUtils.verifyNotEquals;
 import static com.publiccms.common.tools.HtmlUtils.removeHtmlTag;
 import static com.publiccms.common.tools.JsonUtils.getString;
 import static com.publiccms.common.tools.RequestUtils.getIpAddress;
@@ -182,7 +190,7 @@ public class ContentController extends AbstractController {
     public void relatedRedirect(Long id, HttpServletRequest request, HttpServletResponse response) {
         CmsContentRelatedStatistics contentRelatedStatistics = statisticsComponent.relatedClicks(id);
         SysSite site = getSite(request);
-        if (null != contentRelatedStatistics.getEntity()) {
+        if (null != contentRelatedStatistics && null != contentRelatedStatistics.getEntity()) {
             redirectPermanently(response, contentRelatedStatistics.getEntity().getUrl());
         } else {
             redirectPermanently(response, site.getDynamicPath());
@@ -197,10 +205,11 @@ public class ContentController extends AbstractController {
      * @param response
      */
     @RequestMapping("redirect")
-    public void redirect(Long id, HttpServletRequest request, HttpServletResponse response) {
+    public void contentRedirect(Long id, HttpServletRequest request, HttpServletResponse response) {
         CmsContentStatistics contentStatistics = statisticsComponent.clicks(id);
         SysSite site = getSite(request);
-        if (null != contentStatistics.getEntity() && site.getId() == contentStatistics.getEntity().getSiteId()) {
+        if (null != contentStatistics && null != contentStatistics.getEntity()
+                && site.getId() == contentStatistics.getEntity().getSiteId()) {
             redirectPermanently(response, contentStatistics.getEntity().getUrl());
         } else {
             redirectPermanently(response, site.getDynamicPath());

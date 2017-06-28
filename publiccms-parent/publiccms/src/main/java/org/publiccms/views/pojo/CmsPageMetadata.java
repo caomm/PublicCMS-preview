@@ -1,20 +1,22 @@
 package org.publiccms.views.pojo;
 
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+import static org.springframework.util.StringUtils.arrayToCommaDelimitedString;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.publiccms.common.base.Base;
-
 /**
  *
  * CmsPageMetadata
  * 
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CmsPageMetadata extends Base implements java.io.Serializable {
+public class CmsPageMetadata implements java.io.Serializable {
 
 	/**
 	 * 
@@ -100,9 +102,9 @@ public class CmsPageMetadata extends Base implements java.io.Serializable {
 	public Map<String, String> getExtendData() {
 		if (empty(extendData)) {
 			extendData = new HashMap<String, String>();
-			if (Base.notEmpty(extendDataList)) {
+			if (notEmpty(extendDataList)) {
 				for (ExtendData extend : extendDataList) {
-					extendData.put(extend.getName(), extend.getValue());
+					extendData.put(extend.getName(), arrayToCommaDelimitedString(extend.getValue()));
 				}
 			}
 		}

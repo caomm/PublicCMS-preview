@@ -1,5 +1,6 @@
 package org.publiccms.views.directive.tools;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static org.publiccms.logic.component.template.TemplateComponent.INCLUDE_DIRECTORY;
 
 import java.io.IOException;

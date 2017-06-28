@@ -1,11 +1,8 @@
 package com.publiccms.common.tools;
-
 import java.util.Locale;
 
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.web.context.WebApplicationContext;
-
-import com.publiccms.common.base.Base;
 
 /**
  * 获得国际化信息
@@ -13,7 +10,7 @@ import com.publiccms.common.base.Base;
  * LanguagesUtils
  *
  */
-public final class LanguagesUtils extends Base {
+public final class LanguagesUtils {
     public static WebApplicationContext webApplicationContext;
 
     /**

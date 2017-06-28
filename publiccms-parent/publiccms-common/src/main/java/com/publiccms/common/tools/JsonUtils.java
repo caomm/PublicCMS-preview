@@ -2,7 +2,6 @@ package com.publiccms.common.tools;
 
 import java.io.IOException;
 
-import com.publiccms.common.api.Json;
 import com.publiccms.common.base.Base;
 
 /**
@@ -10,7 +9,7 @@ import com.publiccms.common.base.Base;
  * JsonUtils
  * 
  */
-public final class JsonUtils extends Base implements Json {
+public final class JsonUtils implements Base {
 
     /**
      * @param object

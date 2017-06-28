@@ -1,5 +1,6 @@
 package org.publiccms.views.method.cms;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static org.publiccms.common.tools.ExtendUtils.getExtendMap;
 
 import java.util.List;

@@ -1,6 +1,7 @@
 package org.publiccms.views.directive.sys;
 
 // Generated 2016-1-20 11:19:19 by com.publiccms.common.source.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;

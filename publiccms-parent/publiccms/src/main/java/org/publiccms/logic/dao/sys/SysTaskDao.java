@@ -1,11 +1,11 @@
 package org.publiccms.logic.dao.sys;
 
+// Generated 2015-7-3 16:18:22 by com.publiccms.common.source.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import java.util.Date;
 
 import org.publiccms.entities.sys.SysTask;
-
-// Generated 2015-7-3 16:18:22 by com.publiccms.common.source.SourceGenerator
-
 import org.springframework.stereotype.Repository;
 
 import com.publiccms.common.base.BaseDao;

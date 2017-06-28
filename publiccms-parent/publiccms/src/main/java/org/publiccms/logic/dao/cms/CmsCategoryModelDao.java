@@ -1,5 +1,7 @@
 package org.publiccms.logic.dao.cms;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import org.publiccms.entities.cms.CmsCategoryModel;
 import org.springframework.stereotype.Repository;
 

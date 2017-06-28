@@ -1,10 +1,14 @@
 package org.publiccms.common.base;
 
+import static com.publiccms.common.tools.CommonUtils.getDate;
 import static com.publiccms.common.tools.RequestUtils.cancleCookie;
+import static org.apache.commons.logging.LogFactory.getLog;
 import static org.publiccms.common.constants.CommonConstants.getCookiesUser;
 import static org.publiccms.common.constants.CommonConstants.getSessionAdmin;
 import static org.publiccms.common.constants.CommonConstants.getSessionUser;
 import static org.publiccms.common.constants.CommonConstants.getSessionUserTime;
+import static org.springframework.web.servlet.view.UrlBasedViewResolver.FORWARD_URL_PREFIX;
+import static org.springframework.web.servlet.view.UrlBasedViewResolver.REDIRECT_URL_PREFIX;
 
 import java.util.Date;
 import java.util.Map;
@@ -15,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.logging.Log;
 import org.publiccms.entities.sys.SysDomain;
 import org.publiccms.entities.sys.SysSite;
 import org.publiccms.entities.sys.SysUser;
@@ -24,14 +29,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
-import com.publiccms.common.base.BaseController;
+import com.publiccms.common.base.Base;
 
 /**
  *
  * AbstractController
  * 
  */
-public abstract class AbstractController extends BaseController {
+public abstract class AbstractController implements Base {
+    protected static final String REDIRECT = REDIRECT_URL_PREFIX;
+    protected static final String FORWARD = FORWARD_URL_PREFIX;
     protected static final String TEMPLATE_INDEX = "index";
     protected static final String TEMPLATE_DONE = "common/ajaxDone";
     protected static final String TEMPLATE_ERROR = "common/ajaxError";
@@ -40,6 +47,7 @@ public abstract class AbstractController extends BaseController {
     protected static final String ERROR = "error";
     protected static final String ERROR_PAGE = "error.html";
     protected static MediaType jsonMediaType = new MediaType("application", "json", DEFAULT_CHARSET);
+    protected final Log log = getLog(getClass());
     /**
      * Telephone Pattern
      */

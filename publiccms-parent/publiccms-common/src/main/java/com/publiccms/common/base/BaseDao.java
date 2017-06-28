@@ -1,6 +1,8 @@
 package com.publiccms.common.base;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static org.apache.commons.lang3.time.DateUtils.addDays;
+import static org.apache.commons.logging.LogFactory.getLog;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -11,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Future;
 
+import org.apache.commons.logging.Log;
 import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -37,7 +40,8 @@ import com.publiccms.common.handler.QueryHandler;
  * @param <E>
  * 
  */
-public abstract class BaseDao<E> extends Base {
+public abstract class BaseDao<E> implements Base  {
+    protected final Log log = getLog(getClass());
     /**
      * 分面名称搜索前缀
      * 

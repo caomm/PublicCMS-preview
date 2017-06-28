@@ -1,11 +1,13 @@
 package org.publiccms.logic.component.site;
 
 import static org.apache.commons.lang3.StringUtils.uncapitalize;
+import static org.apache.commons.logging.LogFactory.getLog;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
 import org.publiccms.common.base.AbstractAppDirective;
 import org.publiccms.common.base.AbstractTaskDirective;
 import org.publiccms.common.base.AbstractTemplateDirective;
@@ -19,9 +21,10 @@ import com.publiccms.common.base.BaseMethod;
  * DirectiveComponent 指令处理组件
  *
  */
-public class DirectiveComponent extends Base {
+public class DirectiveComponent implements Base {
     private String directiveRemoveRegex;
     private String methodRemoveRegex;
+    protected final Log log = getLog(getClass());
 
     private Map<String, AbstractTemplateDirective> templateDirectiveMap = new HashMap<String, AbstractTemplateDirective>();
     private Map<String, AbstractTaskDirective> taskDirectiveMap = new HashMap<String, AbstractTaskDirective>();

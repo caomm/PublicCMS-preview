@@ -1,7 +1,9 @@
 package org.publiccms.logic.service.cms;
 
 // Generated 2015-5-8 16:50:23 by com.publiccms.common.source.SourceGenerator
-
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.getDate;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static org.apache.commons.lang3.ArrayUtils.add;
 import static org.apache.commons.lang3.StringUtils.splitByWholeSeparator;
 
@@ -175,7 +177,7 @@ public class CmsContentService extends BaseService<CmsContent> {
         }
         return entity;
     }
-
+    
     /**
      * @param entitys
      */
@@ -284,6 +286,55 @@ public class CmsContentService extends BaseService<CmsContent> {
         return categoryIds;
     }
 
+    /**
+     * @param siteId
+     * @param ids
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public List<CmsContent> recycle(int siteId, Serializable[] ids) {
+        List<CmsContent> entityList = new ArrayList<CmsContent>();
+        for (CmsContent entity : getEntitys(ids)) {
+            if (siteId == entity.getSiteId() && entity.isDisabled()) {
+                if (0 < entity.getChilds()) {
+                    for (CmsContent child : (List<CmsContent>) getPage(siteId, null, null, null, null, false, null,
+                            entity.getId(), null, null, null, null, null, null, null, null, null, null, null, null, null)
+                                    .getList()) {
+                        child.setDisabled(false);
+                        entityList.add(child);
+                    }
+                }
+                entity.setDisabled(false);
+                entityList.add(entity);
+            }
+        }
+        return entityList;
+    }
+
+    /**
+     * @param siteId
+     * @param ids
+     * @return 
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public List<CmsContent> realDelete(Integer siteId, Long[] ids) {
+        List<CmsContent> entityList = new ArrayList<CmsContent>();
+        for (CmsContent entity : getEntitys(ids)) {
+            if (siteId == entity.getSiteId() && entity.isDisabled()) {
+                if (0 < entity.getChilds()) {
+                    for (CmsContent child : (List<CmsContent>) getPage(siteId, null, null, null, null, false, null,
+                            entity.getId(), null, null, null, null, null, null, null, null, null, null, null, null, null)
+                                    .getList()) {
+                            delete(child.getId());
+                    }
+                }
+                delete(entity.getId());
+            }
+        }
+        return entityList;
+    }
+    
     @Autowired
     private CmsContentDao dao;
     @Autowired

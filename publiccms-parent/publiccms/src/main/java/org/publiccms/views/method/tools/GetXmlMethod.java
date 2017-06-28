@@ -1,5 +1,7 @@
 package org.publiccms.views.method.tools;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.List;

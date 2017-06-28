@@ -1,5 +1,7 @@
 package org.publiccms.views.method.home;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import java.util.List;
 
 import org.publiccms.entities.home.HomeGroupPostContent;

@@ -1,6 +1,9 @@
 package org.publiccms.logic.dao.cms;
 
 // Generated 2016-3-22 11:21:35 by com.publiccms.common.source.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.getDate;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 
 import java.util.Date;
 

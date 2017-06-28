@@ -1,5 +1,8 @@
 package org.publiccms.logic.component.template;
 
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.publiccms.common.api.Json;
 import com.publiccms.common.base.Base;
 import com.publiccms.common.cache.CacheEntity;
 import com.publiccms.common.cache.CacheEntityFactory;
@@ -26,7 +28,7 @@ import com.publiccms.common.cache.CacheEntityFactory;
  *
  */
 @Component
-public class ModelComponent extends Base implements SiteCache,Json {
+public class ModelComponent implements SiteCache,Base {
 
     private CacheEntity<Integer, Map<String, CmsModel>> modelCache;
     @Autowired

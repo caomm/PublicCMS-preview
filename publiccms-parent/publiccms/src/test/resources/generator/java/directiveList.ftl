@@ -1,7 +1,6 @@
 package ${base}.${directivePack};
 
 // Generated ${.now} by com.publiccms.common.generator.SourceGenerator
-
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;

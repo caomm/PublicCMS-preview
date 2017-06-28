@@ -1,15 +1,17 @@
 package com.publiccms.common.base;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+import static org.apache.commons.logging.LogFactory.getLog;
 import static org.springframework.beans.BeanUtils.copyProperties;
 
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.publiccms.common.datasource.MultiDataSource;
-
 /**
  *
  * BaseService
@@ -17,7 +19,8 @@ import com.publiccms.common.datasource.MultiDataSource;
  * 
  */
 @Transactional
-public abstract class BaseService<E> extends Base {
+public abstract class BaseService<E> implements Base {
+    protected final Log log = getLog(getClass());
     @Autowired
     protected BaseDao<E> dao;
 

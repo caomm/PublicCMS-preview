@@ -1,9 +1,9 @@
 package org.publiccms.logic.dao.sys;
 
-import org.publiccms.entities.sys.SysSite;
-
 // Generated 2016-1-20 11:19:19 by com.publiccms.common.source.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 
+import org.publiccms.entities.sys.SysSite;
 import org.springframework.stereotype.Repository;
 
 import com.publiccms.common.base.BaseDao;

@@ -22,7 +22,6 @@ public class ExtendField implements java.io.Serializable {
     private String description;
     private String inputType;
     private String defaultValue;
-    private String dictionaryType;
     private String dictionaryId;
 
     /**
@@ -165,20 +164,6 @@ public class ExtendField implements java.io.Serializable {
      */
     public void setSort(int sort) {
         this.sort = sort;
-    }
-
-    /**
-     * @return
-     */
-    public String getDictionaryType() {
-        return dictionaryType;
-    }
-
-    /**
-     * @param dictionaryType
-     */
-    public void setDictionaryType(String dictionaryType) {
-        this.dictionaryType = dictionaryType;
     }
 
     /**

@@ -18,12 +18,13 @@ import org.springframework.web.util.UrlPathHelper;
 
 import com.publiccms.common.base.Base;
 
+
 /**
  *
  * MultiSiteWebHttpRequestHandler
  * 
  */
-public class WebFileHttpRequestHandler extends ResourceHttpRequestHandler {
+public class WebFileHttpRequestHandler extends ResourceHttpRequestHandler implements Base {
     private UrlPathHelper urlPathHelper = new UrlPathHelper();
     private SiteComponent siteComponent;
 
@@ -43,7 +44,7 @@ public class WebFileHttpRequestHandler extends ResourceHttpRequestHandler {
     @Override
     protected Resource getResource(HttpServletRequest request) throws IOException {
         String path = urlPathHelper.getLookupPathForRequest(request);
-        if (path.endsWith(Base.SEPARATOR)) {
+        if (path.endsWith(SEPARATOR)) {
             path += getDefaultPage();
         }
         Resource resource = new FileSystemResource(

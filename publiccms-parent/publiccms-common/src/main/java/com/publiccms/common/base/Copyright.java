@@ -1,4 +1,4 @@
-package com.publiccms.common.api;
+package com.publiccms.common.base;
 
 public interface Copyright {
     public boolean verify(String dataFilePath);

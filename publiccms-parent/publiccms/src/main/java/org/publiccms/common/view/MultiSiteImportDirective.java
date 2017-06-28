@@ -1,5 +1,5 @@
 package org.publiccms.common.view;
-
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static com.publiccms.common.tools.TemplateModelUtils.converString;
 import static org.publiccms.logic.component.site.SiteComponent.getFullFileName;
 
@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.publiccms.entities.sys.SysSite;
-
-import com.publiccms.common.base.Base;
 
 import freemarker.core.Environment;
 import freemarker.template.TemplateDirectiveBody;
@@ -21,7 +19,7 @@ import freemarker.template.TemplateModel;
  * MultiSiteImportDirective
  * 
  */
-public class MultiSiteImportDirective extends Base implements TemplateDirectiveModel {
+public class MultiSiteImportDirective implements TemplateDirectiveModel {
     
     private SysSite site;
 

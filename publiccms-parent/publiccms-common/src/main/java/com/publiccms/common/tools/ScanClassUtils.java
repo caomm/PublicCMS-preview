@@ -1,5 +1,7 @@
 package com.publiccms.common.tools;
 
+import static org.springframework.util.ClassUtils.convertClassNameToResourcePath;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -13,17 +15,13 @@ import org.springframework.core.type.classreading.CachingMetadataReaderFactory;
 import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 
-import com.publiccms.common.base.Base;
-
-import static org.springframework.util.ClassUtils.*;
-
 /**
  * 类扫描工具类
  * 
  * ScanClassUtils
  *
  */
-public class ScanClassUtils extends Base {
+public class ScanClassUtils {
     
     private static final String RESOURCE_PATTERN = "/**/*.class";
     private static final ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();

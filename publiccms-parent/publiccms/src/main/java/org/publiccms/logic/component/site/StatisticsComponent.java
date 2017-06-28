@@ -1,5 +1,7 @@
 package org.publiccms.logic.component.site;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import java.util.List;
 
 import org.publiccms.common.api.Cache;
@@ -17,7 +19,6 @@ import org.publiccms.views.pojo.CmsWordStatistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.publiccms.common.base.Base;
 import com.publiccms.common.cache.CacheEntity;
 import com.publiccms.common.cache.CacheEntityFactory;
 
@@ -27,7 +28,7 @@ import com.publiccms.common.cache.CacheEntityFactory;
  * 
  */
 @Component
-public class StatisticsComponent extends Base implements Cache {
+public class StatisticsComponent implements Cache {
     
     private CacheEntity<Long, CmsContentStatistics> contentCache;
     private CacheEntity<Long, CmsPlaceStatistics> placeCache;

@@ -1,8 +1,9 @@
 package org.publiccms.views.directive.api;
 
-import static com.publiccms.common.tools.RequestUtils.getIpAddress;
-
 //Generated 2015-5-10 17:54:56 by com.publiccms.common.source.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.getDate;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+import static com.publiccms.common.tools.RequestUtils.getIpAddress;
 
 import java.io.IOException;
 

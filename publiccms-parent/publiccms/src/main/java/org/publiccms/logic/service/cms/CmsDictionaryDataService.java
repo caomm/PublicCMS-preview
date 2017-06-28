@@ -1,5 +1,7 @@
 package org.publiccms.logic.service.cms;
 
+import java.util.List;
+
 import org.publiccms.entities.cms.CmsDictionaryData;
 import org.publiccms.logic.dao.cms.CmsDictionaryDataDao;
 
@@ -10,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.publiccms.common.base.BaseService;
-import com.publiccms.common.handler.PageHandler;
 
 /**
  *
@@ -22,16 +23,17 @@ import com.publiccms.common.handler.PageHandler;
 public class CmsDictionaryDataService extends BaseService<CmsDictionaryData> {
 
     /**
+     * @param dictionaryId
      * @param pageIndex
      * @param pageSize
      * @return
      */
     @Transactional(readOnly = true)
-    public PageHandler getPage(Integer pageIndex, Integer pageSize) {
-        return dao.getPage(pageIndex, pageSize);
+    public List<CmsDictionaryData> getList(long dictionaryId) {
+        return dao.getList(dictionaryId);
     }
 
     @Autowired
     private CmsDictionaryDataDao dao;
-    
+
 }

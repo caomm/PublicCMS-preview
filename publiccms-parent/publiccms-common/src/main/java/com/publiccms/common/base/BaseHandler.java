@@ -1,5 +1,8 @@
 package com.publiccms.common.base;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+import static org.apache.commons.logging.LogFactory.getLog;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -7,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+
+import org.apache.commons.logging.Log;
 
 import com.publiccms.common.handler.RenderHandler;
 
@@ -16,7 +21,8 @@ import com.publiccms.common.handler.RenderHandler;
  * BaseHandler
  *
  */
-public abstract class BaseHandler extends Base implements RenderHandler {
+public abstract class BaseHandler implements RenderHandler {
+    protected final Log log = getLog(getClass());
     /**
      * 参数名称
      * 

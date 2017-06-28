@@ -1,9 +1,10 @@
 package org.publiccms.views.directive.api;
 
+//Generated 2015-5-10 17:54:56 by com.publiccms.common.source.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.getDate;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static com.publiccms.common.tools.RequestUtils.getIpAddress;
 import static org.springframework.util.StringUtils.arrayToCommaDelimitedString;
-
-//Generated 2015-5-10 17:54:56 by com.publiccms.common.source.SourceGenerator
 
 import java.io.IOException;
 

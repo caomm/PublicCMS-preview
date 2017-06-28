@@ -30,7 +30,7 @@ import freemarker.template.TemplateException;
  * SourceMaker 代码生成工具
  *
  */
-public class SourceGenerator extends Base {
+public class SourceGenerator implements Base {
     /**
      * 
      */

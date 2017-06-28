@@ -1,5 +1,6 @@
 package com.publiccms.common.handler;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static com.publiccms.common.tools.TemplateModelUtils.converBean;
 import static com.publiccms.common.tools.TemplateModelUtils.converBoolean;
 import static com.publiccms.common.tools.TemplateModelUtils.converDate;
@@ -23,7 +24,7 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.publiccms.common.api.Json;
+import com.publiccms.common.base.Base;
 import com.publiccms.common.base.BaseHandler;
 
 import freemarker.core.Environment;
@@ -41,8 +42,7 @@ import freemarker.template.TemplateModelException;
  * TemplateDirectiveHandler
  * 
  */
-public class TemplateDirectiveHandler extends BaseHandler implements Json {
-    
+public class TemplateDirectiveHandler extends BaseHandler implements Base {
     private Map<String, TemplateModel> parameters;
     private TemplateModel[] loopVars;
     private TemplateDirectiveBody templateDirectiveBody;

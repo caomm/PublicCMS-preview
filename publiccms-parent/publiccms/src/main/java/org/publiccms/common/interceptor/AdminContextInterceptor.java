@@ -1,7 +1,5 @@
 package org.publiccms.common.interceptor;
 
-import static com.publiccms.common.base.Base.DOT;
-import static com.publiccms.common.base.Base.SEPARATOR;
 import static com.publiccms.common.tools.RequestUtils.getEncodePath;
 import static org.apache.commons.lang3.StringUtils.split;
 import static org.publiccms.common.base.AbstractController.getAdminFromSession;
@@ -20,6 +18,7 @@ import org.publiccms.logic.service.sys.SysRoleService;
 import org.publiccms.logic.service.sys.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.publiccms.common.base.Base;
 import com.publiccms.common.base.BaseInterceptor;
 
 import config.initializer.AdminInitializer;
@@ -29,7 +28,7 @@ import config.initializer.AdminInitializer;
  * AdminContextInterceptor
  *
  */
-public class AdminContextInterceptor extends BaseInterceptor {
+public class AdminContextInterceptor extends BaseInterceptor implements Base {
     private String[] needNotLoginUrls;
     private String[] needNotAuthorizedUrls;
     private String loginUrl;

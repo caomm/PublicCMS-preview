@@ -25,16 +25,16 @@ import freemarker.template.TemplateNotFoundException;
 /**
  * FreeMarker工具类
  * 
- * FreeMarkerUtils 
+ * FreeMarkerUtils
  * 
  */
-public class FreeMarkerUtils extends Base {
+public class FreeMarkerUtils implements Base {
     private final static Log log = getLog(FreeMarkerUtils.class);
 
     /**
      * @param templateFilePath
      * @param destFilePath
-     * @param configuration 
+     * @param configuration
      * @param model
      * @throws IOException
      * @throws TemplateException
@@ -94,12 +94,13 @@ public class FreeMarkerUtils extends Base {
 
     /**
      * @param template
-     * @param configuration 
+     * @param configuration
      * @return
      * @throws TemplateException
      * @throws IOException
      */
-    public static String generateStringByFile(String template, Configuration configuration) throws IOException, TemplateException {
+    public static String generateStringByFile(String template, Configuration configuration)
+            throws IOException, TemplateException {
         return generateStringByFile(template, configuration, new HashMap<String, Object>());
     }
 
@@ -129,7 +130,8 @@ public class FreeMarkerUtils extends Base {
      * @throws IOException
      * @throws TemplateException
      */
-    public static void generateStringByFile(Writer writer, String template, Configuration configuration, Map<String, Object> model)
+    public static void generateStringByFile(Writer writer, String template, Configuration configuration,
+            Map<String, Object> model)
             throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
         Template tpl = configuration.getTemplate(template);
         tpl.process(model, writer);

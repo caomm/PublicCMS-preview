@@ -1,6 +1,7 @@
 package ${base}.${daoPack};
 
 // Generated ${.now} by com.publiccms.common.generator.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 
 <#include "../include_imports/field_type.ftl">
 

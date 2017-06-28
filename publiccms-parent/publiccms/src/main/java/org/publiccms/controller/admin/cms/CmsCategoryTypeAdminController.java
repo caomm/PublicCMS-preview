@@ -1,5 +1,8 @@
 package org.publiccms.controller.admin.cms;
 
+import static com.publiccms.common.tools.CommonUtils.getDate;
+import static com.publiccms.common.tools.ControllerUtils.verifyNotEquals;
+import static com.publiccms.common.tools.ControllerUtils.verifyNotGreaterThen;
 import static com.publiccms.common.tools.JsonUtils.getString;
 import static com.publiccms.common.tools.RequestUtils.getIpAddress;
 
@@ -93,7 +96,8 @@ public class CmsCategoryTypeAdminController extends AbstractController {
         CmsCategoryType entity = service.getEntity(id);
         if (null != entity) {
             if (verifyNotEquals("siteId", site.getId(), entity.getSiteId(), model) || verifyNotGreaterThen("category",
-                    categoryService.getPage(site.getId(), null, true, id, null, null, false, null, 1).getTotalCount(), 1, model)) {
+                    categoryService.getPage(site.getId(), null, true, id, null, null, false, null, 1).getTotalCount(), 1,
+                    model)) {
                 return TEMPLATE_ERROR;
             }
             service.delete(id);

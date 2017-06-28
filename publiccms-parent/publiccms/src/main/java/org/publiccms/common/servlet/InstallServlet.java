@@ -6,8 +6,8 @@ import static org.apache.commons.io.FileUtils.writeStringToFile;
 import static org.apache.commons.logging.LogFactory.getLog;
 import static org.publiccms.common.database.CmsDataSource.DATABASE_CONFIG_FILENAME;
 import static org.publiccms.common.database.CmsDataSource.DATABASE_CONFIG_TEMPLATE;
-import static org.springframework.core.io.support.PropertiesLoaderUtils.loadAllProperties;
 import static org.publiccms.common.tools.DatabaseUtils.getConnection;
+import static org.springframework.core.io.support.PropertiesLoaderUtils.loadAllProperties;
 
 import java.beans.PropertyVetoException;
 import java.io.File;
@@ -17,7 +17,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -45,7 +44,7 @@ import freemarker.template.TemplateException;
  * InstallServlet
  *
  */
-public class InstallServlet extends HttpServlet {
+public class InstallServlet extends HttpServlet implements Base {
 
     /**
      *
@@ -75,7 +74,6 @@ public class InstallServlet extends HttpServlet {
 
     private final Log log = getLog(getClass());
 
-    private Connection connection;
     private freemarker.template.Configuration freemarkerConfiguration;
     private String startStep;
     private String fromVersion;
@@ -105,106 +103,49 @@ public class InstallServlet extends HttpServlet {
         } else {
             String step = request.getParameter("step");
             Map<String, Object> map = new HashMap<String, Object>();
+
+            // 记录当前版本号
+            map.put("currentVersion", CmsVersion.getVersion());
+
             if (null == step) {
                 step = startStep;
             }
+
+            // 2017-06-19 修改connection为局部变量，避免出现connection没有关闭的漏洞
             if (null != step) {
                 map.put("versions", CmsUpgrader.VERSION_LIST);
                 map.put("fromVersion", fromVersion);
                 switch (step) {
                 case STEP_DATABASECONFIG:
-                    try {
-                        Properties dbconfig = loadAllProperties(DATABASE_CONFIG_TEMPLATE);
-                        String host = request.getParameter("host");
-                        String port = request.getParameter("port");
-                        String database = request.getParameter("database");
-                        CmsUpgrader.setDataBaseUrl(dbconfig, host, port, database);
-                        dbconfig.setProperty("jdbc.username", request.getParameter("username"));
-                        dbconfig.setProperty("jdbc.password", request.getParameter("password"));
-
-                        String databaseConfiFile = CMS_FILEPATH + DATABASE_CONFIG_FILENAME;
-                        File file = new File(databaseConfiFile);
-                        try (FileOutputStream fos = new FileOutputStream(file)) {
-                            dbconfig.store(fos, null);
-                        }
-                        file.setReadable(true, false);
-                        file.setWritable(true, false);
-                        connection = getConnection(databaseConfiFile);
-                        map.put("message", "success");
-                    } catch (PropertyVetoException | SQLException | URISyntaxException | ClassNotFoundException e) {
-                        if (null != connection) {
-                            try {
-                                connection.close();
-                            } catch (SQLException e1) {
-                                map.put("error", e1.getMessage());
-                            }
-                        }
-                        map.put("error", e.getMessage());
-                    }
+                    configDatabase(request, map);
                     break;
                 case STEP_CHECKDATABASE:
-                    try {
-                        String databaseConfiFile = CMS_FILEPATH + DATABASE_CONFIG_FILENAME;
-                        connection = getConnection(databaseConfiFile);
-                        map.put("message", "success");
-                    } catch (PropertyVetoException | SQLException | ClassNotFoundException e) {
-                        if (null != connection) {
-                            try {
-                                connection.close();
-                            } catch (SQLException e1) {
-                                map.put("error", e1.getMessage());
-                            }
-                        }
-                        map.put("error", e.getMessage());
-                    }
+                    checkDatabse(map);
                     break;
                 case STEP_INITDATABASE:
-                    if (null != connection) {
-                        try {
-                            map.put("history", install(null != request.getParameter("useSimple")));
-                            map.put("message", "success");
-                        } catch (Exception e) {
-                            map.put("message", "failed");
-                            map.put("error", e.getMessage());
-                        }
-                    } else {
-                        map.put("message", "failed");
-                        map.put("error", "connection is null");
+                    try {
+                        initDatabase(request.getParameter("useSimple"), map);
+                        startCMS(map);
+                    } catch (Exception e) {
+                        map.put("error", e.getMessage());
                     }
                     break;
                 case STEP_UPDATE:
-                    String fromVersion = request.getParameter("from_version");
-                    if (CmsUpgrader.VERSION_LIST.contains(fromVersion)) {
-                        if (null != connection) {
-                            CmsUpgrader upgrader = null;
-                            try {
-                                upgrader = new CmsUpgrader(config, connection, fromVersion);
-                                upgrader.update();
-                                map.put("message", "success");
-                            } catch (Exception e) {
-                                map.put("message", "failed");
-                                map.put("error", e.getMessage());
-                                if (null != upgrader) {
-                                    fromVersion = upgrader.getVersion();
-                                }
-                            }
-                        } else {
-                            map.put("message", "failed");
-                            map.put("error", "connection is null");
-                        }
+                    try {
+                        upgradeDatabase(request.getParameter("from_version"), map);
+                        startCMS(map);
+                    } catch (Exception e) {
+                        map.put("message", "failed");
+                        map.put("error", e.getMessage());
                     }
                     break;
                 case STEP_START:
-                    if (null != connection) {
-                        try {
-                            start();
-                            connection.close();
-                            connection = null;
-                            response.sendRedirect("../");
-                        } catch (PropertyVetoException | SQLException e) {
-                            CmsVersion.setInitialized(false);
-                            map.put("error", e.getMessage());
-                        }
+                    try {
+                        start();
+                        response.sendRedirect("../");
+                    } catch (PropertyVetoException e) {
+                        map.put("message", "failed");
+                        map.put("error", e.getMessage());
                     }
                     break;
                 default:
@@ -215,31 +156,171 @@ public class InstallServlet extends HttpServlet {
         }
     }
 
-    private String install(boolean useSimple) throws SQLException, IOException {
+    private void start() throws IOException, PropertyVetoException {
+        CmsVersion.setInitialized(true);
+        CmsDataSource.initDefautlDataSource();
+        File file = new File(CMS_FILEPATH + INSTALL_LOCK_FILENAME);
+        writeStringToFile(file, CmsVersion.getVersion(), DEFAULT_CHARSET);
+        file.setReadable(true, false);
+        file.setWritable(true, false);
+        log.info("PublicCMS " + CmsVersion.getVersion() + " started!");
+    }
+
+    /**
+     * 配置数据库
+     */
+    private void configDatabase(HttpServletRequest request, Map<String, Object> map) {
+        Connection connection = null;
+        try {
+            Properties dbconfig = loadAllProperties(DATABASE_CONFIG_TEMPLATE);
+            String host = request.getParameter("host");
+            String port = request.getParameter("port");
+            String database = request.getParameter("database");
+            CmsUpgrader.setDataBaseUrl(dbconfig, host, port, database);
+            dbconfig.setProperty("jdbc.username", request.getParameter("username"));
+            dbconfig.setProperty("jdbc.password", request.getParameter("password"));
+
+            String databaseConfiFile = CMS_FILEPATH + DATABASE_CONFIG_FILENAME;
+            File file = new File(databaseConfiFile);
+
+            try (FileOutputStream fos = new FileOutputStream(file)) {
+                dbconfig.store(fos, null);
+            }
+            file.setReadable(true, false);
+            file.setWritable(true, false);
+            connection = getConnection(databaseConfiFile);
+            map.put("message", "success");
+        } catch (Exception e) {
+            map.put("error", e.getMessage());
+        } finally {
+            if (null != connection) {
+                if (null != connection) {
+                    try {
+                        connection.close();
+                    } catch (SQLException e1) {
+                        map.put("error", e1.getMessage());
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * 检查数据库
+     * 
+     * @param map
+     * @throws ServletException
+     * @throws IOException
+     */
+    private void checkDatabse(Map<String, Object> map) {
+        Connection connection = null;
+        try {
+            String databaseConfiFile = CMS_FILEPATH + DATABASE_CONFIG_FILENAME;
+            connection = getConnection(databaseConfiFile);
+            map.put("message", "success");
+        } catch (Exception e) {
+            map.put("error", e.getMessage());
+        } finally {
+            if (null != connection) {
+                try {
+                    connection.close();
+                } catch (SQLException e1) {
+                    map.put("error", e1.getMessage());
+                }
+            }
+        }
+    }
+
+    /**
+     * 初始化数据库
+     * 
+     * @param type
+     * @param map
+     * @throws IOException
+     */
+    private void initDatabase(String type, Map<String, Object> map) throws Exception {
+        Connection connection = null;
+        try {
+            String databaseConfiFile = CMS_FILEPATH + DATABASE_CONFIG_FILENAME;
+            connection = getConnection(databaseConfiFile);
+            try {
+                map.put("history", install(connection, null != type));
+                map.put("message", "success");
+            } catch (Exception e) {
+                map.put("message", "failed");
+                map.put("error", e.getMessage());
+            }
+        } finally {
+            if (null != connection) {
+                try {
+                    connection.close();
+                } catch (SQLException e1) {
+                    map.put("error", e1.getMessage());
+                }
+            }
+        }
+    }
+
+    private String install(Connection connection, boolean useSimple) throws SQLException, IOException {
         StringWriter stringWriter = new StringWriter();
         ScriptRunner runner = new ScriptRunner(connection);
         runner.setLogWriter(null);
         runner.setErrorLogWriter(new PrintWriter(stringWriter));
         runner.setAutoCommit(true);
         try (InputStream inputStream = getClass().getResourceAsStream("/initialization/sql/initDatabase.sql");) {
-            runner.runScript(new InputStreamReader(inputStream, Base.DEFAULT_CHARSET));
+            runner.runScript(new InputStreamReader(inputStream, DEFAULT_CHARSET));
         }
-		if (useSimple) {
-			try (InputStream simpleInputStream = getClass().getResourceAsStream("/initialization/sql/initDatabase.sql")) {
-				runner.runScript(new InputStreamReader(simpleInputStream, Base.DEFAULT_CHARSET));
-			}
-		}
+        if (useSimple) {
+            try (InputStream simpleInputStream = getClass().getResourceAsStream("/initialization/sql/initDatabase.sql")) {
+                runner.runScript(new InputStreamReader(simpleInputStream, DEFAULT_CHARSET));
+            }
+        }
         return stringWriter.toString();
     }
 
-    private void start() throws IOException, PropertyVetoException {
-        CmsVersion.setInitialized(true);
-        CmsDataSource.initDefautlDataSource();
-        File file = new File(CMS_FILEPATH + INSTALL_LOCK_FILENAME);
-        writeStringToFile(file, CmsVersion.getVersion(), Base.DEFAULT_CHARSET);
-        file.setReadable(true, false);
-        file.setWritable(true, false);
-        log.info("PublicCMS " + CmsVersion.getVersion() + " started!");
+    /**
+     * 升级数据库
+     */
+    private void upgradeDatabase(String fromVersion, Map<String, Object> map) throws Exception {
+        if (CmsUpgrader.VERSION_LIST.contains(fromVersion)) {
+            Connection connection = null;
+            try {
+                String databaseConfiFile = CMS_FILEPATH + DATABASE_CONFIG_FILENAME;
+                connection = getConnection(databaseConfiFile);
+
+                CmsUpgrader upgrader = null;
+                try {
+                    upgrader = new CmsUpgrader(config, connection, fromVersion);
+                    upgrader.update();
+                    map.put("message", "success");
+                } catch (Exception e) {
+                    if (null != upgrader) {
+                        fromVersion = upgrader.getVersion();
+                    }
+                    throw e;
+                }
+            } finally {
+                if (null != connection) {
+                    try {
+                        connection.close();
+                    } catch (SQLException e1) {
+                        map.put("error", e1.getMessage());
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * 启动CMS
+     */
+    private void startCMS(Map<String, Object> map) {
+        try {
+            start();
+        } catch (Exception e) {
+            CmsVersion.setInitialized(false);
+            map.put("error", e.getMessage());
+        }
     }
 
     private void render(String step, Map<String, Object> model, HttpServletResponse response) {

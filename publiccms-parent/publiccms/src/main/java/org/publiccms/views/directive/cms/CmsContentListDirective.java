@@ -1,6 +1,8 @@
 package org.publiccms.views.directive.cms;
 
 // Generated 2015-5-10 17:54:56 by com.publiccms.common.source.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.getDate;
 
 import java.io.IOException;
 import java.util.Date;

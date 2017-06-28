@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 
-import com.publiccms.common.base.Base;
 import com.publiccms.common.handler.HttpParameterHandler;
 
 /**
@@ -17,7 +16,7 @@ import com.publiccms.common.handler.HttpParameterHandler;
  * Base directive class 
  *
  */
-public abstract class BaseHttpDirective extends Base implements HttpDirective, Directive {
+public abstract class BaseHttpDirective implements HttpDirective, Directive {
     private String name;
     
     @Override

@@ -1,5 +1,6 @@
 package com.publiccms.common.tools;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static org.apache.commons.lang3.StringUtils.split;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
@@ -26,7 +27,7 @@ import freemarker.template.TemplateSequenceModel;
  * TemplateModelUtils 
  *
  */
-public class TemplateModelUtils extends Base {
+public class TemplateModelUtils implements Base {
     
     private static final String FULL_DATE_FORMAT_STRING = "yyyy-MM-dd HH:mm:ss";
     private static final String SHORT_DATE_FORMAT_STRING = "yyyy-MM-dd";

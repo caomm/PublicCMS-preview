@@ -1,5 +1,7 @@
 package org.publiccms.views.method.home;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

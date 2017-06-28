@@ -1,5 +1,6 @@
 package com.publiccms.common.tools;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static com.publiccms.common.tools.StreamUtils.write;
 
 import java.io.File;
@@ -25,7 +26,7 @@ import com.publiccms.common.base.Base;
  * ZipUtils
  *
  */
-public class ZipUtils extends Base {
+public class ZipUtils implements Base {
     static {
         System.setProperty("sun.zip.encoding", System.getProperty("sun.jnu.encoding"));
     }

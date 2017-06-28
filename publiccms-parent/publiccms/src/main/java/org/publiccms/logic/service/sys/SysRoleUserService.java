@@ -1,7 +1,7 @@
 package org.publiccms.logic.service.sys;
 
 // Generated 2015-7-20 11:46:39 by com.publiccms.common.source.SourceGenerator
-
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static org.apache.commons.lang3.ArrayUtils.contains;
 import static org.apache.commons.lang3.ArrayUtils.removeElement;
 

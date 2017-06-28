@@ -1,5 +1,7 @@
 package org.publiccms.common.base;
 
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static org.apache.commons.lang3.ArrayUtils.contains;
 import static org.apache.commons.lang3.StringUtils.split;
 import static org.publiccms.controller.api.ApiController.NEED_APP_TOKEN;
@@ -22,6 +24,7 @@ import org.publiccms.logic.service.sys.SysUserService;
 import org.publiccms.logic.service.sys.SysUserTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.publiccms.common.base.Base;
 import com.publiccms.common.directive.BaseHttpDirective;
 import com.publiccms.common.handler.RenderHandler;
 
@@ -30,7 +33,7 @@ import com.publiccms.common.handler.RenderHandler;
  * BaseDirective 自定义接口指令基类
  *
  */
-public abstract class AbstractAppDirective extends BaseHttpDirective {
+public abstract class AbstractAppDirective extends BaseHttpDirective implements Base  {
     /**
      * @param handler
      * @return

@@ -1,7 +1,7 @@
 package org.publiccms.logic.service.sys;
 
 // Generated 2015-7-24 16:54:11 by com.publiccms.common.source.SourceGenerator
-
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static org.apache.commons.lang3.StringUtils.split;
 
 import java.util.HashSet;

@@ -1,5 +1,8 @@
 package org.publiccms.logic.component.site;
 
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.getDate;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static org.apache.commons.io.FileUtils.deleteQuietly;
 import static org.apache.commons.io.FileUtils.readFileToString;
 import static org.apache.commons.io.FileUtils.writeStringToFile;
@@ -29,7 +32,7 @@ import com.publiccms.common.base.Base;
  *
  */
 @Component
-public class FileComponent extends Base {
+public class FileComponent implements Base {
     private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM-dd/HH-mm-ssSSSS");
 
     /**

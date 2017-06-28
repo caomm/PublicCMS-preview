@@ -1,5 +1,6 @@
 package org.publiccms.controller.admin;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static org.publiccms.common.constants.CommonConstants.getDefaultPage;
 
 import javax.servlet.http.HttpServletRequest;

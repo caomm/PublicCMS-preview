@@ -1,5 +1,6 @@
 package org.publiccms.common.base;
 
+import static com.publiccms.common.tools.CommonUtils.empty;
 import static org.apache.commons.lang3.ArrayUtils.contains;
 import static org.apache.commons.lang3.StringUtils.split;
 import static org.publiccms.common.base.AbstractFreemarkerView.CONTEXT_SITE;
@@ -21,16 +22,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 
+import com.publiccms.common.base.Base;
 import com.publiccms.common.directive.BaseTemplateDirective;
 import com.publiccms.common.handler.HttpParameterHandler;
 import com.publiccms.common.handler.RenderHandler;
-
 /**
  * 
  * AbstractTemplateDirective 自定义模板指令基类
  *
  */
-public abstract class AbstractTaskDirective extends BaseTemplateDirective {
+public abstract class AbstractTaskDirective extends BaseTemplateDirective implements Base {
     /**
      * @param handler
      * @return

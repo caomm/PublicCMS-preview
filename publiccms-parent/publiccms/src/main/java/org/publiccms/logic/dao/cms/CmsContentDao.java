@@ -1,5 +1,9 @@
 package org.publiccms.logic.dao.cms;
 
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.getDate;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import java.io.Serializable;
 import java.util.Arrays;
 

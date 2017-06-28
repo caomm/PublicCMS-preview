@@ -19,7 +19,7 @@ import com.publiccms.common.base.Base;
  *
  */
 @Component
-public class LoginConfigComponent extends Base implements Config {
+public class LoginConfigComponent implements Config, Base {
     /**
      * 
      */

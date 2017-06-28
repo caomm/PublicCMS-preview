@@ -1,5 +1,6 @@
 package org.publiccms.controller.web;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static com.publiccms.common.tools.RequestUtils.getEncodePath;
 import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
 import static org.apache.commons.lang3.StringUtils.split;

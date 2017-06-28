@@ -1,5 +1,7 @@
 package org.publiccms.controller.api;
 
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static org.publiccms.controller.api.ApiController.NEED_APP_TOKEN_MAP;
 import static org.publiccms.controller.api.ApiController.NOT_FOUND_MAP;
 

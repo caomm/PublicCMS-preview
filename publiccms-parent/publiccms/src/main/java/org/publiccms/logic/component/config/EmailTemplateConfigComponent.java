@@ -1,5 +1,6 @@
 package org.publiccms.logic.component.config;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static com.publiccms.common.tools.LanguagesUtils.getMessage;
 import static org.publiccms.logic.component.site.EmailComponent.CONFIG_CODE;
 
@@ -22,7 +23,7 @@ import com.publiccms.common.base.Base;
  *
  */
 @Component
-public class EmailTemplateConfigComponent extends Base implements Config {
+public class EmailTemplateConfigComponent implements Config, Base {
     /**
      * 
      */

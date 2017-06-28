@@ -1,5 +1,7 @@
 package org.publiccms.logic.component.config;
 
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static org.publiccms.common.tools.ExtendUtils.getExtendMap;
 
 import java.io.File;
@@ -24,7 +26,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.publiccms.common.api.Json;
 import com.publiccms.common.base.Base;
 import com.publiccms.common.cache.CacheEntity;
 import com.publiccms.common.cache.CacheEntityFactory;
@@ -35,7 +36,7 @@ import com.publiccms.common.cache.CacheEntityFactory;
  *
  */
 @Component
-public class ConfigComponent extends Base implements SiteCache, Json {
+public class ConfigComponent implements SiteCache, Base {
     @Autowired
     private SysConfigDataService service;
     @Autowired(required = false)

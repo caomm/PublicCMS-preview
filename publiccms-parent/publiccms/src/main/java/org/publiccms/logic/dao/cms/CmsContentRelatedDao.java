@@ -1,9 +1,10 @@
 package org.publiccms.logic.dao.cms;
 
-import org.publiccms.entities.cms.CmsContentRelated;
-
 // Generated 2016-1-25 10:53:21 by com.publiccms.common.source.SourceGenerator
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
+import org.publiccms.entities.cms.CmsContentRelated;
 import org.springframework.stereotype.Repository;
 
 import com.publiccms.common.base.BaseDao;

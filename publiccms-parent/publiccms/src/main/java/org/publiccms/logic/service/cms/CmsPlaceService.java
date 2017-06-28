@@ -1,9 +1,9 @@
 package org.publiccms.logic.service.cms;
 
-import java.io.Serializable;
-
 // Generated 2015-12-24 10:49:03 by com.publiccms.common.source.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.getDate;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 

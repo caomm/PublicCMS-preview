@@ -1,5 +1,7 @@
 package org.publiccms.controller.web.cms;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;

@@ -9,15 +9,13 @@ import org.publiccms.logic.service.cms.CmsContentAttributeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.publiccms.common.base.Base;
-
 /**
  *
  * CmsContentBridge
  * 
  */
 @Component
-public class CmsContentBridge extends Base implements FieldBridge {
+public class CmsContentBridge implements FieldBridge {
     /**
      * 
      */

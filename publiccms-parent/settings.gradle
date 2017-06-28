@@ -1,4 +1,4 @@
-rootProject.name = 'publiccms-gradle'
+rootProject.name = 'publiccms-parent'
 include 'publiccms'
 include 'publiccms-common'
 /* 商业版插件

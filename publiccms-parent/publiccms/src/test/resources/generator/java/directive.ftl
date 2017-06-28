@@ -1,6 +1,7 @@
 package ${base}.${directivePack};
 
 // Generated ${.now} by com.publiccms.common.generator.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;

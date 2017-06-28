@@ -1,10 +1,10 @@
 package org.publiccms.logic.dao.cms;
 
-import org.publiccms.entities.cms.CmsDictionary;
-
 // Generated 2016-11-20 14:50:37 by com.publiccms.common.source.SourceGenerator
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 
+import org.publiccms.entities.cms.CmsDictionary;
 import org.springframework.stereotype.Repository;
 
 import com.publiccms.common.base.BaseDao;

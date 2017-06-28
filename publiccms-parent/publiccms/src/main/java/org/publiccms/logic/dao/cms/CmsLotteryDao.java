@@ -2,6 +2,8 @@ package org.publiccms.logic.dao.cms;
 
 // Generated 2016-3-1 17:24:23 by com.publiccms.common.source.SourceGenerator
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import java.util.Date;
 
 import org.publiccms.entities.cms.CmsLottery;

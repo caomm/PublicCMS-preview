@@ -1,5 +1,8 @@
 package org.publiccms.logic.component.template;
 
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,7 +17,6 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.publiccms.common.api.Json;
 import com.publiccms.common.base.Base;
 import com.publiccms.common.cache.CacheEntity;
 import com.publiccms.common.cache.CacheEntityFactory;
@@ -26,7 +28,7 @@ import com.publiccms.common.cache.CacheEntityFactory;
  * 
  */
 @Component
-public class MetadataComponent extends Base implements Cache, Json {
+public class MetadataComponent implements Cache, Base {
     /**
      * 
      */

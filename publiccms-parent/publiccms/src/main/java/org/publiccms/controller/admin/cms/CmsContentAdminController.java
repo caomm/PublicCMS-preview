@@ -1,5 +1,11 @@
 package org.publiccms.controller.admin.cms;
 
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.getDate;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+import static com.publiccms.common.tools.ControllerUtils.verifyCustom;
+import static com.publiccms.common.tools.ControllerUtils.verifyNotEmpty;
+import static com.publiccms.common.tools.ControllerUtils.verifyNotEquals;
 import static com.publiccms.common.tools.HtmlUtils.removeHtmlTag;
 import static com.publiccms.common.tools.JsonUtils.getString;
 import static com.publiccms.common.tools.LanguagesUtils.getMessage;
@@ -182,7 +188,6 @@ public class CmsContentAdminController extends AbstractController {
             contentFileService.update(entity.getId(), user.getId(), entity.isHasFiles() ? contentParamters.getFiles() : null,
                     entity.isHasImages() ? contentParamters.getImages() : null);// 更新保存图集，附件
         }
-
         if (null != attribute.getText()) {
             attribute.setWordCount(removeHtmlTag(attribute.getText()).length());
         }
@@ -205,6 +210,7 @@ public class CmsContentAdminController extends AbstractController {
         } else {
             attribute.setData(null);
         }
+
         attributeService.updateAttribute(entity.getId(), attribute);// 更新保存扩展字段，文本字段
 
         cmsContentRelatedService.update(entity.getId(), user.getId(), contentParamters.getContentRelateds());// 更新保存推荐内容
@@ -238,7 +244,7 @@ public class CmsContentAdminController extends AbstractController {
                     if (notEmpty(entity.getParentId())) {
                         publish(new Long[] { entity.getParentId() }, request, session, model);
                     }
-					publish(new Long[] { entity.getId() }, request, session, model);
+                    publish(new Long[] { entity.getId() }, request, session, model);
                     categoryIdSet.add(entity.getCategoryId());
                 }
             }
@@ -342,6 +348,12 @@ public class CmsContentAdminController extends AbstractController {
             CmsCategoryModel categoryModel = categoryModelService
                     .getEntity(new CmsCategoryModelId(entity.getCategoryId(), entity.getModelId()));
             if (null != categoryModel) {
+                categoryService.updateContents(categoryId, 1);
+                if (notEmpty(entity.getParentId())) {
+                    service.updateChilds(entity.getParentId(), -1);
+                } else {
+                    categoryService.updateContents(entity.getCategoryId(), -1);
+                }
                 service.updateCategoryId(entity.getSiteId(), entity.getId(), categoryId);
                 templateComponent.createContentFile(site, entity, null, categoryModel);
                 return true;
@@ -400,6 +412,49 @@ public class CmsContentAdminController extends AbstractController {
             service.delete(site.getId(), ids);
             logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(),
                     LogLoginService.CHANNEL_WEB_MANAGER, "delete.content", getIpAddress(request), getDate(), join(ids, ',')));
+        }
+        return TEMPLATE_DONE;
+    }
+
+    /**
+     * @param ids
+     * @param request
+     * @param session
+     * @return
+     */
+    @RequestMapping("recycle")
+    public String recycle(Long[] ids, HttpServletRequest request, HttpSession session) {
+        SysSite site = getSite(request);
+        if (notEmpty(ids)) {
+            for (CmsContent entity : service.getEntitys(ids)) {
+                if (entity.isDisabled() && site.getId() == entity.getSiteId()) {
+                    if (notEmpty(entity.getParentId())) {
+                        service.updateChilds(entity.getParentId(), 1);
+                    } else {
+                        categoryService.updateContents(entity.getCategoryId(), 1);
+                    }
+                }
+            }
+            service.recycle(site.getId(), ids);
+            logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(),
+                    LogLoginService.CHANNEL_WEB_MANAGER, "recycle.content", getIpAddress(request), getDate(), join(ids, ',')));
+        }
+        return TEMPLATE_DONE;
+    }
+
+    /**
+     * @param ids
+     * @param request
+     * @param session
+     * @return
+     */
+    @RequestMapping("realDelete")
+    public String realDelete(Long[] ids, HttpServletRequest request, HttpSession session) {
+        SysSite site = getSite(request);
+        if (notEmpty(ids)) {
+            service.realDelete(site.getId(), ids);
+            logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(),
+                    LogLoginService.CHANNEL_WEB_MANAGER, "realDelete.content", getIpAddress(request), getDate(), join(ids, ',')));
         }
         return TEMPLATE_DONE;
     }

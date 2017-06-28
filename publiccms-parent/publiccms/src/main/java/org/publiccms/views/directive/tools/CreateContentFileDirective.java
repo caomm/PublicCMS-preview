@@ -1,5 +1,6 @@
 package org.publiccms.views.directive.tools;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static org.publiccms.logic.component.site.SiteComponent.getFullFileName;
 
 import java.io.IOException;

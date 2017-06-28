@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.publiccms.common.base.BaseMethod;
+import com.publiccms.common.tools.CommonUtils;
 
 import freemarker.template.TemplateModelException;
 
@@ -29,10 +30,10 @@ public class GetDateMethod extends BaseMethod {
             try {
                 date = getDate(1, arguments);
             } catch (ParseException e) {
-                date = getDate();
+                date = CommonUtils.getDate();
             }
         } else {
-            date = getDate();
+            date = CommonUtils.getDate();
         }
         if (arguments.size() >= 1) {
             String type = getString(0, arguments);

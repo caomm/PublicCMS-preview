@@ -1,5 +1,7 @@
 package org.publiccms.controller.admin.cms;
 
+import static com.publiccms.common.tools.CommonUtils.getDate;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static com.publiccms.common.tools.JsonUtils.getString;
 import static com.publiccms.common.tools.RequestUtils.getIpAddress;
 import static org.apache.commons.lang3.StringUtils.join;
@@ -26,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("cmsDictionary")
 public class CmsDictionaryAdminController extends AbstractController {
 
-	private String[] ignoreProperties = new String[]{"id"};
+    private String[] ignoreProperties = new String[] { "id" };
 
     /**
      * @param entity
@@ -36,12 +38,12 @@ public class CmsDictionaryAdminController extends AbstractController {
      */
     @RequestMapping("save")
     public String save(CmsDictionary entity, HttpServletRequest request, HttpSession session) {
-    	SysSite site = getSite(request);
+        SysSite site = getSite(request);
         if (null != entity.getId()) {
             entity = service.update(entity.getId(), entity, ignoreProperties);
-            logOperateService.save(
-                        new LogOperate(site.getId(), getAdminFromSession(session).getId(), LogLoginService.CHANNEL_WEB_MANAGER,
-                                "update.cmsDictionary", getIpAddress(request), getDate(), getString(entity)));
+            logOperateService
+                    .save(new LogOperate(site.getId(), getAdminFromSession(session).getId(), LogLoginService.CHANNEL_WEB_MANAGER,
+                            "update.cmsDictionary", getIpAddress(request), getDate(), getString(entity)));
         } else {
             service.save(entity);
             logOperateService
@@ -59,15 +61,16 @@ public class CmsDictionaryAdminController extends AbstractController {
      */
     @RequestMapping("delete")
     public String delete(Integer[] ids, HttpServletRequest request, HttpSession session) {
-    	SysSite site = getSite(request);
-    	if (notEmpty(ids)) {
-	        service.delete(ids);
-	        logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(),
-                    LogLoginService.CHANNEL_WEB_MANAGER, "delete.cmsDictionary", getIpAddress(request), getDate(), join(ids, ',')));
+        SysSite site = getSite(request);
+        if (notEmpty(ids)) {
+            service.delete(ids);
+            logOperateService
+                    .save(new LogOperate(site.getId(), getAdminFromSession(session).getId(), LogLoginService.CHANNEL_WEB_MANAGER,
+                            "delete.cmsDictionary", getIpAddress(request), getDate(), join(ids, ',')));
         }
         return TEMPLATE_DONE;
     }
-    
+
     @Autowired
     private CmsDictionaryService service;
 }

@@ -24,7 +24,7 @@ import config.spring.CmsConfig;
  * Management Initializer
  *
  */
-public class AdminInitializer extends AbstractAnnotationConfigDispatcherServletInitializer implements WebApplicationInitializer {
+public class AdminInitializer extends AbstractAnnotationConfigDispatcherServletInitializer implements WebApplicationInitializer, Base  {
     /**
      * 管理后台路径 Management Path
      */
@@ -85,7 +85,7 @@ public class AdminInitializer extends AbstractAnnotationConfigDispatcherServletI
     @Override
     protected Filter[] getServletFilters() {
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-        characterEncodingFilter.setEncoding(Base.DEFAULT_CHARSET_NAME);
+        characterEncodingFilter.setEncoding(DEFAULT_CHARSET_NAME);
         characterEncodingFilter.setForceEncoding(true);
         return new Filter[] { characterEncodingFilter };
     }

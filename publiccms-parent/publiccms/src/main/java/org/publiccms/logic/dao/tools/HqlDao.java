@@ -1,5 +1,7 @@
 package org.publiccms.logic.dao.tools;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import java.util.Map;
 import java.util.Map.Entry;
 

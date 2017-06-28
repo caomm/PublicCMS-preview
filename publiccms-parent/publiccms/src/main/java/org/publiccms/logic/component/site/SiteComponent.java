@@ -1,5 +1,7 @@
 package org.publiccms.logic.component.site;
 
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static org.apache.commons.lang3.StringUtils.split;
 
 import java.util.HashSet;
@@ -21,8 +23,8 @@ import com.publiccms.common.cache.CacheEntityFactory;
  * SiteComponent
  * 
  */
-public class SiteComponent extends Base implements Cache {
-    
+public class SiteComponent implements Cache, Base {
+
     /**
      * 
      */
@@ -48,7 +50,6 @@ public class SiteComponent extends Base implements Cache {
      * 
      */
     public static final String CONFIG_FILE = "config.data";
-
 
     private CacheEntity<String, SysSite> siteCache;
     private CacheEntity<String, SysDomain> domainCache;
@@ -236,12 +237,13 @@ public class SiteComponent extends Base implements Cache {
 
     /**
      * @param cacheEntityFactory
-     * @throws IllegalAccessException 
-     * @throws InstantiationException 
-     * @throws ClassNotFoundException 
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws ClassNotFoundException
      */
     @Autowired
-    public void initCache(CacheEntityFactory cacheEntityFactory) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public void initCache(CacheEntityFactory cacheEntityFactory)
+            throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         domainCache = cacheEntityFactory.createCacheEntity("domain");
         siteCache = cacheEntityFactory.createCacheEntity("site");
     }

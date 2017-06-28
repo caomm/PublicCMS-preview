@@ -1,5 +1,7 @@
 package org.publiccms.controller.admin.sys;
 
+import static com.publiccms.common.tools.CommonUtils.getDate;
+import static com.publiccms.common.tools.ControllerUtils.verifyCustom;
 import static com.publiccms.common.tools.JsonUtils.getString;
 import static com.publiccms.common.tools.RequestUtils.getIpAddress;
 
@@ -115,7 +117,7 @@ public class SysMoudleAdminController extends AbstractController {
                 moudleIds.add(roleMoudle2.getId().getMoudleId());
             }
             SysRole role = roleService.getEntity(roleMoudle.getId().getRoleId());
-            if (!moudleIds.isEmpty() && null!= role && !role.isOwnsAllRight()) {
+            if (!moudleIds.isEmpty() && null != role && !role.isOwnsAllRight()) {
                 roleAuthorizedService.dealRoleMoudles(roleMoudle.getId().getRoleId(), role.isShowAllMoudle(),
                         service.getEntitys(moudleIds.toArray(new Integer[moudleIds.size()])), pageUrls);
             }

@@ -12,7 +12,7 @@ public class ExtendData implements java.io.Serializable {
      */
     private static final long serialVersionUID = 1L;
     String name;
-    String value;
+    String value[];
 
     /**
      * @return
@@ -31,14 +31,14 @@ public class ExtendData implements java.io.Serializable {
     /**
      * @return
      */
-    public String getValue() {
+    public String[] getValue() {
         return this.value;
     }
 
     /**
      * @param value
      */
-    public void setValue(String value) {
+    public void setValue(String[] value) {
         this.value = value;
     }
 }

@@ -1,5 +1,12 @@
 package org.publiccms.controller.web.cms;
 
+import static com.publiccms.common.tools.CommonUtils.empty;
+import static com.publiccms.common.tools.CommonUtils.getDate;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+import static com.publiccms.common.tools.ControllerUtils.redirect;
+import static com.publiccms.common.tools.ControllerUtils.redirectPermanently;
+import static com.publiccms.common.tools.ControllerUtils.verifyCustom;
+import static com.publiccms.common.tools.ControllerUtils.verifyNotEquals;
 import static com.publiccms.common.tools.RequestUtils.getIpAddress;
 import static org.apache.commons.lang3.ArrayUtils.contains;
 import static org.publiccms.common.tools.ExtendUtils.getExtendString;
@@ -179,8 +186,8 @@ public class PlaceController extends AbstractController {
     public void clicks(Long id, HttpServletRequest request, HttpServletResponse response) {
         SysSite site = getSite(request);
         CmsPlaceStatistics placeStatistics = statisticsComponent.placeClicks(id);
-        if (null != placeStatistics.getEntity() && site.getId() == placeStatistics.getEntity().getSiteId()
-                && notEmpty(placeStatistics.getEntity().getUrl())) {
+        if (null != placeStatistics && null != placeStatistics.getEntity()
+                && site.getId() == placeStatistics.getEntity().getSiteId() && notEmpty(placeStatistics.getEntity().getUrl())) {
             redirectPermanently(response, placeStatistics.getEntity().getUrl());
         } else {
             redirectPermanently(response, site.getDynamicPath());

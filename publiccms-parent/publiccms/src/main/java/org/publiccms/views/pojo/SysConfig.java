@@ -3,7 +3,6 @@ package org.publiccms.views.pojo;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.publiccms.common.base.Base;
 
 /**
  *
@@ -11,7 +10,7 @@ import com.publiccms.common.base.Base;
  * 
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SysConfig extends Base implements java.io.Serializable {
+public class SysConfig implements java.io.Serializable {
 
     /**
      * 

@@ -36,10 +36,8 @@ public class SysExtendField implements java.io.Serializable {
     private String inputType;
     @GeneratorColumn(title = "默认值")
     private String defaultValue;
-    @GeneratorColumn(title = "数据字典类型")
-    private String dictionaryType;
     @GeneratorColumn(title = "数据字典ID")
-    private String dictionaryId;
+    private Long dictionaryId;
     @GeneratorColumn(title = "顺序", order = true)
     private int sort;
 
@@ -55,7 +53,7 @@ public class SysExtendField implements java.io.Serializable {
     }
 
     public SysExtendField(SysExtendFieldId id, boolean required, Integer maxlength, String name, String description,
-            String inputType, String defaultValue, String dictionaryType, String dictionaryId, int sort) {
+            String inputType, String defaultValue, Long dictionaryId, int sort) {
         this.id = id;
         this.required = required;
         this.maxlength = maxlength;
@@ -63,7 +61,6 @@ public class SysExtendField implements java.io.Serializable {
         this.description = description;
         this.inputType = inputType;
         this.defaultValue = defaultValue;
-        this.dictionaryType = dictionaryType;
         this.dictionaryId = dictionaryId;
         this.sort = sort;
     }
@@ -133,21 +130,12 @@ public class SysExtendField implements java.io.Serializable {
         this.defaultValue = defaultValue;
     }
 
-    @Column(name = "dictionary_type", length = 20)
-    public String getDictionaryType() {
-        return this.dictionaryType;
-    }
-
-    public void setDictionaryType(String dictionaryType) {
-        this.dictionaryType = dictionaryType;
-    }
-
-    @Column(name = "dictionary_id", length = 20)
-    public String getDictionaryId() {
+    @Column(name = "dictionary_id")
+    public Long getDictionaryId() {
         return this.dictionaryId;
     }
 
-    public void setDictionaryId(String dictionaryId) {
+    public void setDictionaryId(Long dictionaryId) {
         this.dictionaryId = dictionaryId;
     }
 

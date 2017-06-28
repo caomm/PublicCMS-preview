@@ -1,5 +1,7 @@
 package org.publiccms.views.directive.tools;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import java.io.IOException;
 
 import org.publiccms.common.base.AbstractTemplateDirective;

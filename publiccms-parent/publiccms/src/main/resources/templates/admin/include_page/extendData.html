@@ -56,9 +56,28 @@
 		<#case 'category'>
 		<@_category id=value><#assign category=object/></@_category>
 		<input name="${inputName}" value="${(value)!}" type="hidden"/>
-		<input name="${name}[${index}].title" readonly="readonly" size="30" value="${(category.title)!}" type="text"<#if !customform> class="<#if extend.required> required</#if>"</#if>/>
-		<a class="btnLook" href="cmsCategory/lookup.html?field=value" lookupGroup="${name}[${index}]" width="1000" height="500">选择内容</a>
-			<#break>
+		<input name="${name}[${index}].categoryName" readonly="readonly" size="30" value="${(category.name)!}" type="text"<#if !customform> class="<#if extend.required> required</#if>"</#if>/>
+		<a class="btnLook" href="cmsCategory/lookup.html?field=value" lookupGroup="${name}[${index}]" width="1000" height="500">选择分类</a>
+		<#case 'dictionary'>
+		<@_dictionary id=extend.dictionaryId><#assign dictionary=object/></@_dictionary>
+		<#if dictionary?has_content>
+			<#if dictionary.multiple>
+				<#assign values=value?split(',')/>
+				<@_dictionaryDataList dictionaryId=extend.dictionaryId>
+					<#list list as d>
+						<label><input name="${inputName}" type="checkbox" value="${d.id.value}"${(values?has_content&&values?seq_contains(d.id.value))?then(' checked="true"','')?no_esc}/>${d.text}</label>
+					</#list>
+				</@_dictionaryDataList>
+			<#else>
+				<select class="combox" name="${inputName}"<#if !customform> class="<#if extend.required> required</#if>"</#if>>
+				<@_dictionaryDataList dictionaryId=extend.dictionaryId>
+					<#list list as d>
+					<option value="${d.id.value}"${(value?has_content&&d.id.value=value)?then(' selected="true"','')?no_esc}>${d.text}</option>
+					</#list>
+				</@_dictionaryDataList>
+				</select>
+			</#if>
+		</#if>
 		<#case 'date'>
 		<input name="${inputName}" <#if !customform>class="date<#if extend.required> required</#if>" dateFmt="yyyy-MM-dd" </#if>type="text" size="20" value="${(value)!}"/>
 		<#if !customform><a class="inputDateButton" href="javascript:;" onclick="return false;">选择</a></#if>

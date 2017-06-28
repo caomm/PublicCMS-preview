@@ -1,7 +1,7 @@
 package ${base}.${controllerPack};
 
 // Generated ${.now} by com.publiccms.common.generator.SourceGenerator
-
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static com.publiccms.common.tools.RequestUtils.getIpAddress;
 import static com.publiccms.common.tools.JsonUtils.getString;
 import static org.apache.commons.lang3.StringUtils.join;

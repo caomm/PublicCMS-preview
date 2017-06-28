@@ -1,6 +1,8 @@
 package org.publiccms.logic.service.cms;
 
 // Generated 2015-5-8 16:50:23 by com.publiccms.common.source.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+
 import java.io.Serializable;
 import java.util.List;
 

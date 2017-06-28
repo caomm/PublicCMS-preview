@@ -1,5 +1,6 @@
 package org.publiccms.views.method.tools;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static com.publiccms.common.tools.TemplateModelUtils.converString;
 import static org.apache.http.util.EntityUtils.consume;
 

@@ -1,22 +1,24 @@
 package com.publiccms.common.cache;
 
+import static org.apache.commons.logging.LogFactory.getLog;
 import static org.springframework.core.io.support.PropertiesLoaderUtils.loadAllProperties;
 
 import java.io.IOException;
 import java.util.Properties;
 
-import com.publiccms.common.base.Base;
+import org.apache.commons.logging.Log;
 
 /**
  *
  * CacheEntityFactory
  * 
  */
-public class CacheEntityFactory extends Base {
+public class CacheEntityFactory {
     /**
      * 
      */
     public static final String MEMORY_CACHE_ENTITY = "memory";
+    protected final Log log = getLog(getClass());
     private String defaultCacheEntity;
     private Properties properties;
     private int defaultSize = 100;

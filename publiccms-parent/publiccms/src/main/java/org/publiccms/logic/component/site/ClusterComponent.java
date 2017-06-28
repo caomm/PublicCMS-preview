@@ -1,5 +1,7 @@
 package org.publiccms.logic.component.site;
 
+import static com.publiccms.common.tools.CommonUtils.getDate;
+
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.publiccms.common.base.Base;
 import com.publiccms.common.handler.PageHandler;
 
 /**
@@ -22,7 +23,7 @@ import com.publiccms.common.handler.PageHandler;
  * 
  */
 @Component
-public class ClusterComponent extends Base {
+public class ClusterComponent {
     /**
      * 
      */

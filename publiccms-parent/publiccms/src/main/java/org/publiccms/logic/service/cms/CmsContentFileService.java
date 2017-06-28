@@ -1,6 +1,7 @@
 package org.publiccms.logic.service.cms;
 
 // Generated 2016-1-25 10:53:21 by com.publiccms.common.source.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 
 import java.util.HashSet;
 import java.util.List;

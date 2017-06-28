@@ -11,11 +11,7 @@
 		<div class="pageFormContent" layoutH="60">
 			<dl>
 				<dt>名称：</dt>
-				<dd><input class="required" name="name" type="text" size="20" value="${(a.name)!}"/></dd>
-			</dl>
-			<dl>
-				<dt>允许多选：</dt>
-				<dd><input class="required" name="multiple" type="text" size="30" value="${(a.multiple)!}"/></dd>
+				<dd><input class="required" name="name" type="text" size="20" value="${(a.name)!}"/><label><input name="multiple" type="checkbox"${a.multiple?has_content&&a.multiple?then(' checked="true"','')?no_esc}/>多选</label></dd>
 			</dl>
 		</div>
 	</div>

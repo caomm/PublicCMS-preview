@@ -1,6 +1,7 @@
 package org.publiccms.logic.dao.sys;
 
 // Generated 2015-7-22 13:48:39 by com.publiccms.common.source.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 
 import java.util.ArrayList;
 import java.util.List;

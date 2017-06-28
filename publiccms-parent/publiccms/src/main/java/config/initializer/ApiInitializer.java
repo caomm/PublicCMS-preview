@@ -18,7 +18,7 @@ import config.spring.ApiConfig;
  * WebInitializer Servlet3.0 工程入口类
  *
  */
-public class ApiInitializer extends AbstractAnnotationConfigDispatcherServletInitializer implements WebApplicationInitializer {
+public class ApiInitializer extends AbstractAnnotationConfigDispatcherServletInitializer implements WebApplicationInitializer,Base {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
@@ -48,7 +48,7 @@ public class ApiInitializer extends AbstractAnnotationConfigDispatcherServletIni
     @Override
     protected Filter[] getServletFilters() {
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-        characterEncodingFilter.setEncoding(Base.DEFAULT_CHARSET_NAME);
+        characterEncodingFilter.setEncoding(DEFAULT_CHARSET_NAME);
         characterEncodingFilter.setForceEncoding(true);
         return new Filter[] { characterEncodingFilter };
     }

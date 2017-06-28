@@ -1,8 +1,12 @@
 package org.publiccms.logic.component.task;
+import static com.publiccms.common.tools.CommonUtils.getDate;
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
+import static org.apache.commons.logging.LogFactory.getLog;
 
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
 import org.publiccms.entities.log.LogTask;
 import org.publiccms.entities.sys.SysSite;
 import org.publiccms.entities.sys.SysTask;
@@ -30,7 +34,8 @@ import com.publiccms.common.base.Base;
  *
  */
 @Component
-public class ScheduledTask extends Base {
+public class ScheduledTask implements Base {
+    protected final Log log = getLog(getClass());
     /**
      * 
      */
