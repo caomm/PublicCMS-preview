@@ -53,7 +53,7 @@ subprojects{
 		jcenter()
 	    mavenCentral()
 	}
-	
+
 	eclipse {
 	    classpath {
 		    defaultOutputDir = file('build/classes/main')
@@ -114,7 +114,7 @@ project(':publiccms') {
 	        /* 商业版插件
 	        "redis.clients:jedis:${jedisVersion}",
 			商业版插件 */
-			
+
 	        // http://mvnrepository.com/artifact/commons-io/commons-io
 	        "commons-io:commons-io:2.5",
 	        // http://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
@@ -190,6 +190,9 @@ project(':publiccms') {
 		)
 		compile fileTree(dir: 'src/main/webapp/WEB-INF/lib', include: ['*.jar'])
 	}
+  war{
+    archiveName = "${project.name}.war"
+  }
 	eclipse {
 		/**
 	 	delete this line for spring boot */

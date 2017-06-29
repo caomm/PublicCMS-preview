@@ -256,6 +256,7 @@
 	</pluginRepositories>
 	<build>
 		<defaultGoal>compile</defaultGoal>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
 			<plugin>
