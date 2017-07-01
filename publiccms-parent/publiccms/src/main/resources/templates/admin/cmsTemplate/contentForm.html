@@ -19,11 +19,11 @@
 	<@_sysExtendFieldList extendId=category.extendId>
 		<#assign extendList=list![]/>
 		<#assign extendValue=attribute!{}/>
-		<@extendData 'categoryExtendDataList' extendList extendValue true/>
+		<@extendData 'categoryExtendDataList' extendList extendValue 'customform'/>
 	</@_sysExtendFieldList>
 	<#assign extendList=model.extendList![]/>
 	<#assign extendValue=attribute!{}/>
-	<@extendData 'modelExtendDataList' extendList extendValue true/>
+	<@extendData 'modelExtendDataList' extendList extendValue 'customform'/>
 	<p><input type="submit" value="提交"/></p>
 </form>
 		<#else>

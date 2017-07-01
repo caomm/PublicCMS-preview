@@ -62,6 +62,17 @@ public class CmsCategoryService extends BaseService<CmsCategory> {
         }
     }
 
+    /**
+     * @param id
+     * @param typeId 
+     */
+    public void changeType(Integer id, Integer typeId) {
+        CmsCategory entity = getEntity(id);
+        if (null != entity) {
+            entity.setTypeId(typeId);
+        }
+    }
+
     private String getChildIds(int siteId, Integer parentId) {
         StringBuilder childIds = new StringBuilder();
         @SuppressWarnings("unchecked")

@@ -86,6 +86,24 @@ public abstract class ControllerUtils {
         }
         return false;
     }
+    
+    /**
+     * @param field
+     * @param value
+     * @param specific
+     * @param model
+     * @return
+     */
+    public static boolean verifyNotGreaterThen(String field, Long value, long specific, Map<String, Object> model) {
+        if (null == value) {
+            model.put(ERROR, "verify.notEmpty." + field);
+            return true;
+        } else if (value >= specific) {
+            model.put(ERROR, "verify.notGreaterThen." + field);
+            return true;
+        }
+        return false;
+    }
 
     /**
      * @param field

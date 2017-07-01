@@ -210,7 +210,7 @@ select{ border:1px solid;border-color:#A2BAC0 #B8D0D6 #B8D0D6 #A2BAC0}
 
 .inputButton{ float:left;display:block;overflow:hidden;text-indent:-1000px;width:16px;height:21px;}
 .inputButton:hover{ background-position:0 -50px;}
-.inputDateButton{ float:left;display:block;overflow:hidden;text-indent:-1000px;width:16px;height:21px;background-position:0 -100px;}
+.inputDateButton{ float:left;display:block;overflow:hidden;text-indent:-1000px;width: 16px;height: 28px;background-position:0 -100px;}
 .inputDateButton:hover{ background-position:0 -150px;}
 
 span.error{ display:block;overflow:hidden;width:165px;height:21px;padding:0 3px;line-height:21px;background:#F00;color:#FFF;position:absolute;top:5px;left:318px;}
@@ -283,7 +283,7 @@ button.button,button.buttonActive{ height:30px;}
 .pageFormContent dt{ float:left;width:120px;padding:0 5px;}
 .pageFormContent dd{ display:block;width:220px;float:left;}
 .pageFormContent dl.nowrap, .nowrap dl{ width:100%;height:auto;clear:both;}
-.pageFormContent dl.nowrap dd, .nowrap dd{ width:650px;}
+.pageFormContent dl.nowrap dd, .nowrap dd{ width:600px;}
 
 fieldset{ padding:3px;margin:0 0 5px 0;border:1px dotted #B8D0D6;}
 fieldset legend{ padding:2px;border:1px dotted #B8D0D6;font-weight:bold;}
@@ -464,3 +464,5 @@ a.btnAttach{ background-position:-183px 0}
 #calendar .hh .hh, #calendar .mm .mm, #calendar .ss .ss{ display:block;}
 #calendar .tm .hh li, #calendar .tm .mm li, #calendar .tm .ss li{ display:block;float:left;cursor:pointer;width:20px;line-height:21px}
 #calendar .tm .hh li:hover, #calendar .tm .mm li:hover, #calendar .tm .ss li:hover{ background:#B3E4EB;}
+
+.thumbnail {position: relative; overflow: hidden; margin-right: 5px; border: 1px dashed #cacbcc; display: inline-block; text-align: center;}

@@ -79,7 +79,7 @@ input.focus, textarea.focus{ border-color:#8db2e3 #91b3e0 #91b3e0 #8db2e3;backgr
 input.readonly, textarea.readonly{ border-color:#9eabb3 #d5dbdf #d5dbdf #9eabb3;background-color:#F6F6F6;}
 input.disabled, textarea.disabled{ border-color:#9eabb3 #d5dbdf #d5dbdf #9eabb3;background-color:#F6F6F6;}
 
-.inputButton, .inputDateButton{ background-image:url(./images/input_bt.png);background-repeat:no-repeat;}
+.inputButton, .inputDateButton{ background-image:url(../default/images/input_bt.png);background-repeat:no-repeat;}
 
 /* Button */
 

@@ -38,7 +38,7 @@ public class CmsVersion {
         if (null == copyright) {
             try {
                 Class<?> clazz = Class.forName("com.publiccms.improve.CmsCopyright");
-                if (clazz.isAssignableFrom(Copyright.class)) {
+                if (Copyright.class.isAssignableFrom(clazz)) {
                     copyright = (Copyright) clazz.newInstance();
                 }
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {

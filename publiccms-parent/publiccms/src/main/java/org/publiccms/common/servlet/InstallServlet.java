@@ -142,7 +142,7 @@ public class InstallServlet extends HttpServlet implements Base {
                 case STEP_START:
                     try {
                         start();
-                        response.sendRedirect("../");
+                        step = "startOk";
                     } catch (PropertyVetoException e) {
                         map.put("message", "failed");
                         map.put("error", e.getMessage());

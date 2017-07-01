@@ -16,6 +16,9 @@ INSERT INTO `sys_moudle` VALUES ('111', '修改模板', 'placeTemplate/content',
 INSERT INTO `sys_moudle` VALUES ('112', '页面管理', 'cmsPage/list', 'cmsPage/metadata,sysUser/lookup,cmsContent/lookup,cmsContent/lookup_list,cmsCategory/lookup', '<i class=\"icon-globe icon-large\"></i>', '30', '1', '0');
 INSERT INTO `sys_moudle` VALUES ('113', '刷新缓存', NULL, 'clearCache', '', NULL, '0', '1');
 ALTER TABLE `sys_extend_field` DROP COLUMN `dictionary_type`, MODIFY COLUMN `dictionary_id`  bigint(20) NULL DEFAULT NULL COMMENT '数据字典ID' AFTER `default_value`;
-INSERT INTO `sys_moudle` VALUES ('155', '内容回收站', 'cmsRecycleContent/list', 'sysUser/lookup', '<i class=\"icon-qrcode icon-large\"></i>', '13', '1', '0');
-INSERT INTO `sys_moudle` VALUES ('156', '删除', NULL, 'cmsContent/realDelete', NULL, '155', '1', '0');
-INSERT INTO `sys_moudle` VALUES ('157', '还原', NULL, 'cmsContent/recycle', NULL, '155', '1', '0');
+INSERT INTO `sys_moudle` VALUES ('114', '查看', 'cmsContent/view', null, null, '12', '0', '0');
+INSERT INTO `sys_moudle` VALUES ('115', '查看', 'cmsPlace/view', null, null, '107', '0', '0');
+INSERT INTO `sys_moudle` VALUES ('116', '修改类型', 'cmsCategory/changeTypeParameters', 'cmsCategory/changeType', null, '24', '0', '0');
+INSERT INTO `sys_moudle` VALUES ('117', '内容回收站', 'cmsRecycleContent/list', 'sysUser/lookup', '<i class=\"icon-trash icon-large\"></i>', '13', '1', '0');
+INSERT INTO `sys_moudle` VALUES ('118', '删除', NULL, 'cmsContent/realDelete', NULL, '155', '0', '0');
+INSERT INTO `sys_moudle` VALUES ('119', '还原', NULL, 'cmsContent/recycle', NULL, '155', '0', '0');

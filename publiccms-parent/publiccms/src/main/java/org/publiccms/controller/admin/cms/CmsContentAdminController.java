@@ -110,7 +110,6 @@ public class CmsContentAdminController extends AbstractController {
      * @param entity
      * @param attribute
      * @param contentParamters
-     * @param timing
      * @param draft
      * @param checked
      * @param request
@@ -120,7 +119,7 @@ public class CmsContentAdminController extends AbstractController {
      */
     @RequestMapping("save")
     public String save(CmsContent entity, CmsContentAttribute attribute, @ModelAttribute CmsContentParamters contentParamters,
-            Boolean timing, Boolean draft, Boolean checked, HttpServletRequest request, HttpSession session, ModelMap model) {
+            Boolean draft, Boolean checked, HttpServletRequest request, HttpSession session, ModelMap model) {
         SysSite site = getSite(request);
         SysUser user = getAdminFromSession(session);
         SysDept dept = sysDeptService.getEntity(user.getDeptId());
@@ -156,8 +155,6 @@ public class CmsContentAdminController extends AbstractController {
         }
         Date now = getDate();
         if (empty(entity.getPublishDate())) {
-            entity.setPublishDate(now);
-        } else if (notEmpty(timing) && timing && now.after(entity.getPublishDate())) {
             entity.setPublishDate(now);
         }
         if (null != entity.getId()) {

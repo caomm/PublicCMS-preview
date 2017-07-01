@@ -322,7 +322,7 @@ public abstract class BaseDao<E> implements Base  {
      * @return
      */
     protected int countResult(QueryHandler queryHandler) {
-        return ((Number) getCountQuery(queryHandler).iterate().next()).intValue();
+        return ((Number) getCountQuery(queryHandler).list().iterator().next()).intValue();
     }
 
     /**
@@ -330,7 +330,7 @@ public abstract class BaseDao<E> implements Base  {
      * @return
      */
     protected int count(QueryHandler queryHandler) {
-        return ((Number) getQuery(queryHandler).iterate().next()).intValue();
+        return ((Number) getQuery(queryHandler).list().iterator().next()).intValue();
     }
 
     private Query getQuery(QueryHandler queryHandler) {

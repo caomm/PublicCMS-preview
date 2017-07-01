@@ -2,7 +2,7 @@ package org.publiccms.views.directive.cms;
 
 // Generated 2015-12-24 10:49:03 by com.publiccms.common.source.SourceGenerator
 import static com.publiccms.common.tools.CommonUtils.empty;
-import static com.publiccms.common.tools.CommonUtils.getDate;
+import static com.publiccms.common.tools.CommonUtils.getMinuteDate;
 import static com.publiccms.common.tools.CommonUtils.notEmpty;
 
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class CmsPlaceListDirective extends AbstractTemplateDirective {
             status = handler.getInteger("status");
             disabled = handler.getBoolean("disabled", false);
         } else {
-            Date now = getDate();
+            Date now = getMinuteDate();
             if (empty(endPublishDate) || endPublishDate.after(now)) {
                 endPublishDate = now;
             }

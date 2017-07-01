@@ -26,7 +26,7 @@ import org.mybatis.generator.config.PropertyRegistry;
  * ServicePlugin
  * 
  */
-public class ServicePlugin extends PluginAdapter {
+public class ServicePlugin extends PluginAdapter{
     
     private List<TopLevelClass> services = new ArrayList<TopLevelClass>();
 
@@ -63,7 +63,6 @@ public class ServicePlugin extends PluginAdapter {
                 topLevelClazz.addFileCommentLine("    @Author: xinlu");
                 topLevelClazz.addFileCommentLine("    @Email: 442559691@qq.com");
                 topLevelClazz.addFileCommentLine("*/");
-                topLevelClazz.addFileCommentLine("");
                 topLevelClazz.addFileCommentLine("");
             }
             topLevelClazz.addAnnotation("@Service");

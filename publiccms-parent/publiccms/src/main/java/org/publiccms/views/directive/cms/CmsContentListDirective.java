@@ -2,7 +2,7 @@ package org.publiccms.views.directive.cms;
 
 // Generated 2015-5-10 17:54:56 by com.publiccms.common.source.SourceGenerator
 import static com.publiccms.common.tools.CommonUtils.empty;
-import static com.publiccms.common.tools.CommonUtils.getDate;
+import static com.publiccms.common.tools.CommonUtils.getMinuteDate;
 
 import java.io.IOException;
 import java.util.Date;
@@ -34,7 +34,7 @@ public class CmsContentListDirective extends AbstractTemplateDirective {
             disabled = handler.getBoolean("disabled", false);
             emptyParent = handler.getBoolean("emptyParent");
         } else {
-            Date now = getDate();
+            Date now = getMinuteDate();
             if (empty(endPublishDate) || endPublishDate.after(now)) {
                 endPublishDate = now;
             }

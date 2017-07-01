@@ -1,4 +1,5 @@
 package org.publiccms.controller.admin.cms;
+
 import static com.publiccms.common.tools.CommonUtils.empty;
 import static com.publiccms.common.tools.CommonUtils.getDate;
 import static com.publiccms.common.tools.CommonUtils.notEmpty;
@@ -45,6 +46,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import freemarker.template.TemplateException;
+
 /**
  * 
  * CmsCategoryController
@@ -218,6 +220,26 @@ public class CmsCategoryAdminController extends AbstractController {
             logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(),
                     LogLoginService.CHANNEL_WEB_MANAGER, "static.category", getIpAddress(request), getDate(),
                     new StringBuilder(join(ids, ',')).append(",pageSize:").append((empty(max) ? 1 : max)).toString()));
+        }
+        return TEMPLATE_DONE;
+    }
+
+    /**
+     * @param id 
+     * @param typeId 
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping("changeType")
+    public String changeType(Integer id, Integer typeId, HttpServletRequest request, HttpSession session, ModelMap model) {
+        SysSite site = getSite(request);
+        if (notEmpty(id)) {
+            service.changeType(id, typeId);
+            logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(),
+                    LogLoginService.CHANNEL_WEB_MANAGER, "changeType.category", getIpAddress(request), getDate(),
+                    new StringBuilder(id).append(" to ").append(typeId).toString()));
         }
         return TEMPLATE_DONE;
     }

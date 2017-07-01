@@ -7,8 +7,8 @@ function siteDefaultConfig${id!}(){
 	if($('input[name=useSsi]',navTab.getCurrentPanel()).is(":checked")){
 		$('input[name=useSsi]',navTab.getCurrentPanel()).click();
 	}
-	$('input[name=sitePath]',navTab.getCurrentPanel()).val("${base}/webfile/");
-	$('input[name=dynamicPath]',navTab.getCurrentPanel()).val("${base}/");
+	$('input[name=sitePath]',navTab.getCurrentPanel()).val("${base?keep_after(':')}/webfile/");
+	$('input[name=dynamicPath]',navTab.getCurrentPanel()).val("${base?keep_after(':')}/");
 	<#if !a??>
 		$('input[name=domainName]',navTab.getCurrentPanel()).val("${base?keep_after('//')?keep_before('/')?keep_before(':')}");
 	</#if>

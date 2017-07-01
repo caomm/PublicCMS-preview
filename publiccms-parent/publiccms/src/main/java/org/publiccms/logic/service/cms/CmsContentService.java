@@ -155,10 +155,6 @@ public class CmsContentService extends BaseService<CmsContent> {
             if (null != entity && siteId == entity.getSiteId() && STATUS_PEND == entity.getStatus()) {
                 entity.setStatus(STATUS_NORMAL);
                 entity.setCheckUserId(userId);
-                Date now = getDate();
-                if (now.after(entity.getPublishDate())) {
-                    entity.setPublishDate(now);
-                }
                 entityList.add(entity);
             }
         }
@@ -315,7 +311,6 @@ public class CmsContentService extends BaseService<CmsContent> {
      * @param siteId
      * @param ids
      * @return 
-     * @return
      */
     @SuppressWarnings("unchecked")
     public List<CmsContent> realDelete(Integer siteId, Long[] ids) {

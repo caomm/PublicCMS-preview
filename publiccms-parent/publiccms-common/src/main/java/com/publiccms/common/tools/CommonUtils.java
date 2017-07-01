@@ -1,6 +1,7 @@
 package com.publiccms.common.tools;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.apache.commons.lang3.time.DateUtils.*;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 import java.io.File;
@@ -9,8 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 基类
- * Base
+ * 基类 Base
  * 
  */
 public class CommonUtils {
@@ -24,6 +24,17 @@ public class CommonUtils {
      */
     public static Date getDate() {
         return new Date();
+    }
+
+    /**
+     * 获取日期
+     * 
+     * Get Date
+     * 
+     * @return
+     */
+    public static Date getMinuteDate() {
+        return setSeconds(setMilliseconds(getDate(), 0), 0);
     }
 
     /**
@@ -61,7 +72,7 @@ public class CommonUtils {
     public static boolean notEmpty(long var) {
         return 0 != var;
     }
-    
+
     /**
      * 空
      * 
@@ -217,5 +228,5 @@ public class CommonUtils {
     public static boolean empty(Object[] var) {
         return null == var || 0 == var.length;
     }
-    
+
 }
