@@ -105,6 +105,7 @@ CREATE TABLE `cms_content` (
   `clicks` int(11) NOT NULL COMMENT '点击数',
   `publish_date` datetime NOT NULL COMMENT '发布日期',
   `create_date` datetime NOT NULL COMMENT '创建日期',
+  `sort` int(11) NOT NULL default '0' COMMENT '顺序',
   `status` int(11) NOT NULL COMMENT '状态：0、草稿 1、已发布 2、待审核',
   `disabled` tinyint(1) NOT NULL COMMENT '是否删除',
   PRIMARY KEY  (`id`),
@@ -114,6 +115,7 @@ CREATE TABLE `cms_content` (
   KEY `model_id` (`model_id`),
   KEY `parent_id` (`parent_id`),
   KEY `status` (`status`),
+  KEY `sort` (`sort`),
   KEY `childs` (`childs`),
   KEY `scores` (`scores`),
   KEY `comments` (`comments`),
@@ -913,6 +915,7 @@ CREATE TABLE `sys_dept` (
   `parent_id` int(11) default NULL COMMENT '父部门ID',
   `description` varchar(300) default NULL COMMENT '描述',
   `user_id` bigint(20) default NULL COMMENT '负责人',
+  `max_sort` INT NOT NULL DEFAULT 1000 COMMENT  '最大内容置顶级别',
   `owns_all_category` tinyint(1) NOT NULL COMMENT '拥有全部分类权限',
   `owns_all_page` tinyint(1) NOT NULL COMMENT '拥有全部页面权限',
   PRIMARY KEY  (`id`),
@@ -922,8 +925,8 @@ CREATE TABLE `sys_dept` (
 -- ----------------------------
 -- Records of sys_dept
 -- ----------------------------
-INSERT INTO `sys_dept` VALUES ('1', '1', '技术部', null, '', '1', '1', '1');
-INSERT INTO `sys_dept` VALUES ('2', '2', '技术部', null, '', '3', '1', '1');
+INSERT INTO `sys_dept` VALUES ('1', '1', '技术部', null, '', '1', '1000', '1', '1');
+INSERT INTO `sys_dept` VALUES ('2', '2', '技术部', null, '', '3', '1000', '1', '1');
 
 -- ----------------------------
 -- Table structure for sys_dept_category
@@ -1152,6 +1155,8 @@ INSERT INTO `sys_moudle` VALUES ('116', '修改类型', 'cmsCategory/changeTypeP
 INSERT INTO `sys_moudle` VALUES ('117', '内容回收站', 'cmsRecycleContent/list', 'sysUser/lookup', '<i class=\"icon-trash icon-large\"></i>', '13', '1', '0');
 INSERT INTO `sys_moudle` VALUES ('118', '删除', NULL, 'cmsContent/realDelete', NULL, '155', '0', '0');
 INSERT INTO `sys_moudle` VALUES ('119', '还原', NULL, 'cmsContent/recycle', NULL, '155', '0', '0');
+INSERT INTO `sys_moudle` VALUES ('120', '置顶', 'cmsContent/sortParameters', 'cmsContent/sort', NULL, '12', '0', '0');
+INSERT INTO `sys_moudle` VALUES ('121', '人员管理', 'sysDept/userList', 'sysDept/addUser,sysDept/saveUser,sysDept/enableUser,sysDept/disableUser', NULL, '72', '0', '0');
 INSERT INTO `sys_moudle` VALUES ('130', '评论管理', 'homeComment/list', null, '<i class=\"icon-comment-alt icon-large\"></i>', '109', '1', '0');
 INSERT INTO `sys_moudle` VALUES ('131', '网站文件管理', 'cmsWebFile/list', null, '<i class=\"icon-globe icon-large\"></i>', '38', '1', '0');
 INSERT INTO `sys_moudle` VALUES ('132', '新建目录', 'cmsWebFile/directory', 'cmsWebFile/createDirectory', null, '131', '1', '0');

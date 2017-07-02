@@ -99,7 +99,7 @@ public class CmsContentAdminController extends AbstractController {
     @Autowired
     private SysExtendFieldService extendFieldService;
 
-    private String[] ignoreProperties = new String[] { "siteId", "userId", "categoryId", "tagIds", "createDate", "clicks",
+    private String[] ignoreProperties = new String[] { "siteId", "userId", "categoryId", "tagIds", "sort", "createDate", "clicks",
             "comments", "scores", "childs", "checkUserId" };
 
     private String[] ignorePropertiesWithUrl = addAll(ignoreProperties, new String[] { "url" });
@@ -357,6 +357,27 @@ public class CmsContentAdminController extends AbstractController {
             }
         }
         return false;
+    }
+
+    /**
+     * @param id
+     * @param sort
+     * @param request
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping("sort")
+    public String sort(Long id, int sort, HttpServletRequest request, HttpSession session, ModelMap model) {
+        SysSite site = getSite(request);
+        if (notEmpty(id)) {
+            CmsContent entity = service.sort(site.getId(), id, sort);
+            logOperateService
+                    .save(new LogOperate(site.getId(), getAdminFromSession(session).getId(), LogLoginService.CHANNEL_WEB_MANAGER,
+                            "sort.content", getIpAddress(request), getDate(), new StringBuilder().append(entity.getId())
+                                    .append(":").append(entity.getTitle()).append(" to ").append(sort).toString()));
+        }
+        return TEMPLATE_DONE;
     }
 
     /**

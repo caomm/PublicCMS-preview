@@ -38,13 +38,11 @@ public class HomeGroupDao extends BaseDao<HomeGroup> {
         if (notEmpty(userId)) {
             queryHandler.condition("bean.userId = :userId").setParameter("userId", userId);
         }
-        if ("asc".equalsIgnoreCase(orderType)) {
-            orderType = "asc";
-        } else {
-            orderType = "desc";
+        if (!ORDERTYPE_ASC.equalsIgnoreCase(orderType)) {
+            orderType = ORDERTYPE_DESC;
         }
         if (null == orderField) {
-            orderField = "";
+            orderField = BLANK;
         }
         switch (orderField) {
         case "users":

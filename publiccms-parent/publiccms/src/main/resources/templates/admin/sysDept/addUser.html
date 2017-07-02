@@ -1,9 +1,8 @@
 <@_sysUser id=id>
 	<#assign a=object/>
-	<#assign deptId=(a.deptId)!/>
+	<@_sysDept id=object.deptId><#assign dept=object/></@_sysDept>
 </@_sysUser>
-<@_sysDept id=deptId!><#assign dept=object/></@_sysDept>
-<form method="post" action="sysUser/save.do?callbackType=closeCurrent&navTabId=sysUser/list" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+<form method="post" action="sysDept/saveUser.do?callbackType=closeCurrent&navTabId=sysDept/userList" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
 	<input name="id" type="hidden" value="${id!}" />
 	<div class="formBar">
 		<ul>
@@ -16,15 +15,13 @@
 			<dt>用户名:</dt>
 			<dd>
 				<input class="required" name="name" type="text" maxlength="20" size="20" value="${(a.name)!}"/>
-				<label><input name="superuserAccess" type="checkbox" onclick="if($(this).is(':checked')){$('.superuserAccess',navTab.getCurrentPanel()).show();}else{$('.superuserAccess',navTab.getCurrentPanel()).hide();}"/>管理员</label>
 			</dd>
 		</dl>
-		<dl class="nowrap superuserAccess" style="display:none">
+		<dl class="nowrap">
 			<dt>所属部门:</dt>
 			<dd>
 				<input name="deptId" type="hidden" value="${(dept.id)!}"/>
 				<input readonly="readonly" name="deptName" type="text" size="10" value="${(dept.name)!}"/>
-				<a class="btnLook" href="sysDept/lookup.html" width="920" warn="请选择部门" lookupGroup="">选择部门</a>
 			</dd>
 		</dl>
 		<dl class="nowrap">
@@ -46,25 +43,15 @@
 			<dt>邮箱:</dt>
 			<dd><input name="email" type="text" size="30" maxlength="50" value="${(a.email)!}"/></dd>
 		</dl>
-		<fieldset class="superuserAccess" style="display:none">
-			<legend><i class="icon-user-md icon-large"></i> 角色</legend>
+		<fieldset>
+			<legend><i class="icon-user-md icon-large"></i> 角色(只能授权您拥有得角色)</legend>
 			<ul class="tree treeFolder treeCheck expand">
-		<@_sysRoleList>
-			<#list page.list as a>
-				<li><a tname="roleIds" tvalue="${a.id}">${a.name}</a></li>
+		<@_sysRole ids=admin.roles>
+			<#list map?keys as k>
+				<li><a tname="roleIds" tvalue="${map[k].id}">${map[k].name}</a></li>
 			</#list>
-		</@_sysRoleList>
+		</@_sysRole>
 			</ul>
 		</fieldset>
-<#if a?has_content&&a.superuserAccess>
-<script>
-	$('input[name=superuserAccess]',navTab.getCurrentPanel()).click();
-<#if a.roles?has_content>
-	<#list a.roles?split(',') as role>
-		$('.tree li a[tname=roleIds][tvalue=${role?js_string}]',navTab.getCurrentPanel()).prop('checked',true);
-	</#list>
-</#if>
-</script>
-</#if>
 	</div>
 </form>

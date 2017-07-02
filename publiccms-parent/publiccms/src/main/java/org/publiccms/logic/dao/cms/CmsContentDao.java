@@ -56,9 +56,9 @@ public class CmsContentDao extends BaseDao<CmsContent> {
 
     /**
      * @param siteId
-     * @param categoryIds 
-     * @param modelIds 
-     * @param userIds 
+     * @param categoryIds
+     * @param modelIds
+     * @param userIds
      * @param text
      * @param tagId
      * @param pageIndex
@@ -190,10 +190,8 @@ public class CmsContentDao extends BaseDao<CmsContent> {
         if (notEmpty(endPublishDate)) {
             queryHandler.condition("bean.publishDate <= :endPublishDate").setParameter("endPublishDate", endPublishDate);
         }
-        if ("asc".equalsIgnoreCase(orderType)) {
-            orderType = "asc";
-        } else {
-            orderType = "desc";
+        if (!ORDERTYPE_ASC.equalsIgnoreCase(orderType)) {
+            orderType = ORDERTYPE_DESC;
         }
         if (null == orderField) {
             orderField = BLANK;
@@ -208,10 +206,18 @@ public class CmsContentDao extends BaseDao<CmsContent> {
         case "clicks":
             queryHandler.order("bean.clicks " + orderType);
             break;
-        default:
+        case "publishDate":
             queryHandler.order("bean.publishDate " + orderType);
+            break;
+        case "default":
+            orderType = ORDERTYPE_DESC;
+        default:
+            if (ORDERTYPE_DESC.equals(orderType)) {
+                queryHandler.order("bean.sort desc");
+            }
+            queryHandler.order("bean.publishDate desc");
         }
-        queryHandler.order("bean.id " + orderType);
+        queryHandler.order("bean.id desc");
         return getPage(queryHandler, pageIndex, pageSize);
     }
 

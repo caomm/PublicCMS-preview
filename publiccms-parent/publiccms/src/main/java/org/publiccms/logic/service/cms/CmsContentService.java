@@ -64,9 +64,9 @@ public class CmsContentService extends BaseService<CmsContent> {
 
     /**
      * @param siteId
-     * @param categoryIds 
-     * @param modelIds 
-     * @param userIds 
+     * @param categoryIds
+     * @param modelIds
+     * @param userIds
      * @param text
      * @param tagId
      * @param pageIndex
@@ -173,7 +173,7 @@ public class CmsContentService extends BaseService<CmsContent> {
         }
         return entity;
     }
-    
+
     /**
      * @param entitys
      */
@@ -211,6 +211,14 @@ public class CmsContentService extends BaseService<CmsContent> {
         CmsContent entity = getEntity(id);
         if (null != entity) {
             entity.setChilds(entity.getChilds() + num);
+        }
+        return entity;
+    }
+
+    public CmsContent sort(Integer siteId, Long id, int sort) {
+        CmsContent entity = getEntity(id);
+        if (null != entity && siteId == entity.getSiteId()) {
+            entity.setSort(sort);
         }
         return entity;
     }
@@ -310,7 +318,7 @@ public class CmsContentService extends BaseService<CmsContent> {
     /**
      * @param siteId
      * @param ids
-     * @return 
+     * @return
      */
     @SuppressWarnings("unchecked")
     public List<CmsContent> realDelete(Integer siteId, Long[] ids) {
@@ -321,7 +329,7 @@ public class CmsContentService extends BaseService<CmsContent> {
                     for (CmsContent child : (List<CmsContent>) getPage(siteId, null, null, null, null, false, null,
                             entity.getId(), null, null, null, null, null, null, null, null, null, null, null, null, null)
                                     .getList()) {
-                            delete(child.getId());
+                        delete(child.getId());
                     }
                 }
                 delete(entity.getId());
@@ -329,10 +337,9 @@ public class CmsContentService extends BaseService<CmsContent> {
         }
         return entityList;
     }
-    
+
     @Autowired
     private CmsContentDao dao;
     @Autowired
     private CmsCategoryDao categoryDao;
-
 }

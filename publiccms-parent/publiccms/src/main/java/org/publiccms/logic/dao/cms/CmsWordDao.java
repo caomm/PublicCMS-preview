@@ -52,13 +52,11 @@ public class CmsWordDao extends BaseDao<CmsWord> {
         if (notEmpty(name)) {
             queryHandler.condition("bean.name like :name").setParameter("name", like(name));
         }
-        if ("asc".equalsIgnoreCase(orderType)) {
-            orderType = "asc";
-        } else {
-            orderType = "desc";
+        if (!ORDERTYPE_ASC.equalsIgnoreCase(orderType)) {
+            orderType = ORDERTYPE_DESC;
         }
         if (null == orderField) {
-            orderField = "";
+            orderField = BLANK;
         }
         switch (orderField) {
         case "searchCount":

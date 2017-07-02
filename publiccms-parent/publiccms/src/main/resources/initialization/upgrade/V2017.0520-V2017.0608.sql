@@ -22,3 +22,7 @@ INSERT INTO `sys_moudle` VALUES ('116', '修改类型', 'cmsCategory/changeTypeP
 INSERT INTO `sys_moudle` VALUES ('117', '内容回收站', 'cmsRecycleContent/list', 'sysUser/lookup', '<i class=\"icon-trash icon-large\"></i>', '13', '1', '0');
 INSERT INTO `sys_moudle` VALUES ('118', '删除', NULL, 'cmsContent/realDelete', NULL, '155', '0', '0');
 INSERT INTO `sys_moudle` VALUES ('119', '还原', NULL, 'cmsContent/recycle', NULL, '155', '0', '0');
+INSERT INTO `sys_moudle` VALUES ('120', '置顶', 'cmsContent/sortParameters', 'cmsContent/sort', NULL, '12', '0', '0');
+INSERT INTO `sys_moudle` VALUES ('121', '人员管理', 'sysDept/userList', 'sysDept/addUser,sysDept/saveUser,sysDept/enableUser,sysDept/disableUser', NULL, '72', '0', '0');
+ALTER TABLE `cms_content` ADD `sort`  INT NOT NULL DEFAULT 0 COMMENT  '排序' AFTER `create_date`,ADD INDEX `sort` (`sort`);
+ALTER TABLE `sys_dept` ADD `max_sort`  INT NOT NULL DEFAULT 1000 COMMENT  '最大内容置顶级别' AFTER `owns_all_category`;

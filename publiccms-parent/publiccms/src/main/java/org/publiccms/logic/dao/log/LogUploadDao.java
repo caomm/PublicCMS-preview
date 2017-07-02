@@ -51,10 +51,8 @@ public class LogUploadDao extends BaseDao<LogUpload> {
         if (notEmpty(filePath)) {
             queryHandler.condition("bean.filePath like :filePath").setParameter("content", like(filePath));
         }
-        if ("asc".equalsIgnoreCase(orderType)) {
-            orderType = "asc";
-        } else {
-            orderType = "desc";
+        if (!ORDERTYPE_ASC.equalsIgnoreCase(orderType)) {
+            orderType = ORDERTYPE_DESC;
         }
         if (null == orderField) {
             orderField = BLANK;

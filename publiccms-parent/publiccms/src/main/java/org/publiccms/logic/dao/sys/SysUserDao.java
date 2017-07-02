@@ -77,10 +77,8 @@ public class SysUserDao extends BaseDao<SysUser> {
             queryHandler.condition("(bean.name like :name or bean.nickName like :name or bean.email like :name)").setParameter(
                     "name", like(name));
         }
-        if ("asc".equalsIgnoreCase(orderType)) {
-            orderType = "asc";
-        } else {
-            orderType = "desc";
+        if (!ORDERTYPE_ASC.equalsIgnoreCase(orderType)) {
+            orderType = ORDERTYPE_DESC;
         }
         if (null == orderField) {
             orderField = BLANK;

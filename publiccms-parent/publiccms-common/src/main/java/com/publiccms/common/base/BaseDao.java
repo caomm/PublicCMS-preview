@@ -47,7 +47,19 @@ public abstract class BaseDao<E> implements Base  {
      * 
      * Facet name suffix
      */
-    public static String FACET_NAME_SUFFIX = "FacetRequest";
+    public final static String FACET_NAME_SUFFIX = "FacetRequest";
+    /**
+     * 倒序
+     * 
+     * order type desc
+     */
+    public final static String ORDERTYPE_DESC = "desc";
+    /**
+     * 顺序
+     * 
+     * order type desc
+     */
+    public final static String ORDERTYPE_ASC = "asc";
     private Class<E> clazz;
 
     /**

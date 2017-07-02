@@ -123,6 +123,8 @@ public class CmsContent implements java.io.Serializable {
     private Date publishDate;
     @GeneratorColumn(title = "创建日期")
     private Date createDate;
+    @GeneratorColumn(title = "排序")
+    private int sort;
     @GeneratorColumn(title = "状态", condition = true)
     private int status;
     @GeneratorColumn(title = "已删除", condition = true)
@@ -133,7 +135,7 @@ public class CmsContent implements java.io.Serializable {
 
     public CmsContent(int siteId, String title, int categoryId, String modelId, boolean copied, boolean onlyUrl,
             boolean hasImages, boolean hasFiles, boolean hasStatic, int childs, int scores, int comments, int clicks,
-            Date publishDate, Date createDate, int status, boolean disabled) {
+            Date publishDate, Date createDate, int sort, int status, boolean disabled) {
         this.siteId = siteId;
         this.title = title;
         this.categoryId = categoryId;
@@ -149,6 +151,7 @@ public class CmsContent implements java.io.Serializable {
         this.clicks = clicks;
         this.publishDate = publishDate;
         this.createDate = createDate;
+        this.sort = sort;
         this.status = status;
         this.disabled = disabled;
     }
@@ -156,7 +159,7 @@ public class CmsContent implements java.io.Serializable {
     public CmsContent(int siteId, String title, Long userId, Long checkUserId, int categoryId, String modelId, Long parentId,
             boolean copied, String author, String editor, boolean onlyUrl, boolean hasImages, boolean hasFiles, boolean hasStatic,
             String url, String description, String tagIds, String cover, int childs, int scores, int comments, int clicks,
-            Date publishDate, Date createDate, int status, boolean disabled) {
+            Date publishDate, Date createDate,int sort, int status, boolean disabled) {
         this.siteId = siteId;
         this.title = title;
         this.userId = userId;
@@ -181,6 +184,7 @@ public class CmsContent implements java.io.Serializable {
         this.clicks = clicks;
         this.publishDate = publishDate;
         this.createDate = createDate;
+        this.sort = sort;
         this.status = status;
         this.disabled = disabled;
     }
@@ -415,11 +419,20 @@ public class CmsContent implements java.io.Serializable {
         this.createDate = createDate;
     }
 
+    @Column(name = "sort", nullable = false)
+    public int getSort() {
+        return this.sort;
+    }
+
+    public void setSort(int sort) {
+        this.sort = sort;
+    }
+    
     @Column(name = "status", nullable = false)
     public int getStatus() {
         return this.status;
     }
-
+    
     public void setStatus(int status) {
         this.status = status;
     }

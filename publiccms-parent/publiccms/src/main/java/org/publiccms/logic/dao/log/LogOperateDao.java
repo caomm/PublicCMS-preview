@@ -62,10 +62,8 @@ public class LogOperateDao extends BaseDao<LogOperate> {
         if (notEmpty(ip)) {
             queryHandler.condition("bean.ip like :ip").setParameter("ip", like(ip));
         }
-        if ("asc".equalsIgnoreCase(orderType)) {
-            orderType = "asc";
-        } else {
-            orderType = "desc";
+        if (!ORDERTYPE_ASC.equalsIgnoreCase(orderType)) {
+            orderType = ORDERTYPE_DESC;
         }
         queryHandler.order("bean.createDate " + orderType + ",bean.id " + orderType);
         return getPage(queryHandler, pageIndex, pageSize);

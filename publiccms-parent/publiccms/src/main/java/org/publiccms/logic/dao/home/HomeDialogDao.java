@@ -32,10 +32,8 @@ public class HomeDialogDao extends BaseDao<HomeDialog> {
         if (notEmpty(disabled)) {
             queryHandler.condition("bean.disabled = :disabled").setParameter("disabled", disabled);
         }
-        if ("asc".equalsIgnoreCase(orderType)) {
-            orderType = "asc";
-        } else {
-            orderType = "desc";
+        if (!ORDERTYPE_ASC.equalsIgnoreCase(orderType)) {
+            orderType = ORDERTYPE_DESC;
         }
         queryHandler.order("bean.lastMessageDate " + orderType);
         return getPage(queryHandler, pageIndex, pageSize);

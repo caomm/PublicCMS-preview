@@ -16,14 +16,12 @@
 <#assign order=false/>
 <#list columnList as a><#if a.order><#assign order=true/><#assign orderSize+=1/></#if></#list>
 <#if order>
-        if("asc".equalsIgnoreCase(orderType)){
-            orderType = "asc";
-        }else{
-            orderType = "desc";
+        if(!ORDERTYPE_ASC.equalsIgnoreCase(orderType)){
+            orderType = ORDERTYPE_DESC;
         }
     <#if orderSize gt 1>
         if(null == orderField){
-            orderField="";
+            orderField=BLANK;
         }
         switch(orderField) {
         <#list columnList as a><#if a.order>

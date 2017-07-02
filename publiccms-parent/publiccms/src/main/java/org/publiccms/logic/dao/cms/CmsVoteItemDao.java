@@ -32,13 +32,11 @@ public class CmsVoteItemDao extends BaseDao<CmsVoteItem> {
         if (notEmpty(voteId)) {
             queryHandler.condition("bean.voteId = :voteId").setParameter("voteId", voteId);
         }
-        if("asc".equalsIgnoreCase(orderType)){
-            orderType = "asc";
-        }else{
-            orderType = "desc";
+        if(!ORDERTYPE_ASC.equalsIgnoreCase(orderType)){
+            orderType = ORDERTYPE_DESC;
         }
         if(null == orderField){
-            orderField="";
+            orderField=BLANK;
         }
         switch(orderField) {
             case "scores" : queryHandler.order("bean.scores " + orderType); break;

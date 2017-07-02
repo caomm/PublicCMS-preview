@@ -42,10 +42,8 @@ public class SysUserTokenDao extends BaseDao<SysUserToken> {
         if (notEmpty(channel)) {
             queryHandler.condition("bean.channel = :channel").setParameter("channel", channel);
         }
-        if ("asc".equalsIgnoreCase(orderType)) {
-            orderType = "asc";
-        } else {
-            orderType = "desc";
+        if (!ORDERTYPE_ASC.equalsIgnoreCase(orderType)) {
+            orderType = ORDERTYPE_DESC;
         }
         queryHandler.order("bean.createDate " + orderType );
         return getPage(queryHandler, pageIndex, pageSize);

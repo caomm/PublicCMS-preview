@@ -36,6 +36,8 @@ public class SysDept implements java.io.Serializable {
     private String description;
     @GeneratorColumn(title = "负责人", condition = true)
     private Long userId;
+    @GeneratorColumn(title = "最大内容置顶级别")
+    private int maxSort;
     @GeneratorColumn(title = "拥有全部分类")
     private boolean ownsAllCategory;
     @GeneratorColumn(title = "拥有全部页面")
@@ -44,20 +46,22 @@ public class SysDept implements java.io.Serializable {
     public SysDept() {
     }
 
-    public SysDept(int siteId, String name, boolean ownsAllCategory, boolean ownsAllPage) {
+    public SysDept(int siteId, String name, int maxSort, boolean ownsAllCategory, boolean ownsAllPage) {
         this.siteId = siteId;
         this.name = name;
+        this.maxSort = maxSort;
         this.ownsAllCategory = ownsAllCategory;
         this.ownsAllPage = ownsAllPage;
     }
 
-    public SysDept(int siteId, String name, Integer parentId, String description, Long userId, boolean ownsAllCategory,
-            boolean ownsAllPage) {
+    public SysDept(int siteId, String name, Integer parentId, String description, Long userId, int maxSort,
+            boolean ownsAllCategory, boolean ownsAllPage) {
         this.siteId = siteId;
         this.name = name;
         this.parentId = parentId;
         this.description = description;
         this.userId = userId;
+        this.maxSort = maxSort;
         this.ownsAllCategory = ownsAllCategory;
         this.ownsAllPage = ownsAllPage;
     }
@@ -117,6 +121,15 @@ public class SysDept implements java.io.Serializable {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+    
+    @Column(name = "max_sort", nullable = false)
+    public int getMaxSort() {
+        return this.maxSort;
+    }
+
+    public void setMaxSort(int maxSort) {
+        this.maxSort = maxSort;
     }
 
     @Column(name = "owns_all_category", nullable = false)

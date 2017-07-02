@@ -41,10 +41,8 @@ public class CmsContentFileDao extends BaseDao<CmsContentFile> {
         if (notEmpty(image)) {
             queryHandler.condition("bean.image = :image").setParameter("image", image);
         }
-        if ("asc".equalsIgnoreCase(orderType)) {
-            orderType = "asc";
-        } else {
-            orderType = "desc";
+        if (!ORDERTYPE_ASC.equalsIgnoreCase(orderType)) {
+            orderType = ORDERTYPE_DESC;
         }
         if (null == orderField) {
             orderField = BLANK;

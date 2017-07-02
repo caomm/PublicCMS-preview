@@ -52,10 +52,8 @@ public class LogTaskDao extends BaseDao<LogTask> {
         if (notEmpty(success)) {
             queryHandler.condition("bean.success = :success").setParameter("success", success);
         }
-        if ("asc".equalsIgnoreCase(orderType)) {
-            orderType = "asc";
-        } else {
-            orderType = "desc";
+        if (!ORDERTYPE_ASC.equalsIgnoreCase(orderType)) {
+            orderType = ORDERTYPE_DESC;
         }
         queryHandler.order("bean.begintime " + orderType);
         return getPage(queryHandler, pageIndex, pageSize);

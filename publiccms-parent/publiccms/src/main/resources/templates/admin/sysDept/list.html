@@ -56,6 +56,7 @@
 				<th>描述</th>
 				<th>负责人</th>
 				<th>拥有全部分类</th>
+				<th>最大内容置顶级别</th>
 				<th>拥有全部页面</th>
 				<th>操作</th>
 			</tr>
@@ -74,9 +75,13 @@
 				<td>${a.description!}</td>
 				<td>${(userMap[a.userId?string].nickName)!}</td>
 				<td>${a.ownsAllCategory?then('是','')}</td>
+				<td>${a.maxSort}</td>
 				<td>${a.ownsAllPage?then('是','')}</td>
 				<td>
-						<a href="sysDept/list.html?parentId=${a.id}" target="navTab" rel="sysDept/list" title="子部门管理">子部门管理</a>
+					<a href="sysDept/list.html?parentId=${a.id}" target="navTab" rel="sysDept/list">子部门管理</a>
+				<#if a.userId?has_content&&a.userId=admin.id>
+					<a href="sysDept/userList.html?deptId=${a.id}" target="navTab" rel="sysDept/userList" title="<i class='icon-user icon-large'></i> ${(a.name)!}人员管理">人员管理</a>
+				</#if>
 				</td>
 			</tr>
 			</#list>

@@ -95,7 +95,7 @@ public class SysSiteAdminController extends AbstractController {
             service.save(entity);
             SysDomain domain = new SysDomain(domainName, entity.getId(), false);
             domainService.save(domain);
-            SysDept dept = new SysDept(entity.getId(), deptName, null, null, null, true, true);
+            SysDept dept = new SysDept(entity.getId(), deptName, 0, true, true);
             deptService.save(dept);// 初始化部门
             SysRole role = new SysRole(entity.getId(), roleName, true, true);
             roleService.save(role);// 初始化角色

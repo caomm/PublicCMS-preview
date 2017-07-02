@@ -51,10 +51,8 @@ public class CmsVoteUserDao extends BaseDao<CmsVoteUser> {
         if (notEmpty(endCreateDate)) {
             queryHandler.condition("bean.createDate <= :endCreateDate").setParameter("endCreateDate", endCreateDate);
         }
-        if ("asc".equalsIgnoreCase(orderType)) {
-            orderType = "asc";
-        } else {
-            orderType = "desc";
+        if (!ORDERTYPE_ASC.equalsIgnoreCase(orderType)) {
+            orderType = ORDERTYPE_DESC;
         }
         queryHandler.order("bean.createDate " + orderType);
         return getPage(queryHandler, pageIndex, pageSize);

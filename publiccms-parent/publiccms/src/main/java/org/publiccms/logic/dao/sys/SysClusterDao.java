@@ -43,13 +43,11 @@ public class SysClusterDao extends BaseDao<SysCluster> {
         if (notEmpty(master)) {
             queryHandler.condition("bean.master = :master").setParameter("master", master);
         }
-        if ("asc".equalsIgnoreCase(orderType)) {
-            orderType = "asc";
-        } else {
-            orderType = "desc";
+        if (!ORDERTYPE_ASC.equalsIgnoreCase(orderType)) {
+            orderType = ORDERTYPE_DESC;
         }
         if (null == orderField) {
-            orderField = "";
+            orderField = BLANK;
         }
         switch (orderField) {
         case "createDate":
