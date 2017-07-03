@@ -24,11 +24,11 @@ import freemarker.template.TemplateSequenceModel;
 /**
  * 模板数据模型工具类
  * 
- * TemplateModelUtils 
+ * TemplateModelUtils
  *
  */
 public class TemplateModelUtils implements Base {
-    
+
     private static final String FULL_DATE_FORMAT_STRING = "yyyy-MM-dd HH:mm:ss";
     private static final String SHORT_DATE_FORMAT_STRING = "yyyy-MM-dd";
     /**
@@ -219,9 +219,9 @@ public class TemplateModelUtils implements Base {
         String str = converString(model);
         if (notEmpty(str)) {
             if (0 <= str.indexOf(COMMA_DELIMITED)) {
-                return split(str, ',');
+                return split(str, COMMA_DELIMITED);
             } else {
-                return split(str, ' ');
+                return split(str, BLANK_SPACE);
             }
         }
         return null;
@@ -274,7 +274,15 @@ public class TemplateModelUtils implements Base {
                     synchronized (SHORT_DATE_FORMAT) {
                         return SHORT_DATE_FORMAT.parse(temp);
                     }
+                } else {
+                    try {
+                        return new Date(Long.parseLong(temp));
+                    } catch (NumberFormatException e) {
+                        return null;
+                    }
                 }
+            } else if (model instanceof TemplateNumberModel) {
+                return new Date(((TemplateNumberModel) model).getAsNumber().longValue());
             }
         }
         return null;

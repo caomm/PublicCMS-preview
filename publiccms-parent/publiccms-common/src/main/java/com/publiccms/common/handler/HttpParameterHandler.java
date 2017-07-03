@@ -98,7 +98,11 @@ public class HttpParameterHandler extends BaseHandler implements Base {
     protected Integer getIntegerWithoutRegrister(String name) {
         String result = getStringWithoutRegrister(name);
         if (notEmpty(result)) {
-            return Integer.valueOf(result);
+            try {
+                return Integer.valueOf(result);
+            } catch (NumberFormatException e) {
+                return null;
+            }
         }
         return null;
     }
@@ -108,7 +112,11 @@ public class HttpParameterHandler extends BaseHandler implements Base {
         regristerParamter(PARAMETER_TYPE_STRING, name);
         String result = getStringWithoutRegrister(name);
         if (notEmpty(result)) {
-            return Short.valueOf(result);
+            try {
+                return Short.valueOf(result);
+            } catch (NumberFormatException e) {
+                return null;
+            }
         }
         return null;
     }
@@ -118,7 +126,11 @@ public class HttpParameterHandler extends BaseHandler implements Base {
         regristerParamter(PARAMETER_TYPE_LONG, name);
         String result = getStringWithoutRegrister(name);
         if (notEmpty(result)) {
-            return Long.valueOf(result);
+            try {
+                return Long.valueOf(result);
+            } catch (NumberFormatException e) {
+                return null;
+            }
         }
         return null;
     }
@@ -128,7 +140,11 @@ public class HttpParameterHandler extends BaseHandler implements Base {
         regristerParamter(PARAMETER_TYPE_DOUBLE, name);
         String result = getStringWithoutRegrister(name);
         if (notEmpty(result)) {
-            return Double.valueOf(result);
+            try {
+                return Double.valueOf(result);
+            } catch (NumberFormatException e) {
+                return null;
+            }
         }
         return null;
     }
@@ -137,7 +153,7 @@ public class HttpParameterHandler extends BaseHandler implements Base {
     protected String[] getStringArrayWithoutRegrister(String name) {
         String[] values = request.getParameterValues(name);
         if (notEmpty(values) && 1 == values.length && 0 <= values[0].indexOf(COMMA_DELIMITED)) {
-            return split(values[0], ',');
+            return split(values[0], COMMA_DELIMITED);
         }
         return values;
     }
@@ -164,6 +180,12 @@ public class HttpParameterHandler extends BaseHandler implements Base {
             } else if (SHORT_DATE_LENGTH == temp.length()) {
                 synchronized (SHORT_DATE_FORMAT) {
                     return SHORT_DATE_FORMAT.parse(temp);
+                }
+            } else {
+                try {
+                    return new Date(Long.parseLong(temp));
+                } catch (NumberFormatException e) {
+                    return null;
                 }
             }
         }

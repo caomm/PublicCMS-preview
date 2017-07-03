@@ -2,7 +2,7 @@
 	<#assign a=object/>
 </@_place>
 <#if !a?has_content&&itemType?has_content>
-<#switch fileSuffix>
+<#switch itemType>
 	<#case 'content'>
 		<@_content id=itemId><#assign content=object/></@_content><#break>
 	<#case 'category'>

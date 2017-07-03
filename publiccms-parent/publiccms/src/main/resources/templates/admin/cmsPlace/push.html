@@ -24,6 +24,11 @@
 		</#list>
 	</@_templateList>
 </#macro>
+<script>
+$('ul li a',$.pdialog.getCurrent()).click(function(){
+	$.pdialog.closeCurrent();
+});
+</script>
 <div class="pageFormContent" layoutH="19">
 	<ul class="tree treeFolder expand">
 		<@placeTree/>
