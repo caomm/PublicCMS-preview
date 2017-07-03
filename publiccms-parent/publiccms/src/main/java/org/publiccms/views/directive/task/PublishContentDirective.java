@@ -29,7 +29,7 @@ public class PublishContentDirective extends AbstractTaskDirective {
     public void execute(RenderHandler handler) throws IOException, Exception {
         Long id = handler.getLong("id");
         SysSite site = getSite(handler);
-        Map<String, Boolean> map = new LinkedHashMap<String, Boolean>();
+        Map<String, Boolean> map = new LinkedHashMap<>();
         if (notEmpty(id)) {
             map.put(id.toString(), templateComponent.createContentFile(site, service.getEntity(id), null, null));
         } else {

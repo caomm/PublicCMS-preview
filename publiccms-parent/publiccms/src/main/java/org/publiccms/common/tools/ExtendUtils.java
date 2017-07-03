@@ -29,9 +29,9 @@ public class ExtendUtils implements Base {
      */
     public static Map<String, String> getSysExtentDataMap(List<ExtendData> extendDataList,
             List<SysExtendField> sysExtendFieldList) {
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
         if (notEmpty(extendDataList)) {
-            Map<String, String> extendFieldMap = new HashMap<String, String>();
+            Map<String, String> extendFieldMap = new HashMap<>();
             for (ExtendData extend : extendDataList) {
                 extendFieldMap.put(extend.getName(), arrayToCommaDelimitedString(extend.getValue()));
             }
@@ -53,9 +53,9 @@ public class ExtendUtils implements Base {
      * @return
      */
     public static Map<String, String> getExtentDataMap(List<ExtendData> extendDataList, List<ExtendField> extendFieldList) {
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
         if (notEmpty(extendDataList)) {
-            Map<String, String> extendFieldMap = new HashMap<String, String>();
+            Map<String, String> extendFieldMap = new HashMap<>();
             for (ExtendData extend : extendDataList) {
                 extendFieldMap.put(extend.getName(), arrayToCommaDelimitedString(extend.getValue()));
             }
@@ -82,10 +82,10 @@ public class ExtendUtils implements Base {
 
                 });
             } catch (IOException | ClassCastException e) {
-                return new HashMap<String, String>();
+                return new HashMap<>();
             }
         }
-        return new HashMap<String, String>();
+        return new HashMap<>();
 
     }
 

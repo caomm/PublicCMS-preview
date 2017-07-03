@@ -42,9 +42,9 @@ public class FileComponent implements Base {
      * @return
      */
     public List<FileInfo> getFileList(String dirPath) {
-        List<FileInfo> fileList = new ArrayList<FileInfo>();
+        List<FileInfo> fileList = new ArrayList<>();
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(dirPath))) {
-            List<FileInfo> tempList = new ArrayList<FileInfo>();
+            List<FileInfo> tempList = new ArrayList<>();
             for (Path entry : stream) {
                 Path fileNamePath = entry.getFileName();
                 if (null != fileNamePath) {

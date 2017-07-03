@@ -39,7 +39,7 @@ public class SysUserDirective extends AbstractTemplateDirective {
             Long[] ids = handler.getLongArray("ids");
             if (notEmpty(ids)) {
                 List<SysUser> entityList = service.getEntitys(ids);
-                Map<String, SysUser> map = new LinkedHashMap<String, SysUser>();
+                Map<String, SysUser> map = new LinkedHashMap<>();
                 for (SysUser entity : entityList) {
                     if (site.getId() == entity.getSiteId()) {
                         entity.setPassword(null);

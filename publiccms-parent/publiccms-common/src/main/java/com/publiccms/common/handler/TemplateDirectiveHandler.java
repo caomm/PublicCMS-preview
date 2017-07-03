@@ -92,7 +92,7 @@ public class TemplateDirectiveHandler extends BaseHandler implements Base {
     }
 
     private Map<String, TemplateModel> reduce() throws TemplateModelException {
-        Map<String, TemplateModel> reduceMap = new LinkedHashMap<String, TemplateModel>();
+        Map<String, TemplateModel> reduceMap = new LinkedHashMap<>();
         ObjectWrapper objectWrapper = environment.getObjectWrapper();
         Namespace namespace = environment.getCurrentNamespace();
         Iterator<Entry<String, Object>> iterator = map.entrySet().iterator();

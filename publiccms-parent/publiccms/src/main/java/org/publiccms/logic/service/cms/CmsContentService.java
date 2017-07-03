@@ -150,7 +150,7 @@ public class CmsContentService extends BaseService<CmsContent> {
      * @return
      */
     public List<CmsContent> check(int siteId, Long userId, Serializable[] ids) {
-        List<CmsContent> entityList = new ArrayList<CmsContent>();
+        List<CmsContent> entityList = new ArrayList<>();
         for (CmsContent entity : getEntitys(ids)) {
             if (null != entity && siteId == entity.getSiteId() && STATUS_PEND == entity.getStatus()) {
                 entity.setStatus(STATUS_NORMAL);
@@ -254,7 +254,7 @@ public class CmsContentService extends BaseService<CmsContent> {
      */
     @SuppressWarnings("unchecked")
     public List<CmsContent> delete(int siteId, Serializable[] ids) {
-        List<CmsContent> entityList = new ArrayList<CmsContent>();
+        List<CmsContent> entityList = new ArrayList<>();
         for (CmsContent entity : getEntitys(ids)) {
             if (siteId == entity.getSiteId() && !entity.isDisabled()) {
                 if (0 < entity.getChilds()) {
@@ -297,7 +297,7 @@ public class CmsContentService extends BaseService<CmsContent> {
      */
     @SuppressWarnings("unchecked")
     public List<CmsContent> recycle(int siteId, Serializable[] ids) {
-        List<CmsContent> entityList = new ArrayList<CmsContent>();
+        List<CmsContent> entityList = new ArrayList<>();
         for (CmsContent entity : getEntitys(ids)) {
             if (siteId == entity.getSiteId() && entity.isDisabled()) {
                 if (0 < entity.getChilds()) {
@@ -322,7 +322,7 @@ public class CmsContentService extends BaseService<CmsContent> {
      */
     @SuppressWarnings("unchecked")
     public List<CmsContent> realDelete(Integer siteId, Long[] ids) {
-        List<CmsContent> entityList = new ArrayList<CmsContent>();
+        List<CmsContent> entityList = new ArrayList<>();
         for (CmsContent entity : getEntitys(ids)) {
             if (siteId == entity.getSiteId() && entity.isDisabled()) {
                 if (0 < entity.getChilds()) {

@@ -52,7 +52,7 @@ public class EmailTemplateConfigComponent implements Config, Base {
 
     @Override
     public List<ExtendField> getExtendFieldList(SysSite site, Locale locale) {
-        List<ExtendField> extendFieldList = new ArrayList<ExtendField>();
+        List<ExtendField> extendFieldList = new ArrayList<>();
         Map<String, String> config = configComponent.getConfigData(site.getId(), CONFIG_CODE);
         if (notEmpty(config)) {
             extendFieldList.add(new ExtendField(CONFIG_EMAIL_TITLE, INPUTTYPE_TEXT, false,

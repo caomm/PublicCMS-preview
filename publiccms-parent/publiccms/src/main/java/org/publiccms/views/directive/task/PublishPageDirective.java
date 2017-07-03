@@ -43,7 +43,7 @@ public class PublishPageDirective extends AbstractTaskDirective {
         path = path.replace("\\", SEPARATOR).replace("//", SEPARATOR);
         Map<String, CmsPageMetadata> metadataMap = metadataComponent
                 .getTemplateMetadataMap(siteComponent.getWebTemplateFilePath(site, path));
-        Map<String, Boolean> map = new LinkedHashMap<String, Boolean>();
+        Map<String, Boolean> map = new LinkedHashMap<>();
         for (FileInfo fileInfo : list) {
             String filePath = path + fileInfo.getFileName();
             if (fileInfo.isDirectory()) {
@@ -73,7 +73,7 @@ public class PublishPageDirective extends AbstractTaskDirective {
 
     private Map<String, Boolean> dealPlace(SysSite site, String path, Map<String, CmsPlaceMetadata> metadataMap,
             List<FileInfo> fileList) {
-        Map<String, Boolean> map = new LinkedHashMap<String, Boolean>();
+        Map<String, Boolean> map = new LinkedHashMap<>();
         for (FileInfo fileInfo : fileList) {
             String filePath = path + fileInfo.getFileName();
             try {

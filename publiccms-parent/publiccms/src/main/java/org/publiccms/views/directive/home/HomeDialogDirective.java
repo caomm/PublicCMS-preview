@@ -33,7 +33,7 @@ public class HomeDialogDirective extends AbstractTemplateDirective {
             Integer[] ids = handler.getIntegerArray("ids");
             if (notEmpty(ids)) {
                 List<HomeDialog> entityList = service.getEntitys(ids);
-                Map<String, HomeDialog> map = new LinkedHashMap<String, HomeDialog>();
+                Map<String, HomeDialog> map = new LinkedHashMap<>();
                 for (HomeDialog entity : entityList) {
                     map.put(String.valueOf(entity.getId()), entity);
                 }

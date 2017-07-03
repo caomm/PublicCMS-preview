@@ -33,7 +33,7 @@ public class ClearLogDirective extends AbstractTaskDirective {
             date = addMonths(getDate(), -3);
         }
         SysSite site = getSite(handler);
-        Map<String, Integer> map = new HashMap<String, Integer>();
+        Map<String, Integer> map = new HashMap<>();
         map.put("loginLog:", logLoginService.delete(site.getId(), date));
         map.put("operateLog:", logOperateService.delete(site.getId(), date));
         map.put("taskLog:", logTaskService.delete(site.getId(), date));

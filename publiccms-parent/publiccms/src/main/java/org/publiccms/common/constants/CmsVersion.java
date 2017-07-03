@@ -1,10 +1,10 @@
 package org.publiccms.common.constants;
 
+import static config.spring.CmsConfig.CMS_FILEPATH;
+
 import java.util.UUID;
 
 import com.publiccms.common.base.Copyright;
-
-import static config.spring.CmsConfig.CMS_FILEPATH;
 
 /**
  *
@@ -35,21 +35,11 @@ public class CmsVersion {
      * @return
      */
     public static boolean isBusinessEdition() {
-        if (null == copyright) {
-            try {
-                Class<?> clazz = Class.forName("com.publiccms.improve.CmsCopyright");
-                if (Copyright.class.isAssignableFrom(clazz)) {
-                    copyright = (Copyright) clazz.newInstance();
-                }
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-                return false;
-            }
-        }
-        return null != copyright && copyright.verify(CMS_FILEPATH);
+        return null != copyright && copyright.verify();
     }
 
     /**
-     * @param activateCode 
+     * @param activateCode
      * @return
      */
     public static boolean activate(String activateCode) {
@@ -89,5 +79,16 @@ public class CmsVersion {
      */
     public static void setInitialized(boolean initialized) {
         CmsVersion.initialized = initialized;
+        if (initialized && null == copyright) {
+            try {
+                Class<?> clazz = Class.forName("com.publiccms.improve.CmsCopyright");
+                if (Copyright.class.isAssignableFrom(clazz)) {
+                    copyright = (Copyright) clazz.newInstance();
+                    copyright.init(CMS_FILEPATH);
+                }
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

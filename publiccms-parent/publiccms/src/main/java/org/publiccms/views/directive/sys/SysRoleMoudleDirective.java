@@ -35,7 +35,7 @@ public class SysRoleMoudleDirective extends AbstractTemplateDirective {
             } else {
                 Integer[] moudleIds = handler.getIntegerArray("moudleIds");
                 if (notEmpty(moudleIds)) {
-                    Map<String, Boolean> map = new LinkedHashMap<String, Boolean>();
+                    Map<String, Boolean> map = new LinkedHashMap<>();
                     if (sysRoleService.showAllMoudle(roleIds)) {
                         for (Integer id : moudleIds) {
                             map.put(String.valueOf(id), true);

@@ -33,7 +33,7 @@ public class HomeCommentDirective extends AbstractTemplateDirective {
             Integer[] ids = handler.getIntegerArray("ids");
             if (notEmpty(ids)) {
                 List<HomeComment> entityList = service.getEntitys(ids);
-                Map<String, HomeComment> map = new LinkedHashMap<String, HomeComment>();
+                Map<String, HomeComment> map = new LinkedHashMap<>();
                 for (HomeComment entity : entityList) {
                     map.put(String.valueOf(entity.getId()), entity);
                 }

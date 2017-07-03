@@ -33,7 +33,7 @@ public class HomeFileDirective extends AbstractTemplateDirective {
             Integer[] ids = handler.getIntegerArray("ids");
             if (notEmpty(ids)) {
                 List<HomeFile> entityList = service.getEntitys(ids);
-                Map<String, HomeFile> map = new LinkedHashMap<String, HomeFile>();
+                Map<String, HomeFile> map = new LinkedHashMap<>();
                 for (HomeFile entity : entityList) {
                     map.put(String.valueOf(entity.getId()), entity);
                 }

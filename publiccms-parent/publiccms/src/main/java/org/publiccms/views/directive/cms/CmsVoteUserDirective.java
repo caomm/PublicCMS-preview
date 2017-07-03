@@ -33,7 +33,7 @@ public class CmsVoteUserDirective extends AbstractTemplateDirective {
             Long[] ids = handler.getLongArray("ids");
             if (notEmpty(ids)) {
                 List<CmsVoteUser> entityList = service.getEntitys(ids);
-                Map<String, CmsVoteUser> map = new LinkedHashMap<String, CmsVoteUser>();
+                Map<String, CmsVoteUser> map = new LinkedHashMap<>();
                 for (CmsVoteUser entity : entityList) {
                     map.put(String.valueOf(entity.getId()), entity);
                 }

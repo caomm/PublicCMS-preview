@@ -175,10 +175,10 @@ public class MetadataComponent implements Cache, Base {
                     metadataMap = objectMapper.readValue(file, new TypeReference<Map<String, CmsPlaceMetadata>>() {
                     });
                 } catch (IOException | ClassCastException e) {
-                    metadataMap = new HashMap<String, CmsPlaceMetadata>();
+                    metadataMap = new HashMap<>();
                 }
             } else {
-                metadataMap = new HashMap<String, CmsPlaceMetadata>();
+                metadataMap = new HashMap<>();
             }
             placeCache.put(dirPath, metadataMap);
         }
@@ -200,10 +200,10 @@ public class MetadataComponent implements Cache, Base {
                     metadataMap = objectMapper.readValue(file, new TypeReference<Map<String, CmsPageMetadata>>() {
                     });
                 } catch (IOException | ClassCastException e) {
-                    metadataMap = new HashMap<String, CmsPageMetadata>();
+                    metadataMap = new HashMap<>();
                 }
             } else {
-                metadataMap = new HashMap<String, CmsPageMetadata>();
+                metadataMap = new HashMap<>();
             }
             pageCache.put(dirPath, metadataMap);
         }

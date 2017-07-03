@@ -42,7 +42,7 @@ public class SysAuthorizedDirective extends AbstractTemplateDirective {
                     handler.put("object", true).render();
                 }
             } else if (notEmpty(urls)) {
-                Map<String, Boolean> map = new LinkedHashMap<String, Boolean>();
+                Map<String, Boolean> map = new LinkedHashMap<>();
                 if (sysRoleService.showAllMoudle(roleIds)) {
                     for (String u : urls) {
                         map.put(u, true);

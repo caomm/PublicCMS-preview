@@ -201,7 +201,7 @@ public class UeditorAdminController extends AbstractController {
         try (CloseableHttpClient httpclient = HttpClients.createDefault();) {
             String[] files = request.getParameterValues(FIELD_NAME + "[]");
             if (notEmpty(files)) {
-                List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+                List<Map<String, Object>> list = new ArrayList<>();
                 for (String image : files) {
                     HttpGet httpget = new HttpGet(image);
                     CloseableHttpResponse response = httpclient.execute(httpget);
@@ -258,7 +258,7 @@ public class UeditorAdminController extends AbstractController {
                 null, null, null, start / 20 + 1, 20);
 
         Map<String, Object> map = getResultMap(true);
-        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+        List<Map<String, Object>> list = new ArrayList<>();
         for (LogUpload logUpload : ((List<LogUpload>) page.getList())) {
             Map<String, Object> tempMap = getResultMap(true);
             tempMap.put("url", logUpload.getFilePath());
@@ -271,7 +271,7 @@ public class UeditorAdminController extends AbstractController {
     }
 
     private Map<String, Object> getResultMap(boolean success) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         if (success) {
             map.put("state", "SUCCESS");
         } else {

@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.AbstractCachingViewResolver;
 public class CacheComponent {
     @Autowired
     private List<Cache> cacheableList;
-    private List<AbstractCachingViewResolver> cachingViewResolverList = new ArrayList<AbstractCachingViewResolver>();
+    private List<AbstractCachingViewResolver> cachingViewResolverList = new ArrayList<>();
 
     @Autowired
     private HqlService hqlService;

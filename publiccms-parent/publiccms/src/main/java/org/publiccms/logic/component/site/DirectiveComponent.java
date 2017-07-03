@@ -26,10 +26,10 @@ public class DirectiveComponent implements Base {
     private String methodRemoveRegex;
     protected final Log log = getLog(getClass());
 
-    private Map<String, AbstractTemplateDirective> templateDirectiveMap = new HashMap<String, AbstractTemplateDirective>();
-    private Map<String, AbstractTaskDirective> taskDirectiveMap = new HashMap<String, AbstractTaskDirective>();
-    private Map<String, AbstractAppDirective> appDirectiveMap = new HashMap<String, AbstractAppDirective>();
-    private Map<String, BaseMethod> methodMap = new HashMap<String, BaseMethod>();
+    private Map<String, AbstractTemplateDirective> templateDirectiveMap = new HashMap<>();
+    private Map<String, AbstractTaskDirective> taskDirectiveMap = new HashMap<>();
+    private Map<String, AbstractAppDirective> appDirectiveMap = new HashMap<>();
+    private Map<String, BaseMethod> methodMap = new HashMap<>();
 
     @Autowired
     private void init(List<AbstractTemplateDirective> templateDirectiveList, List<AbstractTaskDirective> taskDirectiveList,

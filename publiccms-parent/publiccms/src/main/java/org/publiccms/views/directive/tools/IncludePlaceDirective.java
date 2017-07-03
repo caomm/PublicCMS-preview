@@ -49,7 +49,7 @@ public class IncludePlaceDirective extends AbstractTemplateDirective {
             }
         } else if (notEmpty(paths)) {
             SysSite site = getSite(handler);
-            Map<String, String> map = new ConcurrentHashMap<String, String>();
+            Map<String, String> map = new ConcurrentHashMap<>();
             if (site.isUseSsi()) {
                 for (String p : paths) {
                     map.put(p, new StringBuilder("<!--#include virtual=\"/").append(INCLUDE_DIRECTORY).append(p).append("\"-->")

@@ -37,7 +37,7 @@ public class CmsModelDirective extends AbstractTemplateDirective {
             String[] ids = handler.getStringArray("ids");
             if (notEmpty(ids)) {
                 Map<String, CmsModel> modelMap = modelComponent.getMap(site);
-                Map<String, CmsModel> map = new LinkedHashMap<String, CmsModel>();
+                Map<String, CmsModel> map = new LinkedHashMap<>();
                 for (String modelId : ids) {
                     map.put(modelId, modelMap.get(modelId));
                 }

@@ -34,7 +34,7 @@ public class ScanClassUtils {
      * @throws ClassNotFoundException
      */
     public static List<Class<?>> getAllAssignedClass(Class<?> cls, String[] packages) throws ClassNotFoundException, IOException {
-        List<Class<?>> classes = new ArrayList<Class<?>>();
+        List<Class<?>> classes = new ArrayList<>();
         for (Class<?> c : getClasses(packages)) {
             if (cls.isAssignableFrom(c) && !cls.equals(c)) {
                 classes.add(c);
@@ -50,7 +50,7 @@ public class ScanClassUtils {
      * @throws ClassNotFoundException
      */
     public static Set<Class<?>> getClasses(String[] packagesToScan) throws IOException, ClassNotFoundException {
-        Set<Class<?>> classSet = new HashSet<Class<?>>();
+        Set<Class<?>> classSet = new HashSet<>();
         if (null != packagesToScan) {
             for (String pkg : packagesToScan) {
                 String pattern = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + convertClassNameToResourcePath(pkg)

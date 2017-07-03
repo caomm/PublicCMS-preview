@@ -160,7 +160,7 @@ public class QueryHandler {
      */
     public QueryHandler setParameter(String key, Object value) {
         if (null == map) {
-            map = new HashMap<String, Object>();
+            map = new HashMap<>();
         }
         map.put(key, value);
         return this;
@@ -173,7 +173,7 @@ public class QueryHandler {
      */
     public QueryHandler setParameter(String key, Object[] value) {
         if (null == arrayMap) {
-            arrayMap = new HashMap<String, Object[]>();
+            arrayMap = new HashMap<>();
         }
         arrayMap.put(key, value);
         return this;

@@ -30,7 +30,7 @@ public class EntityCondition {
     private String title;
     private boolean or;
     private boolean like;
-    private List<String> nameList=new ArrayList<String>();
+    private List<String> nameList=new ArrayList<>();
 
     /**
      * @return the name

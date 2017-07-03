@@ -48,7 +48,7 @@ public class GetHtmlMethod extends BaseMethod {
                 if (null != paramters || notEmpty(body)) {
                     HttpPost httppost = new HttpPost(url);
                     if (null != paramters) {
-                        List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+                        List<NameValuePair> nvps = new ArrayList<>();
                         TemplateModelIterator it = paramters.keys().iterator();
                         while (it.hasNext()) {
                             String key = converString(it.next());

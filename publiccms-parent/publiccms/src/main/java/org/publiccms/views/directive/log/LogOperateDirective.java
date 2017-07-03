@@ -38,7 +38,7 @@ public class LogOperateDirective extends AbstractTemplateDirective {
             Long[] ids = handler.getLongArray("ids");
             if (notEmpty(ids)) {
                 List<LogOperate> entityList = service.getEntitys(ids);
-                Map<String, LogOperate> map = new LinkedHashMap<String, LogOperate>();
+                Map<String, LogOperate> map = new LinkedHashMap<>();
                 for (LogOperate entity : entityList) {
                     if (site.getId() == entity.getSiteId()) {
                         map.put(String.valueOf(entity.getId()), entity);

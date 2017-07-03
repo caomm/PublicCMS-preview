@@ -38,7 +38,7 @@ public class CmsTagTypeDirective extends AbstractTemplateDirective {
             Integer[] ids = handler.getIntegerArray("ids");
             if (notEmpty(ids)) {
                 List<CmsTagType> entityList = service.getEntitys(ids);
-                Map<String, CmsTagType> map = new LinkedHashMap<String, CmsTagType>();
+                Map<String, CmsTagType> map = new LinkedHashMap<>();
                 for (CmsTagType entity : entityList) {
                     if (site.getId() == entity.getSiteId()) {
                         map.put(String.valueOf(entity.getId()), entity);

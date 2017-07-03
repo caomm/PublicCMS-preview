@@ -28,7 +28,7 @@ import org.mybatis.generator.config.PropertyRegistry;
  */
 public class ServicePlugin extends PluginAdapter{
     
-    private List<TopLevelClass> services = new ArrayList<TopLevelClass>();
+    private List<TopLevelClass> services = new ArrayList<>();
 
     /**
      * This plugin is always valid - no properties are required
@@ -89,7 +89,7 @@ public class ServicePlugin extends PluginAdapter{
                 bodyline += m.getName();
                 bodyline += "(";
                 List<Parameter> params = it.getParameters();
-                List<String> paramTxt = new ArrayList<String>();
+                List<String> paramTxt = new ArrayList<>();
                 for (Parameter p : params) {
                     FullyQualifiedJavaType t = p.getType();
                     topLevelClazz.addImportedType(t);
@@ -125,7 +125,7 @@ public class ServicePlugin extends PluginAdapter{
     }
 
     public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles() {
-        List<GeneratedJavaFile> listGjf = new ArrayList<GeneratedJavaFile>();
+        List<GeneratedJavaFile> listGjf = new ArrayList<>();
         for (TopLevelClass topLevelClazz : services) {
             GeneratedJavaFile gjf = new GeneratedJavaFile(topLevelClazz,
                     context.getJavaClientGeneratorConfiguration().getTargetProject(),

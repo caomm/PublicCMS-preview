@@ -35,7 +35,7 @@ public class CmsDictionaryDataDirective extends AbstractTemplateDirective {
             } else {
                 String[] values = handler.getStringArray("values");
                 if (notEmpty(values)) {
-                    Map<String, CmsDictionaryData> map = new LinkedHashMap<String, CmsDictionaryData>();
+                    Map<String, CmsDictionaryData> map = new LinkedHashMap<>();
                     CmsDictionaryDataId[] ids = new CmsDictionaryDataId[values.length];
                     for (int i = 0; i < values.length; i++) {
                         ids[i] = new CmsDictionaryDataId(dictionaryId, values[i]);

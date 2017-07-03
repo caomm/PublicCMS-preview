@@ -40,7 +40,7 @@ public class HomeAttentionDirective extends AbstractTemplateDirective {
                     ids[i] = new HomeAttentionId(userId, attentionIds[i]);
                 }
                 List<HomeAttention> entityList = service.getEntitys(ids);
-                Map<String, HomeAttention> map = new LinkedHashMap<String, HomeAttention>();
+                Map<String, HomeAttention> map = new LinkedHashMap<>();
                 for (HomeAttention entity : entityList) {
                     map.put(String.valueOf(entity.getId()), entity);
                 }
@@ -51,7 +51,7 @@ public class HomeAttentionDirective extends AbstractTemplateDirective {
                     ids[i] = new HomeAttentionId(userIds[i], attentionId);
                 }
                 List<HomeAttention> entityList = service.getEntitys(ids);
-                Map<String, HomeAttention> map = new LinkedHashMap<String, HomeAttention>();
+                Map<String, HomeAttention> map = new LinkedHashMap<>();
                 for (HomeAttention entity : entityList) {
                     map.put(String.valueOf(entity.getId()), entity);
                 }

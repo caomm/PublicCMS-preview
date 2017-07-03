@@ -48,7 +48,7 @@ public class ScheduledJob extends QuartzJobBean {
                 String result;
                 try {
                     success = true;
-                    Map<String, Object> map = new HashMap<String, Object>();
+                    Map<String, Object> map = new HashMap<>();
                     map.put("task", task);
                     SysSite site = siteService.getEntity(task.getSiteId());
                     exposeSite(map, site);

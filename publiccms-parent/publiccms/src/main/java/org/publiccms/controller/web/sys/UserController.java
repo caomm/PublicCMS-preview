@@ -143,7 +143,7 @@ public class UserController extends AbstractController {
             sysEmailToken.setEmail(email);
             sysEmailTokenService.save(sysEmailToken);
             try {
-                Map<String, Object> emailModel = new HashMap<String, Object>();
+                Map<String, Object> emailModel = new HashMap<>();
                 emailModel.put("user", user);
                 emailModel.put("site", site);
                 emailModel.put("email", email);

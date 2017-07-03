@@ -1,7 +1,9 @@
 package com.publiccms.common.base;
 
 public interface Copyright {
-    public boolean verify(String dataFilePath);
+    public void init(String dataFilePath);
+    
+    public boolean verify();
 
     public boolean activate(String activateCode);
 }

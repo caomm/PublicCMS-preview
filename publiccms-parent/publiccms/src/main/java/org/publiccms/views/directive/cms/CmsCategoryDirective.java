@@ -38,7 +38,7 @@ public class CmsCategoryDirective extends AbstractTemplateDirective {
             Integer[] ids = handler.getIntegerArray("ids");
             if (notEmpty(ids)) {
                 List<CmsCategory> entityList = service.getEntitys(ids);
-                Map<String, CmsCategory> map = new LinkedHashMap<String, CmsCategory>();
+                Map<String, CmsCategory> map = new LinkedHashMap<>();
                 for (CmsCategory entity : entityList) {
                     if (site.getId() == entity.getSiteId()) {
                         map.put(String.valueOf(entity.getId()), entity);

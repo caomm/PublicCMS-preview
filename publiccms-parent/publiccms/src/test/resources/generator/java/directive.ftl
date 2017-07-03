@@ -35,7 +35,7 @@ public class ${entityName}${directiveSuffix} extends AbstractTemplateDirective {
             Integer[] ids = handler.getIntegerArray("ids");
             if (notEmpty(ids)) {
                 List<${entityName}> entityList = service.getEntitys(ids);
-                Map<String, ${entityName}> map = new LinkedHashMap<String, ${entityName}>();
+                Map<String, ${entityName}> map = new LinkedHashMap<>();
                 for (${entityName} entity : entityList) {
                     map.put(String.valueOf(entity.getId()), entity);
                 }

@@ -53,7 +53,7 @@ public class CacheEntityFactory {
         }
         CacheEntity<K, V> cacheEntity;
         if (MEMORY_CACHE_ENTITY.equals(type)) {
-            cacheEntity = new MemoryCacheEntity<K, V>();
+            cacheEntity = new MemoryCacheEntity<>();
         } else {
             @SuppressWarnings("unchecked")
             Class<CacheEntity<K, V>> c = (Class<CacheEntity<K, V>>) Class.forName(type);

@@ -84,7 +84,7 @@ public class SysRoleAdminController extends AbstractController {
             entity.setSiteId(site.getId());
             service.save(entity);
             if (notEmpty(moudleIds)) {
-                List<SysRoleMoudle> list = new ArrayList<SysRoleMoudle>();
+                List<SysRoleMoudle> list = new ArrayList<>();
                 for (int moudleId : moudleIds) {
                     list.add(new SysRoleMoudle(new SysRoleMoudleId(entity.getId(), moudleId)));
                 }

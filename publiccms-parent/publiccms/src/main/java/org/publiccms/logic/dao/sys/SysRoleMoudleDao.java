@@ -67,7 +67,7 @@ public class SysRoleMoudleDao extends BaseDao<SysRoleMoudle> {
             queryHandler.condition("bean.id.moudleId in (:moudleIds)").setParameter("moudleIds", moudleIds);
             return (List<SysRoleMoudle>) getList(queryHandler);
         }
-        return new ArrayList<SysRoleMoudle>();
+        return new ArrayList<>();
     }
 
     /**

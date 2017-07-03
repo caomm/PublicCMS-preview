@@ -213,7 +213,7 @@ public abstract class BaseDao<E> implements Base  {
             queryHandler.setCacheable(false);
             return (List<E>) getList(queryHandler);
         }
-        return new ArrayList<E>();
+        return new ArrayList<>();
     }
 
     /**
@@ -459,9 +459,9 @@ public abstract class BaseDao<E> implements Base  {
             FacetManager facetManager = fullTextQuery.getFacetManager();
             for (String facetField : facetFields) {
                 List<Facet> facets = facetManager.getFacets(facetField + FACET_NAME_SUFFIX);
-                Map<String, Integer> facetMap = new LinkedHashMap<String, Integer>();
+                Map<String, Integer> facetMap = new LinkedHashMap<>();
                 if (notEmpty(valueMap.get(facetField))) {
-                    List<Facet> facetList = new ArrayList<Facet>();
+                    List<Facet> facetList = new ArrayList<>();
                     for (Facet facet : facets) {
                         facetMap.put(facet.getValue(), facet.getCount());
                         if (valueMap.get(facetField).contains(facet.getValue())) {

@@ -104,7 +104,7 @@ public class TemplateComponent implements Cache {
             CmsPageMetadata metadata, Map<String, Object> model) throws IOException, TemplateException {
         if (notEmpty(filePath)) {
             if (null == model) {
-                model = new HashMap<String, Object>();
+                model = new HashMap<>();
             }
             if (null == metadata) {
                 metadata = metadataComponent.getTemplateMetadata(siteComponent.getWebTemplateFilePath() + templatePath);
@@ -147,7 +147,7 @@ public class TemplateComponent implements Cache {
                                 getFullFileName(site, categoryModel.getTemplatePath()), null, null);
                         contentService.updateUrl(entity.getId(), url, true);
                     } else {
-                        Map<String, Object> model = new HashMap<String, Object>();
+                        Map<String, Object> model = new HashMap<>();
                         model.put("content", entity);
                         model.put("category", category);
                         model.put(CONTEXT_SITE, site);
@@ -181,7 +181,7 @@ public class TemplateComponent implements Cache {
      */
     public String createContentFile(SysSite site, CmsContent entity, CmsCategory category, boolean createMultiContentPage,
             String templatePath, String filePath, Integer pageIndex) throws IOException, TemplateException {
-        Map<String, Object> model = new HashMap<String, Object>();
+        Map<String, Object> model = new HashMap<>();
         model.put("content", entity);
         model.put("category", category);
 
@@ -240,7 +240,7 @@ public class TemplateComponent implements Cache {
                             getFullFileName(site, entity.getTemplatePath()), entity.getPath(), pageIndex, totalPage);
                     categoryService.updateUrl(entity.getId(), url, true);
                 } else {
-                    Map<String, Object> model = new HashMap<String, Object>();
+                    Map<String, Object> model = new HashMap<>();
                     model.put("category", entity);
                     model.put(CONTEXT_SITE, site);
                     String url = site.getDynamicPath() + generateStringByString(entity.getPath(), webConfiguration, model);
@@ -271,7 +271,7 @@ public class TemplateComponent implements Cache {
      */
     public String createCategoryFile(SysSite site, CmsCategory entity, String templatePath, String filePath, Integer pageIndex,
             Integer totalPage) throws IOException, TemplateException {
-        Map<String, Object> model = new HashMap<String, Object>();
+        Map<String, Object> model = new HashMap<>();
         if (empty(pageIndex)) {
             pageIndex = 1;
         }
@@ -322,7 +322,7 @@ public class TemplateComponent implements Cache {
      */
     public void staticPlace(SysSite site, String templatePath, CmsPlaceMetadata metadata) throws IOException, TemplateException {
         if (notEmpty(templatePath)) {
-            Map<String, Object> model = new HashMap<String, Object>();
+            Map<String, Object> model = new HashMap<>();
             exposePlace(site, templatePath, metadata, model);
             String placeTemplatePath = INCLUDE_DIRECTORY + templatePath;
             generateFileByFile(getFullFileName(site, placeTemplatePath), siteComponent.getWebFilePath(site, placeTemplatePath),
@@ -359,7 +359,7 @@ public class TemplateComponent implements Cache {
     public void printPlace(Writer writer, SysSite site, String templatePath, CmsPlaceMetadata metadata)
             throws IOException, TemplateException {
         if (notEmpty(templatePath)) {
-            Map<String, Object> model = new HashMap<String, Object>();
+            Map<String, Object> model = new HashMap<>();
             exposePlace(site, templatePath, metadata, model);
             generateStringByFile(writer, getFullFileName(site, INCLUDE_DIRECTORY + templatePath), webConfiguration, model);
         }
@@ -368,7 +368,7 @@ public class TemplateComponent implements Cache {
     @Autowired
     private void init(FreeMarkerConfigurer freeMarkerConfigurer, DirectiveComponent directiveComponent)
             throws IOException, TemplateModelException {
-        Map<String, Object> freemarkerVariables = new HashMap<String, Object>();
+        Map<String, Object> freemarkerVariables = new HashMap<>();
         adminConfiguration = freeMarkerConfigurer.getConfiguration();
         for (Entry<String, AbstractTemplateDirective> entry : directiveComponent.getTemplateDirectiveMap().entrySet()) {
             freemarkerVariables.put(directivePrefix + entry.getKey(), entry.getValue());

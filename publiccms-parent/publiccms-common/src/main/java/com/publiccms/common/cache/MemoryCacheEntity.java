@@ -26,7 +26,7 @@ public class MemoryCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Seria
      */
     private static final long serialVersionUID = 1L;
     private int size;
-    private LinkedHashMap<K, V> cachedMap = new LinkedHashMap<K, V>(16, 0.75f, true);
+    private LinkedHashMap<K, V> cachedMap = new LinkedHashMap<>(16, 0.75f, true);
     private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 
     @Override
@@ -65,7 +65,7 @@ public class MemoryCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Seria
         lock.writeLock().lock();
         try {
             Collection<V> values = cachedMap.values();
-            List<V> list = new ArrayList<V>();
+            List<V> list = new ArrayList<>();
             if (!values.isEmpty()) {
                 list.addAll(values);
             }
@@ -90,11 +90,11 @@ public class MemoryCacheEntity<K, V> implements CacheEntity<K, V>, java.io.Seria
         List<V> list = null;
         if (size < cachedMap.size()) {
             Iterator<K> iterator = cachedMap.keySet().iterator();
-            List<K> keyList = new ArrayList<K>();
+            List<K> keyList = new ArrayList<>();
             for (int i = 0; i < size / 2; i++) {
                 keyList.add(iterator.next());
             }
-            list = new ArrayList<V>();
+            list = new ArrayList<>();
             for (K key : keyList) {
                 list.add(cachedMap.remove(key));
             }

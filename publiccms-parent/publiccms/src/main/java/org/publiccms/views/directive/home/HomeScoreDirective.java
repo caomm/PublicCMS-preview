@@ -33,7 +33,7 @@ public class HomeScoreDirective extends AbstractTemplateDirective {
             Integer[] ids = handler.getIntegerArray("ids");
             if (notEmpty(ids)) {
                 List<HomeScore> entityList = service.getEntitys(ids);
-                Map<String, HomeScore> map = new LinkedHashMap<String, HomeScore>();
+                Map<String, HomeScore> map = new LinkedHashMap<>();
                 for (HomeScore entity : entityList) {
                     map.put(String.valueOf(entity.getId()), entity);
                 }

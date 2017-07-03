@@ -171,7 +171,7 @@ public class EmailComponent implements SiteCache, Config, Base {
 
     @Override
     public List<ExtendField> getExtendFieldList(SysSite site, Locale locale) {
-        List<ExtendField> extendFieldList = new ArrayList<ExtendField>();
+        List<ExtendField> extendFieldList = new ArrayList<>();
         extendFieldList.add(new ExtendField(CONFIG_EMAIL_SMTP_DEFAULTENCODING, INPUTTYPE_TEXT, true,
                 getMessage(locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_EMAIL_SMTP_DEFAULTENCODING), null,
                 DEFAULT_CHARSET_NAME));

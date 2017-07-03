@@ -33,7 +33,7 @@ public class HomeGroupUserDirective extends AbstractTemplateDirective {
             Integer[] ids = handler.getIntegerArray("ids");
             if (notEmpty(ids)) {
                 List<HomeGroupUser> entityList = service.getEntitys(ids);
-                Map<String, HomeGroupUser> map = new LinkedHashMap<String, HomeGroupUser>();
+                Map<String, HomeGroupUser> map = new LinkedHashMap<>();
                 for (HomeGroupUser entity : entityList) {
                     map.put(String.valueOf(entity.getId()), entity);
                 }

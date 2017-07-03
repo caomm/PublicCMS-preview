@@ -44,7 +44,7 @@ public class SysConfigDataDirective extends AbstractTemplateDirective {
                     ids[i++] = new SysConfigDataId(site.getId(), s);
                 }
             }
-            Map<String, Map<String, String>> map = new HashMap<String, Map<String, String>>();
+            Map<String, Map<String, String>> map = new HashMap<>();
             for (SysConfigData entity : service.getEntitys(ids)) {
                 map.put(entity.getId().getCode(), getExtendMap(entity.getData()));
             }

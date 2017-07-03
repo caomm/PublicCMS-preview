@@ -75,7 +75,7 @@ public class CmsContentDao extends BaseDao<CmsContent> {
         }
         query.enableFullTextFilter("publishDate").setParameter("publishDate", getDate());
         query.enableFullTextFilter("siteId").setParameter("siteId", siteId);
-        Map<String, List<String>> valueMap = new HashMap<String, List<String>>();
+        Map<String, List<String>> valueMap = new HashMap<>();
         if (notEmpty(categoryIds)) {
             valueMap.put("categoryId", Arrays.asList(categoryIds));
         }

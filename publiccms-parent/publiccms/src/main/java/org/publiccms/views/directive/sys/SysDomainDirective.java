@@ -36,7 +36,7 @@ public class SysDomainDirective extends AbstractTemplateDirective {
             String[] ids = handler.getStringArray("ids");
             if (notEmpty(ids)) {
                 List<SysDomain> entityList = service.getEntitys(ids);
-                Map<String, SysDomain> map = new LinkedHashMap<String, SysDomain>();
+                Map<String, SysDomain> map = new LinkedHashMap<>();
                 for (SysDomain entity : entityList) {
                     map.put(String.valueOf(entity.getName()), entity);
                 }

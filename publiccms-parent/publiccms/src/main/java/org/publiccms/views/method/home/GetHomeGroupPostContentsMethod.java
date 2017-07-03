@@ -28,7 +28,7 @@ public class GetHomeGroupPostContentsMethod extends BaseMethod {
     public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {
         Long[] ids = getLongArray(0, arguments);
         if (notEmpty(ids)) {
-            Map<String, String> resultMap = new HashMap<String, String>();
+            Map<String, String> resultMap = new HashMap<>();
             for (HomeGroupPostContent entity : service.getEntitys(ids)) {
                 resultMap.put(String.valueOf(entity.getPostId()), entity.getContent());
             }

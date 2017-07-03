@@ -43,7 +43,7 @@ public class SysDeptCategoryDirective extends AbstractTemplateDirective {
             } else {
                 Integer[] categoryIds = handler.getIntegerArray("categoryIds");
                 if (notEmpty(categoryIds)) {
-                    Map<String, Boolean> map = new LinkedHashMap<String, Boolean>();
+                    Map<String, Boolean> map = new LinkedHashMap<>();
                     SysDept entity = sysDeptService.getEntity(deptId);
                     if (null != entity) {
                         if (entity.isOwnsAllCategory()) {

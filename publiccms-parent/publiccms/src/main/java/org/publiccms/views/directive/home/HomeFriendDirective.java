@@ -33,7 +33,7 @@ public class HomeFriendDirective extends AbstractTemplateDirective {
             Integer[] ids = handler.getIntegerArray("ids");
             if (notEmpty(ids)) {
                 List<HomeFriend> entityList = service.getEntitys(ids);
-                Map<String, HomeFriend> map = new LinkedHashMap<String, HomeFriend>();
+                Map<String, HomeFriend> map = new LinkedHashMap<>();
                 for (HomeFriend entity : entityList) {
                     map.put(String.valueOf(entity.getId()), entity);
                 }

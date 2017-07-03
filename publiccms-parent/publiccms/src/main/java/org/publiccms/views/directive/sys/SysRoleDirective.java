@@ -38,7 +38,7 @@ public class SysRoleDirective extends AbstractTemplateDirective {
             Integer[] ids = handler.getIntegerArray("ids");
             if (notEmpty(ids)) {
                 List<SysRole> entityList = service.getEntitys(ids);
-                Map<String, SysRole> map = new LinkedHashMap<String, SysRole>();
+                Map<String, SysRole> map = new LinkedHashMap<>();
                 for (SysRole entity : entityList) {
                     if(site.getId() == entity.getSiteId()){
                         map.put(String.valueOf(entity.getId()), entity);

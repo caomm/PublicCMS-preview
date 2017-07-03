@@ -102,7 +102,7 @@ public class InstallServlet extends HttpServlet implements Base {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         } else {
             String step = request.getParameter("step");
-            Map<String, Object> map = new HashMap<String, Object>();
+            Map<String, Object> map = new HashMap<>();
 
             // 记录当前版本号
             map.put("currentVersion", CmsVersion.getVersion());

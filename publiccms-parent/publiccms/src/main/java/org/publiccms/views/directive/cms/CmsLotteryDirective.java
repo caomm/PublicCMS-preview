@@ -33,7 +33,7 @@ public class CmsLotteryDirective extends AbstractTemplateDirective {
             Integer[] ids = handler.getIntegerArray("ids");
             if (notEmpty(ids)) {
                 List<CmsLottery> entityList = service.getEntitys(ids);
-                Map<String, CmsLottery> map = new LinkedHashMap<String, CmsLottery>();
+                Map<String, CmsLottery> map = new LinkedHashMap<>();
                 for (CmsLottery entity : entityList) {
                     map.put(String.valueOf(entity.getId()), entity);
                 }

@@ -29,7 +29,7 @@ import com.publiccms.common.handler.HttpParameterHandler;
 @Controller
 public class ApiController extends AbstractController {
     private Map<String, AbstractAppDirective> appDirectiveMap;
-    private List<Map<String, String>> appList = new ArrayList<Map<String, String>>();
+    private List<Map<String, String>> appList = new ArrayList<>();
     /**
      * 
      */
@@ -123,7 +123,7 @@ public class ApiController extends AbstractController {
     public void init(Map<String, AbstractAppDirective> directiveMap) {
         appDirectiveMap = directiveComponent.getAppDirectiveMap();
         for (Entry<String, AbstractAppDirective> entry : appDirectiveMap.entrySet()) {
-            Map<String, String> map = new HashMap<String, String>();
+            Map<String, String> map = new HashMap<>();
             map.put("name", entry.getKey());
             map.put("needAppToken", String.valueOf(entry.getValue().needAppToken()));
             map.put("needUserToken", String.valueOf(entry.getValue().needUserToken()));

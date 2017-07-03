@@ -110,7 +110,7 @@ public class CmsUpgrader implements Base {
                     modelMap = objectMapper.readValue(file, new TypeReference<Map<String, CmsModel>>() {
                     });
                 } catch (IOException | ClassCastException e) {
-                    modelMap = new HashMap<String, CmsModel>();
+                    modelMap = new HashMap<>();
                 }
                 entity.setId(rs.getString("id"));
                 entity.setHasChild(rs.getBoolean("has_child"));
@@ -123,7 +123,7 @@ public class CmsUpgrader implements Base {
                 }
                 entity.setTemplatePath((String) rs.getString("template_path"));
                 if (null != rs.getString("extend_id")) {
-                    List<ExtendField> extendList = new ArrayList<ExtendField>();
+                    List<ExtendField> extendList = new ArrayList<>();
                     try (Statement extendFieldStatement = connection.createStatement();
                             ResultSet extendFieldRs = extendFieldStatement.executeQuery(
                                     "select * from sys_extend_field where extend_id = " + rs.getString("extend_id"));) {

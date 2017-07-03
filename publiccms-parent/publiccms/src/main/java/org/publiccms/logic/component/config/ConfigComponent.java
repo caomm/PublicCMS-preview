@@ -73,8 +73,8 @@ public class ConfigComponent implements SiteCache, Base {
      * @return
      */
     public List<ConfigInfo> getConfigList(SysSite site, Locale locale) {
-        List<ConfigInfo> configList = new ArrayList<ConfigInfo>();
-        List<String> configCodeList = new ArrayList<String>();
+        List<ConfigInfo> configList = new ArrayList<>();
+        List<String> configCodeList = new ArrayList<>();
         if (notEmpty(configPluginList)) {
             for (Config config : configPluginList) {
                 String code = config.getCode(site);
@@ -103,7 +103,7 @@ public class ConfigComponent implements SiteCache, Base {
      * @return
      */
     public List<ExtendField> getFieldList(SysSite site, String code, Boolean customed, Locale locale) {
-        List<ExtendField> fieldList = new ArrayList<ExtendField>();
+        List<ExtendField> fieldList = new ArrayList<>();
         if ((empty(customed) || !customed) && notEmpty(configPluginList)) {
             for (Config config : configPluginList) {
                 if (config.getCode(site).equals(code)) {
@@ -128,7 +128,7 @@ public class ConfigComponent implements SiteCache, Base {
     public Map<String, String> getConfigData(int siteId, String code) {
         Map<String, Map<String, String>> siteMap = cache.get(siteId);
         if (empty(siteMap)) {
-            siteMap = new HashMap<String, Map<String, String>>();
+            siteMap = new HashMap<>();
         }
         Map<String, String> configMap = siteMap.get(code);
         if (empty(configMap)) {
@@ -136,7 +136,7 @@ public class ConfigComponent implements SiteCache, Base {
             if (null != entity && notEmpty(entity.getData())) {
                 configMap = getExtendMap(entity.getData());
             } else {
-                configMap = new HashMap<String, String>();
+                configMap = new HashMap<>();
             }
             siteMap.put(code, configMap);
             cache.put(siteId, siteMap);
@@ -159,10 +159,10 @@ public class ConfigComponent implements SiteCache, Base {
                 modelMap = objectMapper.readValue(file, new TypeReference<Map<String, SysConfig>>() {
                 });
             } catch (IOException | ClassCastException e) {
-                modelMap = new HashMap<String, SysConfig>();
+                modelMap = new HashMap<>();
             }
         } else {
-            modelMap = new HashMap<String, SysConfig>();
+            modelMap = new HashMap<>();
         }
         return modelMap;
     }

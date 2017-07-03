@@ -32,7 +32,7 @@ public class SysExtendFieldDao extends BaseDao<SysExtendField> {
             queryHandler.order("bean.sort asc");
             return (List<SysExtendField>) getList(queryHandler);
         }
-        return new ArrayList<SysExtendField>();
+        return new ArrayList<>();
     }
 
     @Override

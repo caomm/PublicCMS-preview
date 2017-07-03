@@ -36,7 +36,7 @@ public class CmsContentAttributeDao extends BaseDao<CmsContentAttribute> {
             queryHandler.condition("bean.contentId in (:ids)").setParameter("ids", ids);
             return (List<CmsContentAttribute>) getList(queryHandler);
         }
-        return new ArrayList<CmsContentAttribute>();
+        return new ArrayList<>();
     }
 
     @Override

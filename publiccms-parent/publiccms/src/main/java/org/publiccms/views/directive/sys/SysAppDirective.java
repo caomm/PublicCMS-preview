@@ -38,7 +38,7 @@ public class SysAppDirective extends AbstractTemplateDirective {
             Integer[] ids = handler.getIntegerArray("ids");
             if (notEmpty(ids)) {
                 List<SysApp> entityList = service.getEntitys(ids);
-                Map<String, SysApp> map = new LinkedHashMap<String, SysApp>();
+                Map<String, SysApp> map = new LinkedHashMap<>();
                 for (SysApp entity : entityList) {
                     if(site.getId() == entity.getSiteId()){
                         map.put(String.valueOf(entity.getId()), entity);

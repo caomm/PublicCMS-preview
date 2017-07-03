@@ -33,7 +33,7 @@ public class CmsDictionaryDirective extends AbstractTemplateDirective {
             Integer[] ids = handler.getIntegerArray("ids");
             if (notEmpty(ids)) {
                 List<CmsDictionary> entityList = service.getEntitys(ids);
-                Map<String, CmsDictionary> map = new LinkedHashMap<String, CmsDictionary>();
+                Map<String, CmsDictionary> map = new LinkedHashMap<>();
                 for (CmsDictionary entity : entityList) {
                     map.put(String.valueOf(entity.getId()), entity);
                 }

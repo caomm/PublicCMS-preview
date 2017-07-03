@@ -29,7 +29,7 @@ public class GetPlaceAttributesMethod extends BaseMethod {
     public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {
         Long[] ids = getLongArray(0, arguments);
         if (notEmpty(ids)) {
-            Map<String, Map<String, String>> resultMap = new HashMap<String, Map<String, String>>();
+            Map<String, Map<String, String>> resultMap = new HashMap<>();
             for (CmsPlaceAttribute entity : service.getEntitys(ids)) {
                 Map<String, String> map = getExtendMap(entity.getData());
                 resultMap.put(String.valueOf(entity.getPlaceId()), map);

@@ -33,7 +33,7 @@ public class CmsWordDirective extends AbstractTemplateDirective {
             Long[] ids = handler.getLongArray("ids");
             if (notEmpty(ids)) {
                 List<CmsWord> entityList = service.getEntitys(ids);
-                Map<String, CmsWord> map = new LinkedHashMap<String, CmsWord>();
+                Map<String, CmsWord> map = new LinkedHashMap<>();
                 for (CmsWord entity : entityList) {
                     map.put(String.valueOf(entity.getId()), entity);
                 }

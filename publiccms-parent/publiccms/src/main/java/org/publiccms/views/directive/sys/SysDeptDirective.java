@@ -38,7 +38,7 @@ public class SysDeptDirective extends AbstractTemplateDirective {
             Integer[] ids = handler.getIntegerArray("ids");
             if (notEmpty(ids)) {
                 List<SysDept> entityList = service.getEntitys(ids);
-                Map<String, SysDept> map = new LinkedHashMap<String, SysDept>();
+                Map<String, SysDept> map = new LinkedHashMap<>();
                 for (SysDept entity : entityList) {
                     if(site.getId() == entity.getSiteId()){
                         map.put(String.valueOf(entity.getId()), entity);

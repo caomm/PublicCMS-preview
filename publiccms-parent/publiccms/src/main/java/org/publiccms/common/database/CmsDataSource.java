@@ -27,7 +27,7 @@ public class CmsDataSource extends MultiDataSource {
     private static CmsDataSource cmsDataSource;
     private String dbconfigFilePath;
 
-    private Map<Object, Object> dataSources = new HashMap<Object, Object>();
+    private Map<Object, Object> dataSources = new HashMap<>();
 
     /**
      * @param filePath

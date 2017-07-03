@@ -31,7 +31,7 @@ public class PublishCategoryDirective extends AbstractTaskDirective {
         Integer pageIndex = handler.getInteger("pageIndex");
         Integer totalPage = handler.getInteger("totalPage");
         SysSite site = getSite(handler);
-        Map<String, Boolean> map = new LinkedHashMap<String, Boolean>();
+        Map<String, Boolean> map = new LinkedHashMap<>();
         if (notEmpty(id)) {
             CmsCategory entity = service.getEntity(id);
             map.put(entity.getId().toString(), deal(site, entity, pageIndex, totalPage));

@@ -38,7 +38,7 @@ public class LogTaskDirective extends AbstractTemplateDirective {
             Long[] ids = handler.getLongArray("ids");
             if (notEmpty(ids)) {
                 List<LogTask> entityList = service.getEntitys(ids);
-                Map<String, LogTask> map = new LinkedHashMap<String, LogTask>();
+                Map<String, LogTask> map = new LinkedHashMap<>();
                 for (LogTask entity : entityList) {
                     if (site.getId() == entity.getSiteId()) {
                         map.put(String.valueOf(entity.getId()), entity);

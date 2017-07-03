@@ -18,7 +18,7 @@ public class MybatisGenerator {
      * @throws Throwable
      */
     public static void main(String[] arg) throws Throwable {
-        List<String> warnings = new ArrayList<String>();
+        List<String> warnings = new ArrayList<>();
         ConfigurationParser cp = new ConfigurationParser(warnings);
         Configuration config = cp.parseConfiguration(MybatisGenerator.class.getResourceAsStream("/generator/mybatis/generatorConfig.xml"));
         DefaultShellCallback shellCallback = new DefaultShellCallback(true);

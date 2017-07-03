@@ -34,8 +34,8 @@ import com.publiccms.common.handler.HttpParameterHandler;
  */
 @Controller
 public class DirectiveController extends AbstractController {
-    private Map<String, BaseTemplateDirective> actionMap = new HashMap<String, BaseTemplateDirective>();
-    private List<Map<String, String>> actionList = new ArrayList<Map<String, String>>();
+    private Map<String, BaseTemplateDirective> actionMap = new HashMap<>();
+    private List<Map<String, String>> actionList = new ArrayList<>();
 
     /**
      * 接口指令统一分发
@@ -86,7 +86,7 @@ public class DirectiveController extends AbstractController {
     public void init(DirectiveComponent directiveComponent) {
         actionMap.putAll(directiveComponent.getTemplateDirectiveMap());
         for (Entry<String, AbstractTemplateDirective> entry : directiveComponent.getTemplateDirectiveMap().entrySet()) {
-            Map<String, String> map = new HashMap<String, String>();
+            Map<String, String> map = new HashMap<>();
             map.put("name", entry.getKey());
             map.put("needAppToken", String.valueOf(entry.getValue().needAppToken()));
             map.put("needUserToken", String.valueOf(entry.getValue().needUserToken()));
@@ -94,7 +94,7 @@ public class DirectiveController extends AbstractController {
         }
         actionMap.putAll(directiveComponent.getTaskDirectiveMap());
         for (Entry<String, AbstractTaskDirective> entry : directiveComponent.getTaskDirectiveMap().entrySet()) {
-            Map<String, String> map = new HashMap<String, String>();
+            Map<String, String> map = new HashMap<>();
             map.put("name", entry.getKey());
             map.put("needAppToken", String.valueOf(true));
             map.put("needUserToken", String.valueOf(false));

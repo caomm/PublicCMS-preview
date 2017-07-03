@@ -29,7 +29,7 @@ public class CmsDictionaryDataListDirective extends AbstractTemplateDirective {
         if (notEmpty(list)) {
             list = service.getList(handler.getLong("dictionaryId"));
         } else {
-            list = new ArrayList<CmsDictionaryData>();
+            list = new ArrayList<>();
         }
         handler.put("list", list).render();
     }

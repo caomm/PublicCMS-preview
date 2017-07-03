@@ -29,7 +29,7 @@ public class GetCategoryAttributesMethod extends BaseMethod {
     public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {
         Integer[] ids = getIntegerArray(0, arguments);
         if (notEmpty(ids)) {
-            Map<String, Map<String, String>> resultMap = new HashMap<String, Map<String, String>>();
+            Map<String, Map<String, String>> resultMap = new HashMap<>();
             for (CmsCategoryAttribute entity : service.getEntitys(ids)) {
                 Map<String, String> map = getExtendMap(entity.getData());
                 map.put("title", entity.getTitle());

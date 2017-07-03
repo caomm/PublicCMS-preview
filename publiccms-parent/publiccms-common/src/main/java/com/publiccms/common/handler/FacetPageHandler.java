@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class FacetPageHandler extends PageHandler {
     private boolean facetResult = true;
-    private Map<String, Map<String, Integer>> map = new LinkedHashMap<String, Map<String, Integer>>();
+    private Map<String, Map<String, Integer>> map = new LinkedHashMap<>();
 
     /**
      * @param pageIndex

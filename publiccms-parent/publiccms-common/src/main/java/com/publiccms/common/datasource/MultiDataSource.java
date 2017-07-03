@@ -9,7 +9,7 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
  */
 public class MultiDataSource extends AbstractRoutingDataSource {
     
-    private static final ThreadLocal<String> HOLDER = new ThreadLocal<String>();
+    private static final ThreadLocal<String> HOLDER = new ThreadLocal<>();
 
     @Override
     protected Object determineCurrentLookupKey() {

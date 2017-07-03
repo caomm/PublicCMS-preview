@@ -96,14 +96,14 @@ public class SysDeptAdminController extends AbstractController {
             logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(),
                     LogLoginService.CHANNEL_WEB_MANAGER, "save.dept", getIpAddress(request), getDate(), getString(entity)));
             if (notEmpty(categoryIds)) {
-                List<SysDeptCategory> list = new ArrayList<SysDeptCategory>();
+                List<SysDeptCategory> list = new ArrayList<>();
                 for (int categoryId : categoryIds) {
                     list.add(new SysDeptCategory(new SysDeptCategoryId(entity.getId(), categoryId)));
                 }
                 sysDeptCategoryService.save(list);
             }
             if (notEmpty(pages)) {
-                List<SysDeptPage> list = new ArrayList<SysDeptPage>();
+                List<SysDeptPage> list = new ArrayList<>();
                 for (String page : pages) {
                     list.add(new SysDeptPage(new SysDeptPageId(entity.getId(), page)));
                 }

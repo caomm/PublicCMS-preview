@@ -40,7 +40,7 @@ import freemarker.template.TemplateModelException;
 @RestController
 public class MethodController extends AbstractController {
     private Map<String, BaseMethod> methodMap;
-    private List<Map<String, String>> methodList = new ArrayList<Map<String, String>>();
+    private List<Map<String, String>> methodList = new ArrayList<>();
     private ObjectWrapper objectWrapper;
 
     /**
@@ -69,7 +69,7 @@ public class MethodController extends AbstractController {
                 }
                 String[] paramters = request.getParameterValues("paramters");
                 if (notEmpty(paramters) && paramters.length >= method.minParamtersNumber()) {
-                    List<TemplateModel> list = new ArrayList<TemplateModel>();
+                    List<TemplateModel> list = new ArrayList<>();
                     for (String paramter : paramters) {
                         list.add(getObjectWrapper().wrap(paramter));
                     }
@@ -77,12 +77,12 @@ public class MethodController extends AbstractController {
                 } else if (empty(paramters) && 0 == method.minParamtersNumber()) {
                     return method.exec(null);
                 } else {
-                    Map<String, String> map = new HashMap<String, String>();
+                    Map<String, String> map = new HashMap<>();
                     map.put(ERROR, "paramtersError");
                     return map;
                 }
             } catch (TemplateModelException e) {
-                Map<String, String> map = new HashMap<String, String>();
+                Map<String, String> map = new HashMap<>();
                 map.put(ERROR, e.getMessage());
                 return map;
             }
@@ -113,7 +113,7 @@ public class MethodController extends AbstractController {
         methodMap = directiveComponent.getMethodMap();
         for (Entry<String, BaseMethod> entry : methodMap.entrySet()) {
             if (entry.getValue().httpEnabled()) {
-                Map<String, String> resultMap = new HashMap<String, String>();
+                Map<String, String> resultMap = new HashMap<>();
                 resultMap.put("name", entry.getKey());
                 resultMap.put("minParamters", String.valueOf(entry.getValue().minParamtersNumber()));
                 resultMap.put("needAppToken", String.valueOf(entry.getValue().needAppToken()));

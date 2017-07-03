@@ -45,7 +45,7 @@ public class ModelComponent implements SiteCache,Base {
      */
     public List<CmsModel> getList(SysSite site, String parentId, Boolean hasChild, Boolean onlyUrl, Boolean hasImages,
             Boolean hasFiles) {
-        List<CmsModel> modelList = new ArrayList<CmsModel>();
+        List<CmsModel> modelList = new ArrayList<>();
         Map<String, CmsModel> map = getMap(site);
         for (CmsModel model : map.values()) {
             if ((empty(parentId) && empty(model.getParentId()) || notEmpty(parentId) && parentId.equals(model.getParentId()))
@@ -72,10 +72,10 @@ public class ModelComponent implements SiteCache,Base {
                     modelMap = objectMapper.readValue(file, new TypeReference<Map<String, CmsModel>>() {
                     });
                 } catch (IOException | ClassCastException e) {
-                    modelMap = new HashMap<String, CmsModel>();
+                    modelMap = new HashMap<>();
                 }
             } else {
-                modelMap = new HashMap<String, CmsModel>();
+                modelMap = new HashMap<>();
             }
             modelCache.put(site.getId(), modelMap);
         }

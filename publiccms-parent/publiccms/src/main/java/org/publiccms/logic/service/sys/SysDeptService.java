@@ -43,7 +43,7 @@ public class SysDeptService extends BaseService<SysDept> {
      */
     public List<Integer> delete(int siteId, Integer id) {
         SysDept entity = getEntity(id);
-        List<Integer> idList = new ArrayList<Integer>();
+        List<Integer> idList = new ArrayList<>();
         if (null != entity && siteId == entity.getSiteId()) {
             @SuppressWarnings("unchecked")
             List<SysDept> list = (List<SysDept>) getPage(entity.getSiteId(), entity.getId(), null, null, null).getList();

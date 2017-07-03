@@ -141,7 +141,7 @@ public class SourceGenerator implements Base {
         String entitiesPackage = c.getPackage().getName().substring((base).length(), c.getPackage().getName().length());
 
         System.out.println("entity:" + base + entitiesPackage + DOT + name);
-        Map<String, Object> model = new HashMap<String, Object>();
+        Map<String, Object> model = new HashMap<>();
 
         String entityPack = ENTITY_BASE_PACKAGE + DOT + entitiesPackage;
         String daoPack = DAO_BASE_PACKAGE + DOT + entitiesPackage;
@@ -162,8 +162,8 @@ public class SourceGenerator implements Base {
         model.put("entityName", name);
 
         Set<String> imports = new HashSet<String>();
-        Map<String, EntityCondition> conditionMap = new LinkedHashMap<String, EntityCondition>();
-        List<EntityColumn> columnList = new ArrayList<EntityColumn>();
+        Map<String, EntityCondition> conditionMap = new LinkedHashMap<>();
+        List<EntityColumn> columnList = new ArrayList<>();
 
         for (Field field : c.getDeclaredFields()) {
             if (0 != (field.getModifiers() & Modifier.PRIVATE) && 0 == (field.getModifiers() & Modifier.FINAL)) {

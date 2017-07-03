@@ -36,7 +36,7 @@ public class SysMoudleDirective extends AbstractTemplateDirective {
             Integer[] ids = handler.getIntegerArray("ids");
             if (notEmpty(ids)) {
                 List<SysMoudle> entityList = service.getEntitys(ids);
-                Map<String, SysMoudle> map = new LinkedHashMap<String, SysMoudle>();
+                Map<String, SysMoudle> map = new LinkedHashMap<>();
                 for (SysMoudle entity : entityList) {
                     map.put(String.valueOf(entity.getId()), entity);
                 }

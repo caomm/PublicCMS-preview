@@ -38,7 +38,7 @@ public class CmsPlaceDirective extends AbstractTemplateDirective {
             Long[] ids = handler.getLongArray("ids");
             if (notEmpty(ids)) {
                 List<CmsPlace> entityList = service.getEntitys(ids);
-                Map<String, CmsPlace> map = new LinkedHashMap<String, CmsPlace>();
+                Map<String, CmsPlace> map = new LinkedHashMap<>();
                 for (CmsPlace entity : entityList) {
                     if (site.getId() == entity.getSiteId()) {
                         map.put(String.valueOf(entity.getId()), entity);

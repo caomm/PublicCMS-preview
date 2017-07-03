@@ -37,7 +37,7 @@ public class SysDeptPageDirective extends AbstractTemplateDirective {
             } else {
                 String[] pages = handler.getStringArray("pages");
                 if (notEmpty(pages)) {
-                    Map<String, Boolean> map = new LinkedHashMap<String, Boolean>();
+                    Map<String, Boolean> map = new LinkedHashMap<>();
                     SysDept entity = sysDeptService.getEntity(deptId);
                     if (null != entity && entity.isOwnsAllCategory()) {
                         for (String p : pages) {

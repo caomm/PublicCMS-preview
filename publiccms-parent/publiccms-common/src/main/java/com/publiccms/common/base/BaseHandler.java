@@ -113,7 +113,7 @@ public abstract class BaseHandler implements RenderHandler {
      * 
      */
     public static final String PARAMETER_TYPE_STRINGARRAY = "stringArray";
-    protected Map<String, Object> map = new LinkedHashMap<String, Object>();
+    protected Map<String, Object> map = new LinkedHashMap<>();
     protected List<Map<String, Object>> parameterList;
     protected boolean regristerParamters;
     protected boolean renderd = false;
@@ -126,7 +126,7 @@ public abstract class BaseHandler implements RenderHandler {
     public void regristerParamters() {
         this.regristerParamters = getBooleanWithoutRegrister(PARAMETERS_CONTROLLER, false);
         if (regristerParamters) {
-            parameterList = new ArrayList<Map<String, Object>>();
+            parameterList = new ArrayList<>();
             put(PARAMETERS_NAME, parameterList);
         }
     }
@@ -137,7 +137,7 @@ public abstract class BaseHandler implements RenderHandler {
 
     protected void regristerParamter(String type, String name, Object defaultValue) {
         if (regristerParamters) {
-            HashMap<String, Object> map = new HashMap<String, Object>();
+            HashMap<String, Object> map = new HashMap<>();
             map.put("name", name);
             map.put("type", type);
             map.put("defaultValue", defaultValue);
@@ -219,7 +219,7 @@ public abstract class BaseHandler implements RenderHandler {
         regristerParamter(PARAMETER_TYPE_INTEGERARRAY, name);
         String[] arr = getStringArrayWithoutRegrister(name);
         if (notEmpty(arr)) {
-            Set<Integer> set = new TreeSet<Integer>();
+            Set<Integer> set = new TreeSet<>();
             for (String s : arr) {
                 try {
                     set.add(Integer.valueOf(s));
@@ -241,7 +241,7 @@ public abstract class BaseHandler implements RenderHandler {
         regristerParamter(PARAMETER_TYPE_LONGARRAY, name);
         String[] arr = getStringArrayWithoutRegrister(name);
         if (notEmpty(arr)) {
-            Set<Long> set = new TreeSet<Long>();
+            Set<Long> set = new TreeSet<>();
             for (String s : arr) {
                 try {
                     set.add(Long.valueOf(s));
