@@ -37,14 +37,16 @@
 	<table class="list" width="100%" layoutH="99">
 		<thead>
 			<tr>
+				<th>ID</th>
 				<th>名称</th>
-				<th>允许多选</th>
+				<th>字典类型</th>
 				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
 			<#list page.list as a>
 			<tr target="sid" rel="${a.id}">
+				<td>${a.id}</td>
 				<td>${a.name!}</td>
 				<td>${a.multiple?then('多选','单选')}</td>
 				<td>

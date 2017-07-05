@@ -2,7 +2,6 @@ package org.publiccms.views.pojo;
 
 import static com.publiccms.common.tools.CommonUtils.empty;
 import static com.publiccms.common.tools.CommonUtils.notEmpty;
-import static org.springframework.util.StringUtils.arrayToCommaDelimitedString;
 
 import java.util.HashMap;
 import java.util.List;
@@ -104,7 +103,7 @@ public class CmsPageMetadata implements java.io.Serializable {
 			extendData = new HashMap<>();
 			if (notEmpty(extendDataList)) {
 				for (ExtendData extend : extendDataList) {
-					extendData.put(extend.getName(), arrayToCommaDelimitedString(extend.getValue()));
+					extendData.put(extend.getName(), extend.getValue());
 				}
 			}
 		}

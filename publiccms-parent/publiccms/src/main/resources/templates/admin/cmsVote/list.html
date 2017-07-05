@@ -62,13 +62,12 @@
 				<td>${a.endDate!}</td>
 				<td>${a.intervalHour!}</td>
 				<td>${a.maxVote!}</td>
-				<td>${a.anonymous!}</td>
+				<td>${a.anonymous?then('允许匿名','')}</td>
 				<td>${a.url!}</td>
 				<td>${a.title!}</td>
 				<td>${a.description!}</td>
 				<td>${a.userCounts!}</td>
 				<td>
-					<a href="cmsVote/view.html?voteId=${a.id}" target="dialog" rel="cmsVote">查看</a>
 					<a href="cmsVoteUser/list.html?voteId=${a.id}" target="navTab" rel="cmsVoteUser/list">投票用户</a>
 				</td>
 			</tr>

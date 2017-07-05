@@ -13,8 +13,10 @@ import org.publiccms.common.base.AbstractController;
 import org.publiccms.entities.cms.CmsDictionary;
 import org.publiccms.entities.log.LogOperate;
 import org.publiccms.entities.sys.SysSite;
+import org.publiccms.logic.service.cms.CmsDictionaryDataService;
 import org.publiccms.logic.service.cms.CmsDictionaryService;
 import org.publiccms.logic.service.log.LogLoginService;
+import org.publiccms.views.pojo.CmsDictionaryParamters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,15 +39,18 @@ public class CmsDictionaryAdminController extends AbstractController {
      * @return
      */
     @RequestMapping("save")
-    public String save(CmsDictionary entity, HttpServletRequest request, HttpSession session) {
+    public String save(CmsDictionary entity, CmsDictionaryParamters dictionaryParamters, HttpServletRequest request,
+            HttpSession session) {
         SysSite site = getSite(request);
         if (null != entity.getId()) {
             entity = service.update(entity.getId(), entity, ignoreProperties);
+            dataService.update(entity.getId(), dictionaryParamters.getDataList());
             logOperateService
                     .save(new LogOperate(site.getId(), getAdminFromSession(session).getId(), LogLoginService.CHANNEL_WEB_MANAGER,
                             "update.cmsDictionary", getIpAddress(request), getDate(), getString(entity)));
         } else {
             service.save(entity);
+            dataService.save(entity.getId(), dictionaryParamters.getDataList());
             logOperateService
                     .save(new LogOperate(site.getId(), getAdminFromSession(session).getId(), LogLoginService.CHANNEL_WEB_MANAGER,
                             "save.cmsDictionary", getIpAddress(request), getDate(), getString(entity)));
@@ -73,4 +78,6 @@ public class CmsDictionaryAdminController extends AbstractController {
 
     @Autowired
     private CmsDictionaryService service;
+    @Autowired
+    private CmsDictionaryDataService dataService;
 }

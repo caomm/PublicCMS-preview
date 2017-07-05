@@ -26,7 +26,7 @@ public class CmsDictionaryDataListDirective extends AbstractTemplateDirective {
     @Override
     public void execute(RenderHandler handler) throws IOException, Exception {
         List<CmsDictionaryData> list = null;
-        if (notEmpty(list)) {
+        if (notEmpty(handler.getLong("dictionaryId"))) {
             list = service.getList(handler.getLong("dictionaryId"));
         } else {
             list = new ArrayList<>();

@@ -30,7 +30,7 @@
 			<li><a href="cmsCategory/add.html?parentId=${categoryId!}" target="navTab" rel="cmsCategory/add"><i class="icon-plus-sign-alt icon-large"></i> 添加分类</a></li>
 	<@_categoryTypeList count=5>
 		<#list page.list as a>
-			<li><a href="cmsCategory/add.html?parentId=${categoryId!}&typeId=${a.id}" target="navTab" rel="cmsCategory/add"><i class="icon-plus-sign-alt icon-large"></i> 添加${(a.name)!}分类</a></li>
+			<li><a href="cmsCategory/add.html?parentId=${categoryId!}&typeId=${a.id}" target="navTab" rel="cmsCategory/add"><i class="icon-plus-sign-alt icon-large"></i> 添加${(a.name)!}</a></li>
 		</#list>
 		<#if page.totalCount gt 5>
 			<li><a href="cmsCategory/addMore.html?parentId=${categoryId!}" target="dialog" mask="true"><i class="icon-plus-sign icon-large"></i> 添加更多分类</a></li>

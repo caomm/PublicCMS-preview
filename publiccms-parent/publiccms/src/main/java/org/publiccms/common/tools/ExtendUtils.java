@@ -1,7 +1,6 @@
 package org.publiccms.common.tools;
 
 import static com.publiccms.common.tools.CommonUtils.notEmpty;
-import static org.springframework.util.StringUtils.arrayToCommaDelimitedString;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -33,7 +32,7 @@ public class ExtendUtils implements Base {
         if (notEmpty(extendDataList)) {
             Map<String, String> extendFieldMap = new HashMap<>();
             for (ExtendData extend : extendDataList) {
-                extendFieldMap.put(extend.getName(), arrayToCommaDelimitedString(extend.getValue()));
+                extendFieldMap.put(extend.getName(), extend.getValue());
             }
             for (SysExtendField extend : sysExtendFieldList) {
                 String value = extendFieldMap.get(extend.getId().getCode());
@@ -57,7 +56,7 @@ public class ExtendUtils implements Base {
         if (notEmpty(extendDataList)) {
             Map<String, String> extendFieldMap = new HashMap<>();
             for (ExtendData extend : extendDataList) {
-                extendFieldMap.put(extend.getName(), arrayToCommaDelimitedString(extend.getValue()));
+                extendFieldMap.put(extend.getName(), extend.getValue());
             }
             for (ExtendField extend : extendFieldList) {
                 String value = extendFieldMap.get(extend.getId().getCode());

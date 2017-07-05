@@ -1157,6 +1157,9 @@ INSERT INTO `sys_moudle` VALUES ('118', '删除', NULL, 'cmsContent/realDelete',
 INSERT INTO `sys_moudle` VALUES ('119', '还原', NULL, 'cmsContent/recycle', NULL, '155', '0', '0');
 INSERT INTO `sys_moudle` VALUES ('120', '置顶', 'cmsContent/sortParameters', 'cmsContent/sort', NULL, '12', '0', '0');
 INSERT INTO `sys_moudle` VALUES ('121', '人员管理', 'sysDept/userList', 'sysDept/addUser,sysDept/saveUser,sysDept/enableUser,sysDept/disableUser', NULL, '72', '0', '0');
+INSERT INTO `sys_moudle` VALUES ('122', '数据字典管理', 'cmsDictionary/list', null, '<i class=\"icon-book icon-large\"></i>', '46', '1', '0');
+INSERT INTO `sys_moudle` VALUES ('123', '添加', 'cmsDictionary/add', 'cmsDictionary/save', null, '122', '0', '0');
+INSERT INTO `sys_moudle` VALUES ('124', '删除', null, 'cmsDictionary/delete', null, '122', '0', '0');
 INSERT INTO `sys_moudle` VALUES ('130', '评论管理', 'homeComment/list', null, '<i class=\"icon-comment-alt icon-large\"></i>', '109', '1', '0');
 INSERT INTO `sys_moudle` VALUES ('131', '网站文件管理', 'cmsWebFile/list', null, '<i class=\"icon-globe icon-large\"></i>', '38', '1', '0');
 INSERT INTO `sys_moudle` VALUES ('132', '新建目录', 'cmsWebFile/directory', 'cmsWebFile/createDirectory', null, '131', '1', '0');
@@ -1166,7 +1169,7 @@ INSERT INTO `sys_moudle` VALUES ('135', '解压缩', null, 'cmsWebFile/unzip,cms
 INSERT INTO `sys_moudle` VALUES ('136', '节点管理', 'sysCluster/list', NULL, '<i class=\"icon-code-fork icon-large\"></i>', '62', '1', '0');
 INSERT INTO `sys_moudle` VALUES ('138', '修改配置', 'sysConfigData/edit', 'sysConfigData/save', null, '101', '1', '0');
 INSERT INTO `sys_moudle` VALUES ('139', '清空配置', null, 'sysConfigData/delete', null, '101', '1', '0');
-INSERT INTO `sys_moudle` VALUES ('140', '站点配置管理', 'sysConfig/list', null, '<i class=\"icon-cogs icon-large\"></i>', '38', '1', '0');
+INSERT INTO `sys_moudle` VALUES ('140', '站点配置管理', 'sysConfig/list', null, '<i class=\"icon-cogs icon-large\"></i>', '46', '1', '0');
 INSERT INTO `sys_moudle` VALUES ('142', '保存配置', null, 'sysConfig/save', null, '140', '1', '0');
 INSERT INTO `sys_moudle` VALUES ('143', '修改配置', 'sysConfig/add', null, null, '140', '1', '0');
 INSERT INTO `sys_moudle` VALUES ('144', '删除配置', null, 'sysConfig/delete', null, '140', '1', '0');

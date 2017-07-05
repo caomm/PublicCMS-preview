@@ -6,7 +6,7 @@ function refreshTaskTemplate(){
 	$('textarea[name=content]',navTab.getCurrentPanel()).val(taskTemplateEditor.getValue());
 }
 </script>
-<@_taskTemplateContent path=path><#assign template=object/></@_taskTemplateContent>
+<@_taskTemplateContent path=path><#assign template=object!/></@_taskTemplateContent>
 <form method="post" action="taskTemplate/save.do" class="pageForm required-validate" onsubmit="refreshTaskTemplate();return validateCallback(this, navTabAjaxDone);">
 	<div class="formBar">
 		<ul>
