@@ -3,7 +3,6 @@ package org.publiccms.controller.web.cms;
 import static com.publiccms.common.tools.CommonUtils.empty;
 import static com.publiccms.common.tools.CommonUtils.getDate;
 import static com.publiccms.common.tools.CommonUtils.notEmpty;
-import static com.publiccms.common.tools.ControllerUtils.redirect;
 import static com.publiccms.common.tools.ControllerUtils.redirectPermanently;
 import static com.publiccms.common.tools.ControllerUtils.verifyCustom;
 import static com.publiccms.common.tools.ControllerUtils.verifyNotEquals;
@@ -67,7 +66,7 @@ public class PlaceController extends AbstractController {
      * @param model
      */
     @RequestMapping(value = "save")
-    public void save(CmsPlace entity, String returnUrl, @ModelAttribute CmsPlaceParamters placeParamters,
+    public String save(CmsPlace entity, String returnUrl, @ModelAttribute CmsPlaceParamters placeParamters,
             HttpServletRequest request, HttpSession session, HttpServletResponse response, ModelMap model) {
         SysSite site = getSite(request);
         if (empty(returnUrl)) {
@@ -80,16 +79,14 @@ public class PlaceController extends AbstractController {
             SysUser user = getUserFromSession(session);
             if (verifyCustom("contribute", null == metadata || !metadata.isAllowContribute() || 0 >= metadata.getSize()
                     || (null == user && !metadata.isAllowAnonymous()), model)) {
-                redirect(response, returnUrl);
-                return;
+                return REDIRECT + returnUrl;
             }
             if (null != entity.getId()) {
                 CmsPlace oldEntity = service.getEntity(entity.getId());
                 if (null == oldEntity || empty(oldEntity.getUserId()) || null == user
                         || verifyNotEquals("siteId", site.getId(), oldEntity.getSiteId(), model)
                         || verifyNotEquals("siteId", user.getId(), oldEntity.getUserId(), model)) {
-                    redirect(response, returnUrl);
-                    return;
+                    return REDIRECT + returnUrl;
                 }
                 entity = service.update(entity.getId(), entity, ignoreProperties);
                 logOperateService.save(new LogOperate(site.getId(), user.getId(), LogLoginService.CHANNEL_WEB, "update.place",
@@ -110,7 +107,7 @@ public class PlaceController extends AbstractController {
             String extentString = getExtendString(map);
             attributeService.updateAttribute(entity.getId(), extentString);
         }
-        redirect(response, returnUrl);
+        return REDIRECT + returnUrl;
     }
 
     /**
@@ -122,7 +119,7 @@ public class PlaceController extends AbstractController {
      * @param model
      */
     @RequestMapping("delete")
-    public void delete(Long id, String returnUrl, HttpServletRequest request, HttpSession session, HttpServletResponse response,
+    public String delete(Long id, String returnUrl, HttpServletRequest request, HttpSession session, HttpServletResponse response,
             ModelMap model) {
         SysSite site = getSite(request);
         if (empty(returnUrl)) {
@@ -136,12 +133,12 @@ public class PlaceController extends AbstractController {
                 null == entity || null == user || empty(metadata.getAdminIds())
                         || !contains(metadata.getAdminIds(), user.getId()),
                 model) || verifyNotEquals("siteId", site.getId(), entity.getSiteId(), model)) {
-            redirect(response, returnUrl);
+            return REDIRECT + returnUrl;
         } else {
             service.delete(id);
             logOperateService.save(new LogOperate(site.getId(), user.getId(), LogLoginService.CHANNEL_WEB, "delete.place",
                     getIpAddress(request), getDate(), id.toString()));
-            redirect(response, returnUrl);
+            return REDIRECT + returnUrl;
         }
     }
 
@@ -154,7 +151,7 @@ public class PlaceController extends AbstractController {
      * @param model
      */
     @RequestMapping("check")
-    public void check(Long id, String returnUrl, HttpServletRequest request, HttpSession session, HttpServletResponse response,
+    public String check(Long id, String returnUrl, HttpServletRequest request, HttpSession session, HttpServletResponse response,
             ModelMap model) {
         SysSite site = getSite(request);
         if (empty(returnUrl)) {
@@ -168,12 +165,12 @@ public class PlaceController extends AbstractController {
                 null == entity || null == user || empty(metadata.getAdminIds())
                         || !contains(metadata.getAdminIds(), user.getId()),
                 model) || verifyNotEquals("siteId", site.getId(), entity.getSiteId(), model)) {
-            redirect(response, returnUrl);
+            return REDIRECT + returnUrl;
         } else {
             service.check(id);
             logOperateService.save(new LogOperate(site.getId(), user.getId(), LogLoginService.CHANNEL_WEB, "check.place",
                     getIpAddress(request), getDate(), id.toString()));
-            redirect(response, returnUrl);
+            return REDIRECT + returnUrl;
         }
     }
 

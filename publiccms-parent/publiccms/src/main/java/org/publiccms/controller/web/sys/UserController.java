@@ -3,7 +3,6 @@ package org.publiccms.controller.web.sys;
 import static com.publiccms.common.tools.CommonUtils.empty;
 import static com.publiccms.common.tools.CommonUtils.getDate;
 import static com.publiccms.common.tools.CommonUtils.notEmpty;
-import static com.publiccms.common.tools.ControllerUtils.redirect;
 import static com.publiccms.common.tools.ControllerUtils.verifyHasExist;
 import static com.publiccms.common.tools.ControllerUtils.verifyNotEmpty;
 import static com.publiccms.common.tools.ControllerUtils.verifyNotEquals;
@@ -82,7 +81,7 @@ public class UserController extends AbstractController {
      * @param model
      */
     @RequestMapping(value = "changePassword", method = RequestMethod.POST)
-    public void changePassword(String oldpassword, String password, String repassword, String returnUrl,
+    public String changePassword(String oldpassword, String password, String repassword, String returnUrl,
             HttpServletRequest request, HttpSession session, HttpServletResponse response, ModelMap model) {
         SysSite site = getSite(request);
         if (empty(returnUrl)) {
@@ -92,7 +91,7 @@ public class UserController extends AbstractController {
         if (null == user || verifyNotEmpty("password", password, model)
                 || verifyNotEquals("repassword", password, repassword, model)
                 || verifyNotEquals("password", user.getPassword(), encode(oldpassword), model)) {
-            redirect(response, returnUrl);
+            return REDIRECT + returnUrl;
         } else {
             Cookie userCookie = getCookie(request.getCookies(), getCookiesUser());
             if (null != userCookie && notEmpty(userCookie.getValue())) {
@@ -109,7 +108,7 @@ public class UserController extends AbstractController {
             model.addAttribute(MESSAGE, SUCCESS);
             logOperateService.save(new LogOperate(site.getId(), user.getId(), LogLoginService.CHANNEL_WEB, "changepassword",
                     getIpAddress(request), getDate(), user.getPassword()));
-            redirect(response, returnUrl);
+            return REDIRECT + returnUrl;
         }
     }
 
@@ -122,7 +121,7 @@ public class UserController extends AbstractController {
      * @param model
      */
     @RequestMapping(value = "saveEmail", method = RequestMethod.POST)
-    public void saveEmail(String email, String returnUrl, HttpServletRequest request, HttpSession session,
+    public String saveEmail(String email, String returnUrl, HttpServletRequest request, HttpSession session,
             HttpServletResponse response, ModelMap model) {
         SysSite site = getSite(request);
         if (empty(returnUrl)) {
@@ -134,7 +133,7 @@ public class UserController extends AbstractController {
         if (verifyNotEmpty("email", email, model) || verifyNotEmpty("email.config", emailTitle, model)
                 || verifyNotEmpty("email.config", emailPath, model) || verifyNotEMail("email", email, model)
                 || verifyHasExist("email", service.findByEmail(site.getId(), email), model)) {
-            redirect(response, returnUrl);
+            return REDIRECT + returnUrl;
         } else {
             SysUser user = getUserFromSession(session);
             SysEmailToken sysEmailToken = new SysEmailToken();
@@ -158,7 +157,7 @@ public class UserController extends AbstractController {
             } catch (IOException | TemplateException | MessagingException e) {
                 model.addAttribute(ERROR, "sendEmail.error");
             }
-            redirect(response, returnUrl);
+            return REDIRECT + returnUrl;
         }
     }
 
@@ -171,7 +170,7 @@ public class UserController extends AbstractController {
      * @param model
      */
     @RequestMapping(value = "verifyEmail", method = RequestMethod.POST)
-    public void verifyEmail(String authToken, String returnUrl, HttpServletRequest request, HttpSession session,
+    public String verifyEmail(String authToken, String returnUrl, HttpServletRequest request, HttpSession session,
             HttpServletResponse response, ModelMap model) {
         SysSite site = getSite(request);
         if (empty(returnUrl)) {
@@ -180,13 +179,13 @@ public class UserController extends AbstractController {
         SysEmailToken sysEmailToken = sysEmailTokenService.getEntity(authToken);
         if (verifyNotEmpty("verifyEmail.authToken", authToken, model)
                 || verifyNotExist("verifyEmail.sysEmailToken", sysEmailToken, model)) {
-            redirect(response, returnUrl);
+            return REDIRECT + returnUrl;
         } else {
             sysEmailTokenService.delete(sysEmailToken.getAuthToken());
             service.checked(sysEmailToken.getUserId(), sysEmailToken.getEmail());
             clearUserTimeToSession(session);
             model.addAttribute(MESSAGE, "verifyEmail.success");
-            redirect(response, returnUrl);
+            return REDIRECT + returnUrl;
         }
     }
 }

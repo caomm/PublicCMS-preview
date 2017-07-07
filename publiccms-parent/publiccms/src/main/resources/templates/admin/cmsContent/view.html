@@ -186,7 +186,7 @@
 		<#if !model?has_content||!model.onlyUrl>
 			<dl class="nowrap">
 				<dt>正文:</dt>
-				<dd>
+				<dd id="content">
 					${(attribute.text?no_esc)!}
 				</dd>
 			</dl>

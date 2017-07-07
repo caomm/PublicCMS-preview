@@ -24,12 +24,17 @@ INSERT INTO `sys_moudle` VALUES ('118', '删除', NULL, 'cmsContent/realDelete',
 INSERT INTO `sys_moudle` VALUES ('119', '还原', NULL, 'cmsContent/recycle', NULL, '155', '0', '0');
 INSERT INTO `sys_moudle` VALUES ('120', '置顶', 'cmsContent/sortParameters', 'cmsContent/sort', NULL, '12', '0', '0');
 INSERT INTO `sys_moudle` VALUES ('121', '人员管理', 'sysDept/userList', 'sysDept/addUser,sysDept/saveUser,sysDept/enableUser,sysDept/disableUser', NULL, '72', '0', '0');
-ALTER TABLE `cms_content` ADD `sort`  INT NOT NULL DEFAULT 0 COMMENT  '排序' AFTER `create_date`,ADD INDEX `sort` (`sort`);
-ALTER TABLE `sys_dept` ADD `max_sort`  INT NOT NULL DEFAULT 1000 COMMENT  '最大内容置顶级别' AFTER `owns_all_category`;
+ALTER TABLE `cms_content` ADD `sort`  INT NOT NULL DEFAULT 0 COMMENT  '顺序' AFTER `status`,ADD INDEX `sort` (`sort`);
+ALTER TABLE `sys_dept` ADD `max_sort`  INT NOT NULL DEFAULT 1000 COMMENT  '最大内容置顶级别' AFTER `user_id`;
 UPDATE `sys_moudle` SET name = '模板文件管理' WHERE  `sys_moudle`.`id` =39;
 UPDATE `sys_moudle` SET name = '文件管理',attached = '<i class=\"icon-folder-close-alt icon-large\"></i>' WHERE  `sys_moudle`.`id` =38;
 INSERT INTO `sys_moudle` VALUES ('122', '数据字典管理', 'cmsDictionary/list', null, '<i class=\"icon-book icon-large\"></i>', '62', '1', '0');
 INSERT INTO `sys_moudle` VALUES ('123', '添加', 'cmsDictionary/add', 'cmsDictionary/save', null, '122', '0', '0');
 INSERT INTO `sys_moudle` VALUES ('124', '删除', null, 'cmsDictionary/delete', null, '122', '0', '0');
 UPDATE `sys_moudle` SET `parent_id` = 62 WHERE  `sys_moudle`.`id` in(140);
+UPDATE `sys_moudle` SET `authorized_url` =  'cmsPlace/delete' WHERE  `sys_moudle`.`id` = 50;
+UPDATE `sys_moudle` SET `authorized_url` =  'cmsPlace/refresh' WHERE  `sys_moudle`.`id` = 51;
+UPDATE `sys_moudle` SET `authorized_url` =  'cmsPlace/check' WHERE  `sys_moudle`.`id` = 52;
+UPDATE `sys_moudle` SET `authorized_url` =  'cmsTemplate/publishPlace' WHERE  `sys_moudle`.`id` = 53;
+UPDATE `sys_moudle` SET `authorized_url` =  'cmsPlace/clear' WHERE  `sys_moudle`.`id` = 54;
 

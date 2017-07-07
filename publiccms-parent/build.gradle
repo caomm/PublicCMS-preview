@@ -87,6 +87,9 @@ project(':publiccms-common') {
 	        "org.hibernate:hibernate-search-orm:${hibernateSearchVersion}",
 
 	        "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
+	        
+	        "org.apache.httpcomponents:httpmime:${httpclientVersion}",
+	        "org.apache.httpcomponents:httpclient-cache:${httpclientVersion}",
 
 	        // http://mvnrepository.com/artifact/org.apache.ant/ant
 	        "org.apache.ant:ant:1.9.9",
@@ -111,34 +114,17 @@ project(':publiccms') {
 		compile project(':publiccms-improve')
 		商业版插件 */
 	    compile (
-	        /* 商业版插件
-	        "redis.clients:jedis:${jedisVersion}",
-			商业版插件 */
-
 	        // http://mvnrepository.com/artifact/commons-io/commons-io
 	        "commons-io:commons-io:2.5",
 	        // http://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
 	        "commons-fileupload:commons-fileupload:1.3.2",
-	        // http://mvnrepository.com/artifact/commons-codec/commons-codec
-	        "commons-codec:commons-codec:1.10",
 	        // http://mvnrepository.com/artifact/org.apache.commons/commons-collections4
 	        "org.apache.commons:commons-collections4:4.1",
-	        // http://mvnrepository.com/artifact/org.apache.commons/commons-lang3
-	        "org.apache.commons:commons-lang3:3.5",
 
-	        "org.freemarker:freemarker:${freemarkerVersion}",
-
-	        "org.springframework:spring-context-support:${springVersion}",
-	        "org.springframework:spring-orm:${springVersion}",
-	        "org.springframework:spring-webmvc:${springVersion}",
-
-	        "org.mybatis:mybatis:${mybatisVersion}",
 	        // http://mvnrepository.com/artifact/org.mybatis/mybatis-spring
 	        "org.mybatis:mybatis-spring:1.3.1",
 
-	        "org.hibernate:hibernate-ehcache:${hibernateVersion}",
 	        "org.hibernate:hibernate-core:${hibernateVersion}",
-	        "org.hibernate:hibernate-search-orm:${hibernateSearchVersion}",
 	        "org.apache.lucene:lucene-analyzers-smartcn:${luceneVersion}",
 	        "org.apache.lucene:lucene-backward-codecs:${luceneVersion}",
 
@@ -146,11 +132,7 @@ project(':publiccms') {
 	        // http://mvnrepository.com/artifact/mysql/mysql-connector-java
 	        "mysql:mysql-connector-java:5.1.40",
 
-	        "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
 	        "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}",
-
-	        "org.apache.httpcomponents:httpmime:${httpclientVersion}",
-	        "org.apache.httpcomponents:httpclient-cache:${httpclientVersion}",
 
 			// http://mvnrepository.com/artifact/org.slf4j/slf4j-api
 			'org.slf4j:slf4j-api:1.7.12',
@@ -166,14 +148,9 @@ project(':publiccms') {
 	        // http://mvnrepository.com/artifact/cglib/cglib-nodep
 	        "cglib:cglib-nodep:3.2.4",
 
-	        // http://mvnrepository.com/artifact/org.apache.ant/ant
-	        "org.apache.ant:ant:1.9.9",
-
 	        "org.quartz-scheduler:quartz:${quartzVersion}"
 	    )
 	    providedCompile(
-		    // http://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
-		    "javax.servlet:javax.servlet-api:3.1.0",
 		    // http://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core
 		    "org.mybatis.generator:mybatis-generator-core:1.3.5"
 	    )

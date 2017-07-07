@@ -3,7 +3,6 @@ package org.publiccms.controller.web.cms;
 import static com.publiccms.common.tools.CommonUtils.empty;
 import static com.publiccms.common.tools.CommonUtils.getDate;
 import static com.publiccms.common.tools.CommonUtils.notEmpty;
-import static com.publiccms.common.tools.ControllerUtils.redirect;
 import static com.publiccms.common.tools.ControllerUtils.redirectPermanently;
 import static com.publiccms.common.tools.ControllerUtils.verifyCustom;
 import static com.publiccms.common.tools.ControllerUtils.verifyNotEmpty;
@@ -100,7 +99,7 @@ public class ContentController extends AbstractController {
      * @param model
      */
     @RequestMapping(value = "save", method = RequestMethod.POST)
-    public void save(CmsContent entity, CmsContentAttribute attribute, @ModelAttribute CmsContentParamters contentParamters,
+    public String save(CmsContent entity, CmsContentAttribute attribute, @ModelAttribute CmsContentParamters contentParamters,
             String returnUrl, HttpServletRequest request, HttpSession session, HttpServletResponse response, ModelMap model) {
         SysSite site = getSite(request);
         if (empty(returnUrl)) {
@@ -110,8 +109,7 @@ public class ContentController extends AbstractController {
         CmsCategoryModel categoryModel = categoryModelService
                 .getEntity(new CmsCategoryModelId(entity.getCategoryId(), entity.getModelId()));
         if (verifyNotEmpty("categoryModel", categoryModel, model) || verifyCustom("contribute", null == user, model)) {
-            redirect(response, returnUrl);
-            return;
+            return REDIRECT + returnUrl;
         }
         CmsCategory category = categoryService.getEntity(entity.getCategoryId());
         if (null != category && (site.getId() != category.getSiteId() || !category.isAllowContribute())) {
@@ -119,8 +117,7 @@ public class ContentController extends AbstractController {
         }
         CmsModel cmsModel = modelComponent.getMap(site).get(entity.getModelId());
         if (verifyNotEmpty("category", category, model) || verifyNotEmpty("model", cmsModel, model)) {
-            redirect(response, returnUrl);
-            return;
+            return REDIRECT + returnUrl;
         }
         entity.setHasFiles(cmsModel.isHasFiles());
         entity.setHasImages(cmsModel.isHasImages());
@@ -129,8 +126,7 @@ public class ContentController extends AbstractController {
         if (null != entity.getId()) {
             CmsContent oldEntity = service.getEntity(entity.getId());
             if (null == oldEntity || verifyNotEquals("siteId", site.getId(), oldEntity.getSiteId(), model)) {
-                redirect(response, returnUrl);
-                return;
+                return REDIRECT + returnUrl;
             }
             entity = service.update(entity.getId(), entity, entity.isOnlyUrl() ? ignoreProperties : ignorePropertiesWithUrl);
             if (null != entity.getId()) {
@@ -176,7 +172,7 @@ public class ContentController extends AbstractController {
             attribute.setData(null);
         }
         attributeService.updateAttribute(entity.getId(), attribute);// 更新保存扩展字段，文本字段
-        redirect(response, returnUrl);
+        return REDIRECT + returnUrl;
     }
 
     /**

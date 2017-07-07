@@ -3,7 +3,6 @@ package org.publiccms.controller.web;
 import static com.publiccms.common.tools.CommonUtils.empty;
 import static com.publiccms.common.tools.CommonUtils.getDate;
 import static com.publiccms.common.tools.CommonUtils.notEmpty;
-import static com.publiccms.common.tools.ControllerUtils.redirect;
 import static com.publiccms.common.tools.ControllerUtils.verifyHasExist;
 import static com.publiccms.common.tools.ControllerUtils.verifyNotEmpty;
 import static com.publiccms.common.tools.ControllerUtils.verifyNotEquals;
@@ -70,7 +69,7 @@ public class LoginController extends AbstractController {
      * @param model
      */
     @RequestMapping(value = "doLogin", method = RequestMethod.POST)
-    public void login(String username, String password, String returnUrl, HttpServletRequest request,
+    public String login(String username, String password, String returnUrl, HttpServletRequest request,
             HttpServletResponse response, ModelMap model) {
         SysSite site = getSite(request);
         if (empty(returnUrl)) {
@@ -84,7 +83,7 @@ public class LoginController extends AbstractController {
         username = trim(username);
         password = trim(password);
         if (verifyNotEmpty("username", username, model) || verifyNotEmpty("password", password, model)) {
-            redirect(response, returnUrl);
+            return REDIRECT + returnUrl;
         } else {
             SysUser user;
             if (verifyNotEMail(username)) {
@@ -101,7 +100,7 @@ public class LoginController extends AbstractController {
                     userId = user.getId();
                 }
                 logLoginService.save(new LogLogin(site.getId(), username, userId, ip, CHANNEL_WEB, false, getDate(), password));
-                redirect(response, returnUrl);
+                return REDIRECT + returnUrl;
             } else {
                 user.setPassword(null);
                 setUserToSession(request.getSession(), user);
@@ -118,7 +117,7 @@ public class LoginController extends AbstractController {
                 }
                 service.updateLoginStatus(user.getId(), ip);
                 logLoginService.save(new LogLogin(site.getId(), username, user.getId(), ip, CHANNEL_WEB, true, getDate(), null));
-                redirect(response, returnUrl);
+                return REDIRECT + returnUrl;
             }
         }
     }
@@ -154,7 +153,7 @@ public class LoginController extends AbstractController {
      * @param model
      */
     @RequestMapping(value = "doRegister", method = RequestMethod.POST)
-    public void register(SysUser entity, String repassword, String returnUrl, HttpServletRequest request,
+    public String register(SysUser entity, String repassword, String returnUrl, HttpServletRequest request,
             HttpServletResponse response, ModelMap model) {
         SysSite site = getSite(request);
         if (empty(returnUrl)) {
@@ -172,7 +171,7 @@ public class LoginController extends AbstractController {
                 || verifyNotEquals("repassword", entity.getPassword(), repassword, model)
                 || verifyHasExist("username", service.findByName(site.getId(), entity.getName()), model)
                 || verifyHasExist("nickname", service.findByNickName(site.getId(), entity.getNickName()), model)) {
-            redirect(response, returnUrl);
+            return REDIRECT + returnUrl;
         } else {
             String ip = getIpAddress(request);
             entity.setPassword(encode(entity.getPassword()));
@@ -186,7 +185,7 @@ public class LoginController extends AbstractController {
             String loginInfo = entity.getId() + getCookiesUserSplit() + authToken + getCookiesUserSplit() + entity.getNickName();
             model.addAttribute("loginInfo", loginInfo);
             addCookie(request.getContextPath(), response, getCookiesUser(), loginInfo, Integer.MAX_VALUE, null);
-            redirect(response, returnUrl);
+            return REDIRECT + returnUrl;
         }
     }
 

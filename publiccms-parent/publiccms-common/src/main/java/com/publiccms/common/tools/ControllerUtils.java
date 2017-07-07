@@ -22,11 +22,6 @@ public abstract class ControllerUtils {
         response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
     }
 
-    public static void redirect(HttpServletResponse response, String url) {
-        response.setHeader("Location", url);
-        response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
-    }
-
     /**
      * @param field
      * @param value
