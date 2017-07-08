@@ -1,5 +1,7 @@
 package org.publiccms.test.config;
 
+import static org.publiccms.common.constants.CommonConstants.CMS_FILEPATH;
+
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 
@@ -9,7 +11,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 
 import config.spring.ApplicationConfig;
-import config.spring.CmsConfig;
 
 /**
  * <h1>CmsRootConfig</h1>
@@ -29,6 +30,6 @@ public class CmsTestConfig {
 
     @Autowired
     public void init(Environment env) throws IOException, PropertyVetoException {
-        CmsConfig.CMS_FILEPATH = System.getProperty("cms.filePath", env.getProperty("cms.filePath"));
+        CMS_FILEPATH = System.getProperty("cms.filePath", env.getProperty("cms.filePath"));
     }
 }

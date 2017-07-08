@@ -1,6 +1,7 @@
 package config.initializer;
 
-import static config.spring.CmsConfig.CMS_FILEPATH;
+import static org.publiccms.common.constants.CommonConstants.CMS_FILEPATH;
+import static org.publiccms.common.constants.CommonConstants.INSTALL_LOCK_FILENAME;
 import static org.apache.commons.io.FileUtils.readFileToString;
 import static org.apache.commons.logging.LogFactory.getLog;
 import static org.publiccms.common.database.CmsDataSource.DATABASE_CONFIG_FILENAME;
@@ -39,10 +40,6 @@ public class InitializationInitializer implements WebApplicationInitializer, Bas
      * 配置文件
      */
     public static final String CMS_CONFIG_FILE = "cms.properties";
-    /**
-     * 安装锁
-     */
-    public static final String INSTALL_LOCK_FILENAME = "/install.lock";
 
     @Override
     public void onStartup(ServletContext servletcontext) throws ServletException {

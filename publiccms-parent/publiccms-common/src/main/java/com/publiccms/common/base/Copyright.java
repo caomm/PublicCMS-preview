@@ -4,6 +4,4 @@ public interface Copyright {
     public void init(String dataFilePath);
     
     public boolean verify();
-
-    public boolean activate(String activateCode);
 }

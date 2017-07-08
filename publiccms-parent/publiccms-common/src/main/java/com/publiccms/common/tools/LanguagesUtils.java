@@ -1,4 +1,5 @@
 package com.publiccms.common.tools;
+
 import java.util.Locale;
 
 import org.springframework.context.NoSuchMessageException;
@@ -11,9 +12,8 @@ import org.springframework.web.context.WebApplicationContext;
  *
  */
 public final class LanguagesUtils {
-    public static WebApplicationContext webApplicationContext;
-
     /**
+     * @param webApplicationContext 
      * @param locale
      *            语言
      * 
@@ -23,7 +23,7 @@ public final class LanguagesUtils {
      *            替换参数
      * @return
      */
-    public static String getMessage(Locale locale, String code, Object... args) {
+    public static String getMessage(WebApplicationContext webApplicationContext, Locale locale, String code, Object... args) {
         String result;
         try {
             result = webApplicationContext.getMessage(code, args, locale);

@@ -1,7 +1,7 @@
 package config.spring;
 
 import static config.initializer.InitializationInitializer.CMS_CONFIG_FILE;
-import static config.spring.CmsConfig.CMS_FILEPATH;
+import static org.publiccms.common.constants.CommonConstants.CMS_FILEPATH;
 import static java.lang.Integer.parseInt;
 import static org.publiccms.common.database.CmsDataSource.DATABASE_CONFIG_FILENAME;
 import static org.springframework.core.io.support.PropertiesLoaderUtils.loadAllProperties;

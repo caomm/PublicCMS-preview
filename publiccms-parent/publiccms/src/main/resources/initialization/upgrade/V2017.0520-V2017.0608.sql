@@ -37,4 +37,5 @@ UPDATE `sys_moudle` SET `authorized_url` =  'cmsPlace/refresh' WHERE  `sys_moudl
 UPDATE `sys_moudle` SET `authorized_url` =  'cmsPlace/check' WHERE  `sys_moudle`.`id` = 52;
 UPDATE `sys_moudle` SET `authorized_url` =  'cmsTemplate/publishPlace' WHERE  `sys_moudle`.`id` = 53;
 UPDATE `sys_moudle` SET `authorized_url` =  'cmsPlace/clear' WHERE  `sys_moudle`.`id` = 54;
+UPDATE `sys_moudle` SET `parent_id` = 45 WHERE  `sys_moudle`.`id` = 63;
 

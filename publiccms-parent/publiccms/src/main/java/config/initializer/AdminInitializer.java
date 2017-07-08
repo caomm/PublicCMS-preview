@@ -1,5 +1,8 @@
 package config.initializer;
 
+import static org.publiccms.common.constants.CommonConstants.ADMIN_BASE_PATH;
+import static org.publiccms.common.constants.CommonConstants.webApplicationContext;
+
 import javax.servlet.Filter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -13,7 +16,6 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import org.springframework.web.util.IntrospectorCleanupListener;
 
 import com.publiccms.common.base.Base;
-import com.publiccms.common.tools.LanguagesUtils;
 
 import config.spring.AdminConfig;
 import config.spring.CmsConfig;
@@ -24,11 +26,8 @@ import config.spring.CmsConfig;
  * Management Initializer
  *
  */
-public class AdminInitializer extends AbstractAnnotationConfigDispatcherServletInitializer implements WebApplicationInitializer, Base  {
-    /**
-     * 管理后台路径 Management Path
-     */
-    public static final String BASEPATH = "/admin";
+public class AdminInitializer extends AbstractAnnotationConfigDispatcherServletInitializer
+        implements WebApplicationInitializer, Base {
 
     private boolean inited;
 
@@ -54,7 +53,7 @@ public class AdminInitializer extends AbstractAnnotationConfigDispatcherServletI
 
     @Override
     protected DispatcherServlet createDispatcherServlet(WebApplicationContext servletAppContext) {
-        LanguagesUtils.webApplicationContext = servletAppContext;
+        webApplicationContext = servletAppContext;
         return new AdminDispatcherServlet(servletAppContext);
     }
 
@@ -70,7 +69,7 @@ public class AdminInitializer extends AbstractAnnotationConfigDispatcherServletI
 
     @Override
     protected String[] getServletMappings() {
-        return new String[] { BASEPATH + "/*" };
+        return new String[] { ADMIN_BASE_PATH + "/*" };
     }
 
     @Override

@@ -15,10 +15,6 @@ import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler
  */
 @Import(ApplicationConfig.class)
 public class CmsConfig {
-    /**
-     * 
-     */
-    public static String CMS_FILEPATH;
 
     /**
      * 资源处理器
