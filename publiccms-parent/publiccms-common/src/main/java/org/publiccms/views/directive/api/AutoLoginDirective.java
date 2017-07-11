@@ -42,7 +42,7 @@ public class AutoLoginDirective extends AbstractAppDirective {
             SysAppClient appClient = appClientService.getEntity(sysAppClientId);
             if (null != appClient && notEmpty(appClient.getUserId())) {
                 user = service.getEntity(appClient.getUserId());
-                if (null != user) {
+                if (null != user && !user.isDisabled()) {
                     String authToken = UUID.randomUUID().toString();
                     String ip = getIpAddress(handler.getRequest());
                     sysUserTokenService

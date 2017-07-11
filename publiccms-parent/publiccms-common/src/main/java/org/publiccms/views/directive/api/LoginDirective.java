@@ -45,7 +45,7 @@ public class LoginDirective extends AbstractAppDirective {
                 user = service.findByEmail(site.getId(), username);
             }
             String ip = getIpAddress(handler.getRequest());
-            if (null != user && user.getPassword().equals(encode(password))) {
+            if (null != user && !user.isDisabled() && user.getPassword().equals(encode(password))) {
                 String authToken = UUID.randomUUID().toString();
                 sysUserTokenService
                         .save(new SysUserToken(authToken, site.getId(), user.getId(), app.getChannel(), getDate(), ip));
