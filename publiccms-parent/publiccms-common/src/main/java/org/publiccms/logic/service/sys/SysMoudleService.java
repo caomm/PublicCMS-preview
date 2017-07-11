@@ -43,7 +43,7 @@ public class SysMoudleService extends BaseService<SysMoudle> {
      */
     @SuppressWarnings("unchecked")
     public Set<String> getPageUrl(Integer parentId) {
-        Set<String> urls = new HashSet<String>();
+        Set<String> urls = new HashSet<>();
         for (SysMoudle entity : (List<SysMoudle>) getPage(parentId, null, null, null).getList()) {
             if (notEmpty(entity.getUrl())) {
                 int index = entity.getUrl().indexOf("?");

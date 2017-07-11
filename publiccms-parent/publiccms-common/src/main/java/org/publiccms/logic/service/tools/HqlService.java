@@ -60,7 +60,7 @@ public class HqlService extends BaseService<Object> {
      * @return
      */
     public Set<String> getToken(String text) {
-        Set<String> list = new LinkedHashSet<String>();
+        Set<String> list = new LinkedHashSet<>();
         if (notEmpty(text)) {
             try (StringReader stringReader = new StringReader(text);
                     TokenStream tokenStream = dao.getAnalyzer().tokenStream(BLANK, stringReader)) {

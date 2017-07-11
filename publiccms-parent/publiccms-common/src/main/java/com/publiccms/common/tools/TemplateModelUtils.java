@@ -1,12 +1,11 @@
 package com.publiccms.common.tools;
 
 import static com.publiccms.common.tools.CommonUtils.notEmpty;
+import static com.publiccms.common.tools.DateFormatUtil.getDateFormat;
 import static org.apache.commons.lang3.StringUtils.split;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.publiccms.common.base.Base;
@@ -29,20 +28,18 @@ import freemarker.template.TemplateSequenceModel;
  */
 public class TemplateModelUtils implements Base {
 
-    private static final String FULL_DATE_FORMAT_STRING = "yyyy-MM-dd HH:mm:ss";
-    private static final String SHORT_DATE_FORMAT_STRING = "yyyy-MM-dd";
     /**
      * 
      */
-    public static final DateFormat FULL_DATE_FORMAT = new SimpleDateFormat(FULL_DATE_FORMAT_STRING);
+    public static final String FULL_DATE_FORMAT_STRING = "yyyy-MM-dd HH:mm:ss";
+    /**
+     * 
+     */
+    public static final String SHORT_DATE_FORMAT_STRING = "yyyy-MM-dd";
     /**
      * 
      */
     public static final int FULL_DATE_LENGTH = FULL_DATE_FORMAT_STRING.length();
-    /**
-     * 
-     */
-    public static final DateFormat SHORT_DATE_FORMAT = new SimpleDateFormat(SHORT_DATE_FORMAT_STRING);
     /**
      * 
      */
@@ -267,13 +264,9 @@ public class TemplateModelUtils implements Base {
             } else if (model instanceof TemplateScalarModel) {
                 String temp = trimToEmpty(((TemplateScalarModel) model).getAsString());
                 if (FULL_DATE_LENGTH == temp.length()) {
-                    synchronized (FULL_DATE_FORMAT) {
-                        return FULL_DATE_FORMAT.parse(temp);
-                    }
+                    return getDateFormat(FULL_DATE_FORMAT_STRING).parse(temp);
                 } else if (SHORT_DATE_LENGTH == temp.length()) {
-                    synchronized (SHORT_DATE_FORMAT) {
-                        return SHORT_DATE_FORMAT.parse(temp);
-                    }
+                        return getDateFormat(SHORT_DATE_FORMAT_STRING).parse(temp);
                 } else {
                     try {
                         return new Date(Long.parseLong(temp));

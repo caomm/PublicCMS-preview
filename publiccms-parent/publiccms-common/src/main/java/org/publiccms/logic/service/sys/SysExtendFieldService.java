@@ -41,7 +41,7 @@ public class SysExtendFieldService extends BaseService<SysExtendField> {
      */
     public void update(Integer extendId, List<SysExtendField> entitys) {
         if (notEmpty(extendId)) {
-            Set<String> codeList = new HashSet<String>();
+            Set<String> codeList = new HashSet<>();
             if (notEmpty(entitys)) {
                 for (SysExtendField entity : entitys) {
                     if (notEmpty(entity.getId().getExtendId())) {

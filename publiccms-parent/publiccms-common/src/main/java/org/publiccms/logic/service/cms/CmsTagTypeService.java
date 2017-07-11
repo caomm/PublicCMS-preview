@@ -56,7 +56,7 @@ public class CmsTagTypeService extends BaseService<CmsTagType> {
      * @return
      */
     public Integer[] update(int siteId, List<CmsTagType> entitys) {
-        Set<Integer> idList = new HashSet<Integer>();
+        Set<Integer> idList = new HashSet<>();
         if (notEmpty(entitys)) {
             for (CmsTagType entity : entitys) {
                 if (null != entity.getId()) {

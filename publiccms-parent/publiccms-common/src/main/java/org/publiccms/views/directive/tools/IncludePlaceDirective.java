@@ -30,7 +30,7 @@ import freemarker.template.TemplateException;
  */
 @Component
 public class IncludePlaceDirective extends AbstractTemplateDirective {
-    
+
     private static ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     @Override
@@ -57,7 +57,7 @@ public class IncludePlaceDirective extends AbstractTemplateDirective {
                 }
                 handler.put("map", map).render();
             } else {
-                Set<String> set = new HashSet<String>();
+                Set<String> set = new HashSet<>();
                 for (String p : paths) {
                     set.add(p);
                 }
@@ -109,7 +109,7 @@ public class IncludePlaceDirective extends AbstractTemplateDirective {
                 log.error(e);
                 resultMap.put(path, e.getMessage());
             }
-            synchronized (this) {
+            synchronized (resultMap) {
                 if (resultMap.size() >= count) {
                     try {
                         handler.put("map", resultMap).render();

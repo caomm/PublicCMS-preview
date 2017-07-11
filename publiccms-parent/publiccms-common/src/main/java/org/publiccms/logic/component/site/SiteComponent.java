@@ -59,7 +59,7 @@ public class SiteComponent implements Cache, Base {
     private String webTemplateFilePath;
 
     private int defaultSiteId;
-    private Set<Integer> idSet = new HashSet<Integer>();
+    private Set<Integer> idSet = new HashSet<>();
     @Autowired
     private SysDomainService sysDomainService;
     @Autowired

@@ -29,6 +29,7 @@ public class CacheEntityFactory {
      */
     public CacheEntityFactory(String configurationResourceName) throws IOException {
         this.properties = loadAllProperties(configurationResourceName);
+        this.defaultCacheEntity = properties.getProperty("cache.type");
         try {
             setDefaultSize(Integer.parseInt(properties.getProperty("cache.defaultSize")));
         } catch (NumberFormatException e) {
@@ -72,17 +73,7 @@ public class CacheEntityFactory {
      */
     public <K, V> CacheEntity<K, V> createCacheEntity(String name)
             throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-        return createCacheEntity(name, getDefaultCacheEntity());
-    }
-
-    /**
-     * @return
-     */
-    public synchronized String getDefaultCacheEntity() {
-        if (null == defaultCacheEntity) {
-            defaultCacheEntity = properties.getProperty("cache.type");
-        }
-        return defaultCacheEntity;
+        return createCacheEntity(name, defaultCacheEntity);
     }
 
     /**

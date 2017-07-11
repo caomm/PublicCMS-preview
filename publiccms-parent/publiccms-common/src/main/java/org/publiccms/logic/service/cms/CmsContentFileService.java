@@ -51,7 +51,7 @@ public class CmsContentFileService extends BaseService<CmsContentFile> {
      */
     @SuppressWarnings("unchecked")
     public void update(long contentId, Long userId, List<CmsContentFile> files, List<CmsContentFile> images) {
-        Set<Long> idList = new HashSet<Long>();
+        Set<Long> idList = new HashSet<>();
         if (notEmpty(images)) {
             for (CmsContentFile entity : images) {
                 if (null != entity.getId()) {

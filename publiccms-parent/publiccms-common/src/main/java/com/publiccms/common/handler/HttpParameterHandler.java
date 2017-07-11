@@ -1,9 +1,10 @@
 package com.publiccms.common.handler;
 
 import static com.publiccms.common.tools.CommonUtils.notEmpty;
-import static com.publiccms.common.tools.TemplateModelUtils.FULL_DATE_FORMAT;
+import static com.publiccms.common.tools.DateFormatUtil.getDateFormat;
+import static com.publiccms.common.tools.TemplateModelUtils.FULL_DATE_FORMAT_STRING;
 import static com.publiccms.common.tools.TemplateModelUtils.FULL_DATE_LENGTH;
-import static com.publiccms.common.tools.TemplateModelUtils.SHORT_DATE_FORMAT;
+import static com.publiccms.common.tools.TemplateModelUtils.SHORT_DATE_FORMAT_STRING;
 import static com.publiccms.common.tools.TemplateModelUtils.SHORT_DATE_LENGTH;
 import static org.apache.commons.lang3.StringUtils.split;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
@@ -174,13 +175,9 @@ public class HttpParameterHandler extends BaseHandler implements Base {
         if (notEmpty(result)) {
             String temp = trimToEmpty(result);
             if (FULL_DATE_LENGTH == temp.length()) {
-                synchronized (FULL_DATE_FORMAT) {
-                    return FULL_DATE_FORMAT.parse(temp);
-                }
+                return getDateFormat(FULL_DATE_FORMAT_STRING).parse(temp);
             } else if (SHORT_DATE_LENGTH == temp.length()) {
-                synchronized (SHORT_DATE_FORMAT) {
-                    return SHORT_DATE_FORMAT.parse(temp);
-                }
+                return getDateFormat(SHORT_DATE_FORMAT_STRING).parse(temp);
             } else {
                 try {
                     return new Date(Long.parseLong(temp));

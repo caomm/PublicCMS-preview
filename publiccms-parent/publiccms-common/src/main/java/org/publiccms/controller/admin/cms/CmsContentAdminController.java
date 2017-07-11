@@ -236,7 +236,7 @@ public class CmsContentAdminController extends AbstractController {
             SysSite site = getSite(request);
             Long userId = getAdminFromSession(session).getId();
             List<CmsContent> entityList = service.check(site.getId(), userId, ids);
-            Set<Integer> categoryIdSet = new HashSet<Integer>();
+            Set<Integer> categoryIdSet = new HashSet<>();
             for (CmsContent entity : entityList) {
                 if (null != entity && site.getId() == entity.getSiteId()) {
                     if (notEmpty(entity.getParentId())) {

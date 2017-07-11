@@ -3,6 +3,7 @@ package org.publiccms.logic.component.site;
 import static com.publiccms.common.tools.CommonUtils.empty;
 import static com.publiccms.common.tools.CommonUtils.getDate;
 import static com.publiccms.common.tools.CommonUtils.notEmpty;
+import static com.publiccms.common.tools.DateFormatUtil.getDateFormat;
 import static org.apache.commons.io.FileUtils.deleteQuietly;
 import static org.apache.commons.io.FileUtils.readFileToString;
 import static org.apache.commons.io.FileUtils.writeStringToFile;
@@ -15,8 +16,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,7 +32,7 @@ import com.publiccms.common.base.Base;
  */
 @Component
 public class FileComponent implements Base {
-    private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM-dd/HH-mm-ssSSSS");
+    private static final String FILE_NAME_FORMAT_STRING = "yyyy/MM-dd/HH-mm-ssSSSS";
 
     /**
      * 获取目录下文件列表
@@ -136,9 +135,7 @@ public class FileComponent implements Base {
      */
     public String getUploadFileName(String suffix) {
         StringBuilder sb = new StringBuilder("upload/");
-        synchronized (dateFormat) {
-            sb.append(dateFormat.format(getDate()));
-        }
+        sb.append(getDateFormat(FILE_NAME_FORMAT_STRING).format(getDate()));
         return sb.append(r.nextInt()).append(suffix).toString();
     }
 

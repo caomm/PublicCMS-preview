@@ -45,10 +45,10 @@ import com.publiccms.common.handler.RenderHandler;
  */
 @Component
 public class SystemPropertiesDirective extends AbstractTemplateDirective {
-
+    Properties props = System.getProperties();
+    
     @Override
     public void execute(RenderHandler handler) throws IOException, Exception {
-        Properties props = System.getProperties();
         Iterator<Object> keysIterator = props.keySet().iterator();
         while (keysIterator.hasNext()) {
             Object key = keysIterator.next();

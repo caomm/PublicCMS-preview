@@ -30,6 +30,7 @@ public class ZipUtils implements Base {
     static {
         System.setProperty("sun.zip.encoding", System.getProperty("sun.jnu.encoding"));
     }
+    private static final String ENCODING = System.getProperty("sun.jnu.encoding");
 
     /**
      * @param sourceFilePath
@@ -56,6 +57,7 @@ public class ZipUtils implements Base {
             } else {
                 zipFile.getParentFile().mkdirs();
                 try (ZipOutputStream zipOutputStream = new ZipOutputStream(new FileOutputStream(zipFile));) {
+                    zipOutputStream.setEncoding(ENCODING);
                     compress(Paths.get(sourceFilePath), zipOutputStream, BLANK);
                     zipFile.setReadable(true, false);
                     zipFile.setWritable(true, false);

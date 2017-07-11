@@ -56,7 +56,7 @@ public class SysRoleAuthorizedService extends BaseService<SysRoleAuthorized> {
      */
     public void dealRoleMoudles(Integer roleId, boolean showAllMoudle, List<SysMoudle> moudles, Set<String> pageUrls) {
         if (notEmpty(roleId)) {
-            Set<String> urls = new HashSet<String>();
+            Set<String> urls = new HashSet<>();
             if (notEmpty(moudles)) {
                 for (SysMoudle moudle : moudles) {
                     if (notEmpty(moudle.getUrl()) && !showAllMoudle) {

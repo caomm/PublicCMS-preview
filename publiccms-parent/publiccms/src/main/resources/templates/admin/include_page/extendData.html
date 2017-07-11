@@ -16,7 +16,7 @@
 			<#if 'view'=type>
 				<a href="${site.sitePath+value}" target="_blank">${(value)!}</a>
 			<#else>
-				<input name="${inputName}" <#if 'customform'!=type>class="readonly<#if extend.required> required</#if>" type="text" <#else>type="file" </#if>value="${(value)!}" readonly="readonly"/>
+				<input name="${inputName}" <#if 'customform'!=type>class="readonly<#if extend.required> required</#if>" type="text" <#else>type="file" </#if>value="${(value)!}"/>
 				<#if 'customform'!=type><a class="btnAttach" href="common/upload.html?field=${inputName}" lookupGroup="" width="560" height="300">附件</a></#if>
 			</#if>
 			<#break>
@@ -26,7 +26,7 @@
 				<br/>
 				${(value)!}
 			<#else>
-				<input name="${inputName}" <#if 'customform'!=type>class="readonly<#if extend.required> required</#if>" type="text" <#else>type="file" </#if>value="${(value)!}" readonly="readonly"/>
+				<input name="${inputName}" <#if 'customform'!=type>class="readonly<#if extend.required> required</#if>" type="text" <#else>type="file" </#if>value="${(value)!}"/>
 				<#if 'customform'!=type>
 					<a class="btnAttach" href="common/upload.html?field=${inputName}&onlyImage=true" lookupGroup="" width="560" height="300">图片</a>
 					<#if !preview?has_content>
@@ -96,13 +96,33 @@
 			</#if>
 			<#break>
 		<#case 'category'>
-		<@_category id=value><#assign category=object/></@_category>
+			<@_category id=value><#assign category=object/></@_category>
 			<#if 'view'=type>
 				${(value)!}:${(category.name)!}
 			<#else>
 				<input name="${inputName}" value="${(value)!}" type="hidden"/>
 				<input name="${name}[${index}].categoryName" readonly="readonly" size="30" value="${(category.name)!}" type="text"<#if 'customform'!=type> class="<#if extend.required> required</#if>"</#if>/>
 				<a class="btnLook" href="cmsCategory/lookup.html?field=value" lookupGroup="${name}[${index}]" width="1000" height="500">选择分类</a>
+			</#if>
+			<#break>
+		<#case 'categoryType'>
+			<@_categoryType id=value><#assign categoryType=object/></@_categoryType>
+			<#if 'view'=type>
+				${(value)!}:${(categoryType.name)!}
+			<#else>
+				<input name="${inputName}" value="${(value)!}" type="hidden"/>
+				<input name="${name}[${index}].categoryTypeName" readonly="readonly" size="30" value="${(categoryType.name)!}" type="text"<#if 'customform'!=type> class="<#if extend.required> required</#if>"</#if>/>
+				<a class="btnLook" href="cmsCategoryType/lookup.html?field=value" lookupGroup="${name}[${index}]" width="1000" height="500">选择分类</a>
+			</#if>
+			<#break>
+		<#case 'tagType'>
+			<@_tagType id=value><#assign tagType=object/></@_tagType>
+			<#if 'view'=type>
+				${(value)!}:${(tagType.name)!}
+			<#else>
+				<input name="${inputName}" value="${(value)!}" type="hidden"/>
+				<input name="${name}[${index}].tagTypeName" readonly="readonly" size="30" value="${(tagType.name)!}" type="text"<#if 'customform'!=type> class="<#if extend.required> required</#if>"</#if>/>
+				<a class="btnLook" href="cmsTagType/lookup.html?field=value" lookupGroup="${name}[${index}]" width="1000" height="500">选择分类</a>
 			</#if>
 			<#break>
 		<#case 'dictionary'>

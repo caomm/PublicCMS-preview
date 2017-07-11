@@ -64,7 +64,7 @@ public class CmsContentRelatedService extends BaseService<CmsContentRelated> {
      */
     @SuppressWarnings("unchecked")
     public void update(long contentId, long userId, List<CmsContentRelated> entitys) {
-        Set<Long> idList = new HashSet<Long>();
+        Set<Long> idList = new HashSet<>();
         if (notEmpty(entitys)) {
             for (CmsContentRelated entity : entitys) {
                 if (null != entity.getId()) {
