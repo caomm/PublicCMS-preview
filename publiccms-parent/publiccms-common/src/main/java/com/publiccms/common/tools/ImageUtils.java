@@ -60,11 +60,11 @@ public class ImageUtils implements Base {
             for (int i = 0; i < text.length(); i++) {
                 g.setFont(font1);
                 g.setColor(getRandColor(0, 200));
-                g.drawString(String.valueOf(text.charAt(i)), i * fontWidth + 3, height - r.nextInt(height - fontSize));
+                g.drawString(String.valueOf(text.charAt(i)), i * fontWidth + 3, height - random.nextInt(height - fontSize));
                 g.setFont(font2);
                 for (int j = 0; j < 4; j++) {
                     g.setColor(getRandColor(100, 250));
-                    g.drawString(String.valueOf(text.charAt(i)), r.nextInt(width), r.nextInt(height));
+                    g.drawString(String.valueOf(text.charAt(i)), random.nextInt(width), random.nextInt(height));
                 }
             }
         }
@@ -76,7 +76,7 @@ public class ImageUtils implements Base {
             fc = 255;
         }
         int rc = (bc > 255 ? 255 : bc) - fc;
-        return new Color(fc + r.nextInt(rc), fc + r.nextInt(rc), fc + r.nextInt(rc));
+        return new Color(fc + random.nextInt(rc), fc + random.nextInt(rc), fc + random.nextInt(rc));
     }
 
     private static Font getFont(int size) {
@@ -85,6 +85,6 @@ public class ImageUtils implements Base {
         font[1] = new Font("Antique Olive Compact", Font.PLAIN, size);
         font[2] = new Font("Fixedsys", Font.PLAIN, size);
         font[3] = new Font("Gill Sans Ultra", Font.PLAIN, size);
-        return font[r.nextInt(4)];
+        return font[random.nextInt(4)];
     }
 }

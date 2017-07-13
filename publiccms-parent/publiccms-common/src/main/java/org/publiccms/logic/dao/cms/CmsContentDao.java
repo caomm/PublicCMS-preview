@@ -42,14 +42,16 @@ public class CmsContentDao extends BaseDao<CmsContent> {
      * @param pageSize
      * @return
      */
-    public PageHandler query(Integer siteId, String text, String tagId, Integer pageIndex, Integer pageSize) {
+    public PageHandler query(Integer siteId, String text, String tagId, Date startPublishDate, Date endPublishDate,
+            Integer pageIndex, Integer pageSize) {
         FullTextQuery query;
         if (notEmpty(tagId)) {
             query = getQuery(tagFields, tagId);
         } else {
             query = getQuery(textFields, text);
         }
-        query.enableFullTextFilter("publishDate").setParameter("publishDate", getDate());
+        query.enableFullTextFilter("publishDate").setParameter("startPublishDate", startPublishDate)
+                .setParameter("endPublishDate", endPublishDate);
         query.enableFullTextFilter("siteId").setParameter("siteId", siteId);
         return getPage(query, pageIndex, pageSize);
     }
@@ -66,14 +68,15 @@ public class CmsContentDao extends BaseDao<CmsContent> {
      * @return
      */
     public FacetPageHandler facetQuery(Integer siteId, String[] categoryIds, String[] modelIds, String[] userIds, String text,
-            String tagId, Integer pageIndex, Integer pageSize) {
+            String tagId, Date startPublishDate, Date endPublishDate, Integer pageIndex, Integer pageSize) {
         FullTextQuery query;
         if (notEmpty(tagId)) {
             query = getFacetQuery(tagFields, facetFields, tagId, 10);
         } else {
             query = getFacetQuery(textFields, facetFields, text, 10);
         }
-        query.enableFullTextFilter("publishDate").setParameter("publishDate", getDate());
+        query.enableFullTextFilter("publishDate").setParameter("startPublishDate", startPublishDate)
+                .setParameter("endPublishDate", endPublishDate);
         query.enableFullTextFilter("siteId").setParameter("siteId", siteId);
         Map<String, List<String>> valueMap = new HashMap<>();
         if (notEmpty(categoryIds)) {

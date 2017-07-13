@@ -1,5 +1,6 @@
 package org.publiccms.views.directive.cms;
 
+import static com.publiccms.common.tools.CommonUtils.getDate;
 // Generated 2015-5-10 17:54:56 by com.publiccms.common.source.SourceGenerator
 import static com.publiccms.common.tools.CommonUtils.notEmpty;
 
@@ -47,7 +48,8 @@ public class CmsFacetSearchDirective extends AbstractTemplateDirective {
             Integer count = handler.getInteger("count", 30);
             try {
                 page = service.facetQuery(site.getId(), handler.getStringArray("categoryId"), handler.getStringArray("modelId"),
-                        handler.getStringArray("userId"), word, tagId, pageIndex, count);
+                        handler.getStringArray("userId"), word, tagId, handler.getDate("startPublishDate"),
+                        handler.getDate("endPublishDate", getDate()), pageIndex, count);
             } catch (Exception e) {
                 page = new FacetPageHandler(pageIndex, count, 0, null);
             }

@@ -58,8 +58,9 @@ public class CmsContentService extends BaseService<CmsContent> {
      * @return
      */
     @Transactional(readOnly = true)
-    public PageHandler query(Integer siteId, String text, String tagId, Integer pageIndex, Integer pageSize) {
-        return dao.query(siteId, text, tagId, pageIndex, pageSize);
+    public PageHandler query(Integer siteId, String text, String tagId, Date startPublishDate, Date endPublishDate,
+            Integer pageIndex, Integer pageSize) {
+        return dao.query(siteId, text, tagId, startPublishDate, endPublishDate, pageIndex, pageSize);
     }
 
     /**
@@ -75,8 +76,9 @@ public class CmsContentService extends BaseService<CmsContent> {
      */
     @Transactional(readOnly = true)
     public FacetPageHandler facetQuery(Integer siteId, String[] categoryIds, String[] modelIds, String[] userIds, String text,
-            String tagId, Integer pageIndex, Integer pageSize) {
-        return dao.facetQuery(siteId, categoryIds, modelIds, userIds, text, tagId, pageIndex, pageSize);
+            String tagId, Date startPublishDate, Date endPublishDate, Integer pageIndex, Integer pageSize) {
+        return dao.facetQuery(siteId, categoryIds, modelIds, userIds, text, tagId, startPublishDate, endPublishDate, pageIndex,
+                pageSize);
     }
 
     /**

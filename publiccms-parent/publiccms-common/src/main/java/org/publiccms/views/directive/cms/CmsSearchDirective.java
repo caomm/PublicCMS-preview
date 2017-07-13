@@ -1,6 +1,7 @@
 package org.publiccms.views.directive.cms;
 
 // Generated 2015-5-10 17:54:56 by com.publiccms.common.source.SourceGenerator
+import static com.publiccms.common.tools.CommonUtils.getDate;
 import static com.publiccms.common.tools.CommonUtils.notEmpty;
 
 import java.io.IOException;
@@ -42,7 +43,8 @@ public class CmsSearchDirective extends AbstractTemplateDirective {
             Integer pageIndex = handler.getInteger("pageIndex", 1);
             Integer count = handler.getInteger("count", 30);
             try {
-                page = service.query(site.getId(), word, tagId, pageIndex, count);
+                page = service.query(site.getId(), word, tagId, handler.getDate("startPublishDate"),
+                        getDate(), pageIndex, count);
             } catch (Exception e) {
                 page = new PageHandler(pageIndex, count, 0, null);
             }

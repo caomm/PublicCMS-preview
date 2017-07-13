@@ -4,6 +4,7 @@ import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static org.apache.commons.logging.LogFactory.getLog;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -169,6 +170,8 @@ public abstract class BaseHandler implements RenderHandler {
     protected abstract String getStringWithoutRegrister(String name) throws Exception;
 
     protected abstract Boolean getBooleanWithoutRegrister(String name) throws Exception;
+    
+    protected abstract Date getDateWithoutRegrister(String name) throws Exception;
 
     @Override
     public String getString(String name) throws Exception {
@@ -277,6 +280,23 @@ public abstract class BaseHandler implements RenderHandler {
     public boolean getBoolean(String name, boolean defaultValue) throws Exception {
         regristerParamter(PARAMETER_TYPE_BOOLEAN, name, defaultValue);
         return getBooleanWithoutRegrister(name, defaultValue);
+    }
+    
+    @Override
+    public Date getDate(String name) throws Exception {
+        regristerParamter(PARAMETER_TYPE_BOOLEAN, name);
+        return getDateWithoutRegrister(name);
+    }
+    
+    @Override
+    public Date getDate(String name, Date defaultValue) throws Exception {
+        regristerParamter(PARAMETER_TYPE_BOOLEAN, name, defaultValue);
+        try {
+            Date result = getDateWithoutRegrister(name);
+            return notEmpty(result) ? result : defaultValue;
+        } catch (Exception e) {
+            return defaultValue;
+        }
     }
 
     @Override

@@ -23,9 +23,9 @@ public class GetRandomMethod extends BaseMethod {
     public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {
         Integer max = getInteger(0, arguments);
         if (notEmpty(max)) {
-            return r.nextInt(max);
+            return random.nextInt(max);
         }
-        return r.nextInt();
+        return random.nextInt();
     }
     
     @Override

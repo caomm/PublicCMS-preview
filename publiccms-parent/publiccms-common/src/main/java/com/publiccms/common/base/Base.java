@@ -21,7 +21,7 @@ public interface Base {
      * 
      * Random
      */
-    public static final Random r = new Random();
+    public static final Random random = new Random();
     /**
      * 默认字符编码名称
      * 

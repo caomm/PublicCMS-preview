@@ -2,11 +2,10 @@ package org.publiccms.common.search;
 
 import java.util.Date;
 
-import org.apache.lucene.document.DateTools;
 import org.apache.lucene.search.Filter;
+import org.apache.lucene.search.NumericRangeQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.QueryWrapperFilter;
-import org.apache.lucene.search.TermRangeQuery;
 import org.hibernate.search.annotations.Factory;
 import org.hibernate.search.filter.impl.CachingWrapperFilter;
 
@@ -17,22 +16,38 @@ import org.hibernate.search.filter.impl.CachingWrapperFilter;
  */
 @SuppressWarnings("deprecation")
 public class PublishDateFilterFactory {
-    private Date publishDate;
+    private Date startPublishDate;
+    private Date endPublishDate;
 
     /**
      * @return
      */
     @Factory
     public Filter getFilter() {
-        Query query = TermRangeQuery.newStringRange("publishDate", null,
-                DateTools.dateToString(publishDate, DateTools.Resolution.MILLISECOND), true, true);
+        Long start = null;
+        Long end = null;
+        if (null != startPublishDate) {
+            start = startPublishDate.getTime();
+        }
+        if (null != endPublishDate) {
+            end = endPublishDate.getTime();
+        }
+        Query query = NumericRangeQuery.newLongRange("publishDate", start, end, true, true);
         return new CachingWrapperFilter(new QueryWrapperFilter(query));
     }
 
     /**
      * @param publishDate
      */
-    public void setPublishDate(Date publishDate) {
-        this.publishDate = publishDate;
+    public void setEndPublishDate(Date endPublishDate) {
+        this.endPublishDate = endPublishDate;
+    }
+
+    /**
+     * @param startPublishDate
+     *            the startPublishDate to set
+     */
+    public void setStartPublishDate(Date startPublishDate) {
+        this.startPublishDate = startPublishDate;
     }
 }

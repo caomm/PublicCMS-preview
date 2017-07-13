@@ -40,7 +40,7 @@ public class LotteryDirective extends AbstractAppDirective {
                     CmsLotteryUser entity = new CmsLotteryUser(lotteryId, user.getId(), false, false,
                             getIpAddress(handler.getRequest()), getDate());
                     entity.setUserId(user.getId());
-                    if (lottery.getFractions() > r.nextInt(lottery.getNumerator()) && lottery.getLastGift() > 0
+                    if (lottery.getFractions() > random.nextInt(lottery.getNumerator()) && lottery.getLastGift() > 0
                             && lottery.getLotteryCount() > lotteryUserService
                                     .getPage(lotteryId, null, true, null, null, null, null, null).getTotalCount()) {
                         entity.setWinning(true);

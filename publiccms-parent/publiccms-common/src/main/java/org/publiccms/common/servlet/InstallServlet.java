@@ -1,9 +1,9 @@
 package org.publiccms.common.servlet;
 
-import static org.publiccms.common.constants.CommonConstants.INSTALL_LOCK_FILENAME;
-import static org.publiccms.common.constants.CommonConstants.CMS_FILEPATH;
 import static org.apache.commons.io.FileUtils.writeStringToFile;
 import static org.apache.commons.logging.LogFactory.getLog;
+import static org.publiccms.common.constants.CommonConstants.CMS_FILEPATH;
+import static org.publiccms.common.constants.CommonConstants.INSTALL_LOCK_FILENAME;
 import static org.publiccms.common.database.CmsDataSource.DATABASE_CONFIG_FILENAME;
 import static org.publiccms.common.database.CmsDataSource.DATABASE_CONFIG_TEMPLATE;
 import static org.publiccms.common.tools.DatabaseUtils.getConnection;
@@ -36,6 +36,7 @@ import org.publiccms.common.database.CmsUpgrader;
 
 import com.publiccms.common.base.Base;
 
+import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -74,7 +75,7 @@ public class InstallServlet extends HttpServlet implements Base {
 
     private final Log log = getLog(getClass());
 
-    private freemarker.template.Configuration freemarkerConfiguration;
+    private Configuration freemarkerConfiguration;
     private String startStep;
     private String fromVersion;
     private Properties config;
@@ -88,7 +89,7 @@ public class InstallServlet extends HttpServlet implements Base {
         this.config = config;
         this.startStep = startStep;
         this.fromVersion = fromVersion;
-        this.freemarkerConfiguration = new freemarker.template.Configuration(freemarker.template.Configuration.getVersion());
+        this.freemarkerConfiguration = new Configuration(Configuration.getVersion());
         freemarkerConfiguration.setClassForTemplateLoading(getClass(), "/initialization/");
         freemarkerConfiguration.setDefaultEncoding("utf-8");
     }

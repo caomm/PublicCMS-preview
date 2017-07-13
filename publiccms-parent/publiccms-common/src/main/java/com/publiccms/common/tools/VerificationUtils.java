@@ -22,7 +22,7 @@ public class VerificationUtils implements Base {
         StringBuilder sb = new StringBuilder();
         while (0 < length) {
             length -= 1;
-            sb.append(text.charAt(r.nextInt(text.length())));
+            sb.append(text.charAt(random.nextInt(text.length())));
         }
         return sb.toString();
     }
@@ -35,7 +35,7 @@ public class VerificationUtils implements Base {
         StringBuilder sb = new StringBuilder();
         while (0 < length) {
             length -= 1;
-            sb.append(r.nextInt(9));
+            sb.append(random.nextInt(9));
         }
         return sb.toString();
     }

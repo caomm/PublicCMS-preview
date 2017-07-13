@@ -33,7 +33,7 @@ public interface RenderHandler {
     /**
      * 获取Writer
      * 
-     * @return 
+     * @return
      * @throws IOException
      */
     public Writer getWriter() throws IOException;
@@ -157,6 +157,14 @@ public interface RenderHandler {
      * @throws Exception
      */
     public Date getDate(String name) throws Exception;
+
+    /**
+     * @param name
+     * 
+     * @return
+     * @throws Exception
+     */
+    public Date getDate(String name, Date defaultValue) throws Exception;
 
     /**
      * @return

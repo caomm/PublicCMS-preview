@@ -169,8 +169,7 @@ public class HttpParameterHandler extends BaseHandler implements Base {
     }
 
     @Override
-    public Date getDate(String name) throws ParseException {
-        regristerParamter(PARAMETER_TYPE_DATE, name);
+    public Date getDateWithoutRegrister(String name) throws ParseException {
         String result = getStringWithoutRegrister(name);
         if (notEmpty(result)) {
             String temp = trimToEmpty(result);

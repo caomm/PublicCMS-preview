@@ -136,7 +136,7 @@ public class FileComponent implements Base {
     public String getUploadFileName(String suffix) {
         StringBuilder sb = new StringBuilder("upload/");
         sb.append(getDateFormat(FILE_NAME_FORMAT_STRING).format(getDate()));
-        return sb.append(r.nextInt()).append(suffix).toString();
+        return sb.append(random.nextInt()).append(suffix).toString();
     }
 
     /**

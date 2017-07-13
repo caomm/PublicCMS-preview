@@ -70,11 +70,11 @@ public class SourceGenerator implements Base {
     /**
      * 
      */
-    public static final String JAVA_BASE_PATH = "src/test/java/";
+    public static final String JAVA_BASE_PATH = "src/main/java/";
     /**
      * 
      */
-    public static final String WEB_BASE_PATH = "src/test/main/resources/";
+    public static final String WEB_BASE_PATH = "src/main/resources/";
     /**
      * 
      */
@@ -86,7 +86,7 @@ public class SourceGenerator implements Base {
      * @throws IOException
      */
     public static void main(String[] arg) throws ClassNotFoundException, IOException {
-        SourceGenerator sourceGenerator= new SourceGenerator();
+        SourceGenerator sourceGenerator = new SourceGenerator();
         boolean overwrite = false;// 是否覆盖已有代码
         String basePackage = "org.publiccms";// 基础包名
         // 生成所有实体类的代码
@@ -94,7 +94,7 @@ public class SourceGenerator implements Base {
         // 生成某个包所有实体类的代码
         // sourceMaker.generate(basePackage, "trade", overwrite);
         // 生成某个实体类的代码
-        sourceGenerator.generate(Class.forName("org.publiccms.entities.cms.CmsDictionaryData"), basePackage, overwrite);
+        sourceGenerator.generate(Class.forName("org.publiccms.entities.cms.CmsDictionary"), basePackage, overwrite);
     }
 
     /**
@@ -196,8 +196,8 @@ public class SourceGenerator implements Base {
                 }
 
                 GeneratorColumn column = field.getAnnotation(GeneratorColumn.class);
+                String shortTypeName = typeName.substring(typeName.lastIndexOf(DOT) + 1, typeName.length());
                 if (null != column) {
-                    String shortTypeName = typeName.substring(typeName.lastIndexOf(DOT) + 1, typeName.length());
                     columnList.add(new EntityColumn(field.getName(), shortTypeName, column.order(), column.title()));
                     if (column.condition()) {
                         if (!typeName.startsWith("java.lang")) {
@@ -211,6 +211,8 @@ public class SourceGenerator implements Base {
                         condition.getNameList().add(field.getName());
                         conditionMap.put(key, condition);
                     }
+                } else {
+                    columnList.add(new EntityColumn(field.getName(), shortTypeName, false, field.getName()));
                 }
             }
         }
@@ -227,15 +229,14 @@ public class SourceGenerator implements Base {
             generateFileByFile("java/dao.ftl", daoPath + name + DAO_SUFFIX + ".java", config, model, overwrite);
             generateFileByFile("java/service.ftl", servicePath + name + SERVICE_SUFFIX + ".java", config, model, overwrite);
             generateFileByFile("java/directive.ftl", directivePath + name + DIRECTIVE_SUFFIX + ".java", config, model, overwrite);
-            generateFileByFile("java/directiveList.ftl", directivePath + name + "List" + DIRECTIVE_SUFFIX + ".java", config, model,
+            generateFileByFile("java/directiveList.ftl", directivePath + name + "List" + DIRECTIVE_SUFFIX + ".java", config,
+                    model, overwrite);
+            generateFileByFile("java/controller.ftl", controllerPath + name + CONTROLLER_SUFFIX + ".java", config, model,
                     overwrite);
-            generateFileByFile("java/controller.ftl", controllerPath + name + CONTROLLER_SUFFIX + ".java", config, model, overwrite);
-            generateFileByFile("html/list.ftl", TEMPLATE_BASE_PATH + uncapitalize(name) + "/list.html", config, model,
-                    overwrite);
-            generateFileByFile("html/add.ftl", TEMPLATE_BASE_PATH + uncapitalize(name) + "/add.html", config, model,
-                    overwrite);
+            generateFileByFile("html/list.ftl", TEMPLATE_BASE_PATH + uncapitalize(name) + "/list.html", config, model, overwrite);
+            generateFileByFile("html/add.ftl", TEMPLATE_BASE_PATH + uncapitalize(name) + "/add.html", config, model, overwrite);
             generateFileByFile("html/doc.ftl", WEB_BASE_PATH + "doc.txt", config, model, overwrite, true);
-            generateFileByFile("html/language.ftl", WEB_BASE_PATH + "language.txt", config, model, overwrite, true);
+            generateFileByFile("html/language.ftl", WEB_BASE_PATH + "language/operate.txt", config, model, overwrite, true);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } catch (TemplateException e) {

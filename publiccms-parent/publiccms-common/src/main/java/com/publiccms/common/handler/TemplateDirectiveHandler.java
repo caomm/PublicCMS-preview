@@ -168,8 +168,7 @@ public class TemplateDirectiveHandler extends BaseHandler implements Base {
     }
 
     @Override
-    public Date getDate(String name) throws TemplateModelException, ParseException {
-        regristerParamter(PARAMETER_TYPE_DATE, name);
+    public Date getDateWithoutRegrister(String name) throws TemplateModelException, ParseException {
         return converDate(getModel(name));
     }
 

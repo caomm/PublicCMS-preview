@@ -33,10 +33,16 @@ https://github.com/sanluan/PublicCMS-preview
 1. Commons-lang3 3.6
 1. Cglib 3.2.5
 
+BUG修复:
+
+1. APP管理显示异常
+1. 搜索日期过滤无效
+
 新增功能:
 
 1. 扩展字段新增分类类型、标签类型
 1. 增加扩展字段数据字典类型字段隐藏、显示、必填等控制
+1. 新增搜索按时期过滤查询
 
 其他提升:
 
