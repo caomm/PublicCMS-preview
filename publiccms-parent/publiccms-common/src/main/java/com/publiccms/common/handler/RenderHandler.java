@@ -160,6 +160,7 @@ public interface RenderHandler {
 
     /**
      * @param name
+     * @param defaultValue 
      * 
      * @return
      * @throws Exception

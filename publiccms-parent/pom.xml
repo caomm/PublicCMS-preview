@@ -4,15 +4,16 @@
 	<groupId>org.publiccms</groupId>
 	<artifactId>publiccms-parent</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0</version>
+	<version>3.0</version>
 	<modules>
-        <!-- 商业版插件
+		<!-- 商业版插件
         <module>publiccms-improve</module>
         <module>publiccms-improve-oauth</module>
         <module>publiccms-improve-oracle</module>
         <module>publiccms-improve-redis</module>
-        商业版插件 -->
+		商业版插件 -->
         <module>publiccms</module>
+        <module>publiccms-core</module>
         <module>publiccms-common</module>
     </modules>
 	<properties>

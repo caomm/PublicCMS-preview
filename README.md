@@ -47,3 +47,4 @@ BUG修复:
 其他提升:
 
 1. 线程安全部分实现性能提升
+1. 修改包结构publiccms-core为cms核心包,publiccms-common为公共包

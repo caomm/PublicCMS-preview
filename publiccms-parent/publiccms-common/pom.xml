@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.publiccms</groupId>
 		<artifactId>publiccms-parent</artifactId>
-		<version>1.0</version>
+		<version>3.0</version>
 	</parent>
 	<groupId>com.publiccms</groupId>
 	<artifactId>publiccms-common</artifactId>
@@ -65,14 +65,6 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.mchange</groupId>
-			<artifactId>c3p0</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.mybatis</groupId>
