@@ -122,7 +122,7 @@ public class TemplateCacheComponent implements Cache, Base {
             templateComponent.getWebConfiguration().removeTemplateFromCache(cachedtemplatePath);
             return cachedPath;
         } catch (Exception e) {
-            log.error(e.getStackTrace());
+            log.error(e.getMessage(), e);
             return requestPath;
         }
     }

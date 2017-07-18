@@ -94,7 +94,7 @@ public class CmsTemplateAdminController extends AbstractController {
                 }
             } catch (IOException | TemplateException e) {
                 model.put(ERROR, e.getMessage());
-                log.error(e.getStackTrace());
+                log.error(e.getMessage(), e);
                 return TEMPLATE_ERROR;
             }
         }
@@ -120,7 +120,7 @@ public class CmsTemplateAdminController extends AbstractController {
                         LogLoginService.CHANNEL_WEB_MANAGER, "upload.web.template", getIpAddress(request), getDate(), path));
             } catch (IOException e) {
                 model.put(ERROR, e.getMessage());
-                log.error(e.getStackTrace());
+                log.error(e.getMessage(), e);
                 return TEMPLATE_ERROR;
             }
         }
@@ -208,7 +208,7 @@ public class CmsTemplateAdminController extends AbstractController {
                         LogLoginService.CHANNEL_WEB_MANAGER, "update.template.meta", getIpAddress(request), getDate(), path));
             } catch (IOException e) {
                 model.put(ERROR, e.getMessage());
-                log.error(e.getStackTrace());
+                log.error(e.getMessage(), e);
                 return TEMPLATE_ERROR;
             }
         }
@@ -252,7 +252,7 @@ public class CmsTemplateAdminController extends AbstractController {
                         LogLoginService.CHANNEL_WEB_MANAGER, "update.template.meta", getIpAddress(request), getDate(), path));
             } catch (IOException | TemplateException e) {
                 model.put(ERROR, e.getMessage());
-                log.error(e.getStackTrace());
+                log.error(e.getMessage(), e);
                 return TEMPLATE_ERROR;
             }
         }
@@ -280,7 +280,7 @@ public class CmsTemplateAdminController extends AbstractController {
             return TEMPLATE_DONE;
         } catch (IOException | TemplateException e) {
             model.put(ERROR, e.getMessage());
-            log.error(e.getStackTrace());
+            log.error(e.getMessage(), e);
             return TEMPLATE_ERROR;
         }
     }
@@ -300,7 +300,7 @@ public class CmsTemplateAdminController extends AbstractController {
             return TEMPLATE_DONE;
         } catch (IOException | TemplateException e) {
             model.put(ERROR, e.getMessage());
-            log.error(e.getStackTrace());
+            log.error(e.getMessage(), e);
             return TEMPLATE_ERROR;
         }
     }

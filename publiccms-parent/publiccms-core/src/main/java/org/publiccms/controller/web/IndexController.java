@@ -11,6 +11,7 @@ import static org.publiccms.logic.component.config.LoginConfigComponent.CONFIG_L
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.publiccms.common.base.AbstractController;
 import org.publiccms.entities.sys.SysDomain;
@@ -53,8 +54,8 @@ public class IndexController extends AbstractController {
      * @throws PageNotFoundException
      */
     @RequestMapping({ SEPARATOR, "/**" })
-    public String page(@RequestBody(required = false) String body, HttpServletRequest request, ModelMap model)
-            throws PageNotFoundException {
+    public String page(@RequestBody(required = false) String body, HttpServletRequest request, HttpServletResponse response,
+            ModelMap model) throws PageNotFoundException {
         String requestPath = urlPathHelper.getLookupPathForRequest(request);
         if (requestPath.endsWith(SEPARATOR)) {
             requestPath += getDefaultPage();
@@ -83,6 +84,9 @@ public class IndexController extends AbstractController {
                 }
                 if (notEmpty(metadata.getAcceptParamters())) {
                     billingRequestParamtersToModel(request, metadata.getAcceptParamters(), model);
+                }
+                if (notEmpty(metadata.getContentType())) {
+                    response.setContentType(metadata.getContentType());
                 }
                 if (notEmpty(metadata.getCacheTime()) && 0 < metadata.getCacheTime()) {
                     int cacheMillisTime = metadata.getCacheTime() * 1000;

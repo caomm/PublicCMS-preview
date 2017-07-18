@@ -60,7 +60,7 @@ public class CmsWebFileAdminController extends AbstractController {
                         false, file.getSize(), getIpAddress(request), getDate(), path));
             } catch (IOException e) {
                 model.put(ERROR, e.getMessage());
-                log.error(e.getStackTrace());
+                log.error(e.getMessage(), e);
                 return TEMPLATE_ERROR;
             }
         }
@@ -109,7 +109,7 @@ public class CmsWebFileAdminController extends AbstractController {
                     zip(filePath, filePath + ".zip");
                 } catch (IOException e) {
                     model.put(ERROR, e.getMessage());
-                    log.error(e.getStackTrace());
+                    log.error(e.getMessage(), e);
                 }
             }
             logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(),
@@ -165,7 +165,7 @@ public class CmsWebFileAdminController extends AbstractController {
                     }
                 } catch (IOException e) {
                     model.put(ERROR, e.getMessage());
-                    log.error(e.getStackTrace());
+                    log.error(e.getMessage(), e);
                 }
             }
             logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(),

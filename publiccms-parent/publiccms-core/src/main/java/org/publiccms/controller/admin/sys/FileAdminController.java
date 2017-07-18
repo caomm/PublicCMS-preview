@@ -55,7 +55,7 @@ public class FileAdminController extends AbstractController {
                 logUploadService.save(new LogUpload(site.getId(), getAdminFromSession(session).getId(), CHANNEL_WEB_MANAGER,
                         onlyImage, file.getSize(), getIpAddress(request), getDate(), fileName));
             } catch (IllegalStateException | IOException e) {
-                log.error(e.getStackTrace());
+                log.error(e.getMessage(), e);
                 return "common/uploadResult";
             }
         }

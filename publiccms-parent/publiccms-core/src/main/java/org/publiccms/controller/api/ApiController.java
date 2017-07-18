@@ -113,9 +113,9 @@ public class ApiController extends AbstractController {
             try {
                 handler.put(ERROR, EXCEPTION_MAP).render();
             } catch (Exception renderException) {
-                log.error(renderException.getStackTrace());
+                log.error(renderException.getMessage(), e);
             }
-            log.error(e.getStackTrace());
+            log.error(e.getMessage(), e);
         }
     }
 

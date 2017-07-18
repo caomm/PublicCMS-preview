@@ -114,7 +114,7 @@ public class LoginController extends AbstractController {
                             .append(URLEncoder.encode(user.getNickName(), DEFAULT_CHARSET_NAME));
                     addCookie(request.getContextPath(), response, getCookiesUser(), sb.toString(), Integer.MAX_VALUE, null);
                 } catch (UnsupportedEncodingException e) {
-                    log.error(e.getStackTrace());
+                    log.error(e.getMessage(), e);
                 }
                 service.updateLoginStatus(user.getId(), ip);
                 logLoginService.save(new LogLogin(site.getId(), username, user.getId(), ip, CHANNEL_WEB, true, getDate(), null));

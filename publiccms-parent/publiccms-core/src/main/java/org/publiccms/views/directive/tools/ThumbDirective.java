@@ -44,7 +44,7 @@ public class ThumbDirective extends AbstractTemplateDirective {
                     handler.print(thumbPath);
                 } catch (IOException e) {
                     handler.print(site.getSitePath() + path);
-                    log.error(e.getStackTrace());
+                    log.error(e.getMessage(), e);
                 }
             }
         }

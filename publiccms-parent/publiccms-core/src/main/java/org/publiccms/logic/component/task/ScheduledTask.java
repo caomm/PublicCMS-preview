@@ -191,7 +191,7 @@ public class ScheduledTask implements Base {
             try {
                 scheduler.deleteJob(JobKey.jobKey(getTaskName(id)));
             } catch (SchedulerException e) {
-                log.error(e.getStackTrace());
+                log.error(e.getMessage(), e);
             }
         }
     }

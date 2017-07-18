@@ -157,7 +157,7 @@ public class TemplateComponent implements Cache {
                     }
                     return true;
                 } catch (IOException | TemplateException e) {
-                    log.error(e.getStackTrace());
+                    log.error(e.getMessage(), e);
                     return false;
                 }
             }
@@ -247,7 +247,7 @@ public class TemplateComponent implements Cache {
                     categoryService.updateUrl(entity.getId(), url, false);
                 }
             } catch (IOException | TemplateException e) {
-                log.error(e.getStackTrace());
+                log.error(e.getMessage(), e);
                 return false;
             }
             return true;

@@ -62,7 +62,7 @@ public class TaskTemplateAdminController extends AbstractController {
                 templateComponent.clear();
             } catch (IOException e) {
                 model.put(ERROR, e.getMessage());
-                log.error(e.getStackTrace());
+                log.error(e.getMessage(), e);
                 return TEMPLATE_ERROR;
             }
         }

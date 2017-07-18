@@ -182,7 +182,7 @@ public class UeditorAdminController extends AbstractController {
                 map.put("original", "scraw" + SCRAW_TYPE);
                 return map;
             } catch (IllegalStateException | IOException e) {
-                log.error(e.getStackTrace());
+                log.error(e.getMessage(), e);
                 return getResultMap(false);
             }
         }
@@ -235,7 +235,7 @@ public class UeditorAdminController extends AbstractController {
                 return map;
             }
         } catch (Exception e) {
-            log.error(e.getStackTrace());
+            log.error(e.getMessage(), e);
             return getResultMap(false);
         }
         return getResultMap(false);

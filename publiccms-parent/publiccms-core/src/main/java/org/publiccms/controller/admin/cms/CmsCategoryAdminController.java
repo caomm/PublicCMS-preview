@@ -153,6 +153,7 @@ public class CmsCategoryAdminController extends AbstractController {
             publish(site, entity.getId(), null);
         } catch (IOException | TemplateException e) {
             verifyCustom("static", true, model);
+            log.error(e.getMessage(), e);
         }
         return TEMPLATE_DONE;
     }
@@ -214,7 +215,7 @@ public class CmsCategoryAdminController extends AbstractController {
                 }
             } catch (IOException | TemplateException e) {
                 verifyCustom("static", true, model);
-                log.error(e.getStackTrace());
+                log.error(e.getMessage(), e);
                 return TEMPLATE_ERROR;
             }
             logOperateService.save(new LogOperate(site.getId(), getAdminFromSession(session).getId(),
@@ -225,8 +226,8 @@ public class CmsCategoryAdminController extends AbstractController {
     }
 
     /**
-     * @param id 
-     * @param typeId 
+     * @param id
+     * @param typeId
      * @param request
      * @param session
      * @param model

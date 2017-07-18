@@ -69,6 +69,14 @@
 				</dd>
 			</dl>
 			<dl class="nowrap">
+				<dt>content-type:</dt>
+				<dd>
+					<input name="contentType" type="text" value="${(a.contentType)!}"/>
+					<a class="btnLook" href="cmsTemplate/contentTypeLookup.html" warn="请选择content-type" lookupGroup="">选择content-type</a>
+					<span class="info">为空时默认：text/html; charset=UTF-8</span>
+				</dd>
+			</dl>
+			<dl class="nowrap">
 				<dt>缓存时间(秒):</dt>
 				<dd>
 					<input name="cacheTime" class="required digits" type="text" value="${(a.cacheTime)!0}"/>
