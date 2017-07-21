@@ -1,8 +1,8 @@
 package config.spring;
 
-import static config.initializer.InitializationInitializer.CMS_CONFIG_FILE;
-import static org.publiccms.common.constants.CommonConstants.CMS_FILEPATH;
 import static java.lang.Integer.parseInt;
+import static org.publiccms.common.constants.CommonConstants.CMS_CONFIG_FILE;
+import static org.publiccms.common.constants.CommonConstants.CMS_FILEPATH;
 import static org.publiccms.common.database.CmsDataSource.DATABASE_CONFIG_FILENAME;
 import static org.springframework.core.io.support.PropertiesLoaderUtils.loadAllProperties;
 import static org.springframework.scheduling.quartz.SchedulerFactoryBean.PROP_THREAD_COUNT;
@@ -144,9 +144,9 @@ public class ApplicationConfig implements Base {
         LocalSessionFactoryBean bean = new LocalSessionFactoryBean();
         bean.setDataSource(dataSource);
         bean.setPackagesToScan("org.publiccms.entities");
-        MultiTokenizerFactory.setName(env.getProperty("cms.tokenizerFactory"));
         Properties properties = loadAllProperties(env.getProperty("cms.hibernate.configFilePath"));
         properties.setProperty("hibernate.search.default.indexBase", getDirPath("/indexes/"));
+        MultiTokenizerFactory.setName(env.getProperty("cms.tokenizerFactory"));
         bean.setHibernateProperties(properties);
         return bean;
     }

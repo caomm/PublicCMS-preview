@@ -106,7 +106,6 @@ public class IncludePlaceDirective extends AbstractTemplateDirective {
             try {
                 resultMap.put(path, templateComponent.printPlace(site, path, metadata));
             } catch (IOException | TemplateException e) {
-                log.error(e.getMessage(), e);
                 resultMap.put(path, e.getMessage());
             }
             synchronized (resultMap) {
@@ -114,7 +113,7 @@ public class IncludePlaceDirective extends AbstractTemplateDirective {
                     try {
                         handler.put("map", resultMap).render();
                     } catch (Exception e) {
-                        log.error(e.getMessage(), e);
+                        log.error(e.getMessage());
                     }
                 }
             }

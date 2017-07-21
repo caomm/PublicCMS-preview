@@ -1,7 +1,7 @@
 package org.publiccms.logic.component.config;
 
 import static com.publiccms.common.tools.LanguagesUtils.getMessage;
-import static org.publiccms.common.constants.CommonConstants.webApplicationContext;
+import static org.publiccms.common.constants.CommonConstants.applicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,14 +37,14 @@ public class LoginConfigComponent implements Config, Base {
 
     @Override
     public String getCodeDescription(SysSite site, Locale locale) {
-        return getMessage(webApplicationContext, locale, CONFIG_CODE_DESCRIPTION);
+        return getMessage(applicationContext, locale, CONFIG_CODE_DESCRIPTION);
     }
 
     @Override
     public List<ExtendField> getExtendFieldList(SysSite site, Locale locale) {
         List<ExtendField> extendFieldList = new ArrayList<>();
         extendFieldList.add(new ExtendField(CONFIG_LOGIN_PATH, INPUTTYPE_TEXT, false,
-                getMessage(webApplicationContext, locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_LOGIN_PATH), null, null));
+                getMessage(applicationContext, locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_LOGIN_PATH), null, null));
         return extendFieldList;
     }
 }

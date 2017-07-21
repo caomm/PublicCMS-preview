@@ -2,7 +2,7 @@ package org.publiccms.logic.component.config;
 
 import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static com.publiccms.common.tools.LanguagesUtils.getMessage;
-import static org.publiccms.common.constants.CommonConstants.webApplicationContext;
+import static org.publiccms.common.constants.CommonConstants.applicationContext;
 import static org.publiccms.logic.component.site.EmailComponent.CONFIG_CODE;
 
 import java.util.ArrayList;
@@ -48,7 +48,7 @@ public class EmailTemplateConfigComponent implements Config, Base {
 
     @Override
     public String getCodeDescription(SysSite site, Locale locale) {
-        return getMessage(webApplicationContext, locale, CONFIG_CODE_DESCRIPTION);
+        return getMessage(applicationContext, locale, CONFIG_CODE_DESCRIPTION);
     }
 
     @Override
@@ -57,9 +57,9 @@ public class EmailTemplateConfigComponent implements Config, Base {
         Map<String, String> config = configComponent.getConfigData(site.getId(), CONFIG_CODE);
         if (notEmpty(config)) {
             extendFieldList.add(new ExtendField(CONFIG_EMAIL_TITLE, INPUTTYPE_TEXT, false,
-                    getMessage(webApplicationContext, locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_EMAIL_TITLE), null, null));
+                    getMessage(applicationContext, locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_EMAIL_TITLE), null, null));
             extendFieldList.add(new ExtendField(CONFIG_EMAIL_PATH, INPUTTYPE_TEMPLATE, false,
-                    getMessage(webApplicationContext, locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_EMAIL_PATH), null, null));
+                    getMessage(applicationContext, locale, CONFIG_CODE_DESCRIPTION + DOT + CONFIG_EMAIL_PATH), null, null));
         }
         return extendFieldList;
     }

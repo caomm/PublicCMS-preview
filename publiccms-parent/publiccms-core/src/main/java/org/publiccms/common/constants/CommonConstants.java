@@ -1,6 +1,6 @@
 package org.publiccms.common.constants;
 
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.context.ApplicationContext;
 
 /**
  *
@@ -18,16 +18,16 @@ public class CommonConstants {
      * 安装锁
      */
     public static final String INSTALL_LOCK_FILENAME = "/install.lock";
-
-    /**
-     * 管理后台路径 Management Path
-     */
-    public static final String ADMIN_BASE_PATH = "/admin";
     
+    /**
+     * 配置文件
+     */
+    public static final String CMS_CONFIG_FILE = "cms.properties";
+
     /**
      * 应用上下文
      */
-    public static WebApplicationContext webApplicationContext;
+    public static ApplicationContext applicationContext;
 
     /**
      * @return

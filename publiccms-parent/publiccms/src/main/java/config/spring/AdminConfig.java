@@ -18,7 +18,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 /**
  * AdminServlet配置类
  * 
- * AdminConfig 
+ * AdminConfig
  *
  */
 @Configuration
@@ -26,6 +26,11 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 @ComponentScan(basePackages = "org.publiccms.controller.admin", useDefaultFilters = false, includeFilters = {
         @ComponentScan.Filter(value = { Controller.class }) })
 public class AdminConfig extends WebMvcConfigurerAdapter {
+    /**
+     * 管理后台路径 Management Path
+     */
+    public static final String ADMIN_BASE_PATH = "/admin";
+
     @Autowired
     private CacheComponent cacheComponent;
     @Autowired
@@ -72,6 +77,7 @@ public class AdminConfig extends WebMvcConfigurerAdapter {
     @Bean
     public AdminContextInterceptor adminInitializingInterceptor() {
         AdminContextInterceptor bean = new AdminContextInterceptor();
+        bean.setAdminBasePath(ADMIN_BASE_PATH);
         bean.setLoginUrl("/login.html");
         bean.setUnauthorizedUrl("/common/unauthorizedUrl.html");
         bean.setLoginJsonUrl("/common/ajaxTimeout.html");

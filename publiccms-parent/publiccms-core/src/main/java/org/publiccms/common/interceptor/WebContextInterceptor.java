@@ -21,8 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.publiccms.entities.sys.SysSite;
 import org.publiccms.entities.sys.SysUser;
 import org.publiccms.entities.sys.SysUserToken;
+import org.publiccms.logic.component.site.SiteComponent;
 import org.publiccms.logic.service.sys.SysUserService;
 import org.publiccms.logic.service.sys.SysUserTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,8 @@ public class WebContextInterceptor extends BaseInterceptor {
     private SysUserService sysUserService;
     @Autowired
     private SysUserTokenService sysUserTokenService;
+    @Autowired
+    private SiteComponent siteComponent;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
@@ -46,6 +50,7 @@ public class WebContextInterceptor extends BaseInterceptor {
         HttpSession session = request.getSession();
         String contextPath = request.getContextPath();
         SysUser user = getUserFromSession(session);
+        SysSite site = siteComponent.getSite(request.getServerName());
         if (null == user) {
             Cookie userCookie = getCookie(request.getCookies(), getCookiesUser());
             if (null != userCookie && isNotBlank(userCookie.getValue())) {
@@ -56,7 +61,8 @@ public class WebContextInterceptor extends BaseInterceptor {
                         try {
                             Long userId = Long.parseLong(userData[0]);
                             SysUserToken userToken = sysUserTokenService.getEntity(userData[1]);
-                            if (null != userToken && userId == userToken.getUserId() && CHANNEL_WEB.equals(userToken.getChannel())
+                            if (null != userToken && null != site && !site.isDisabled() && site.getId() == userToken.getSiteId()
+                                    && userId == userToken.getUserId() && CHANNEL_WEB.equals(userToken.getChannel())
                                     && null != (user = sysUserService.getEntity(userId)) && !user.isDisabled()) {
                                 user.setPassword(null);
                                 setUserToSession(session, user);
@@ -78,7 +84,8 @@ public class WebContextInterceptor extends BaseInterceptor {
             Date date = getUserTimeFromSession(session);
             if (null == date || date.before(addSeconds(new Date(), -30))) {
                 SysUser entity = sysUserService.getEntity(user.getId());
-                if (null != entity && !entity.isDisabled()) {
+                if (null != entity && !entity.isDisabled() && null != site && !site.isDisabled()
+                        && site.getId() == entity.getSiteId()) {
                     user.setName(entity.getName());
                     user.setNickName(entity.getNickName());
                     user.setEmail(entity.getEmail());

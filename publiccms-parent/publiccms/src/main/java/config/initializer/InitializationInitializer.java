@@ -1,9 +1,10 @@
 package config.initializer;
 
-import static org.publiccms.common.constants.CommonConstants.CMS_FILEPATH;
-import static org.publiccms.common.constants.CommonConstants.INSTALL_LOCK_FILENAME;
 import static org.apache.commons.io.FileUtils.readFileToString;
 import static org.apache.commons.logging.LogFactory.getLog;
+import static org.publiccms.common.constants.CommonConstants.CMS_CONFIG_FILE;
+import static org.publiccms.common.constants.CommonConstants.CMS_FILEPATH;
+import static org.publiccms.common.constants.CommonConstants.INSTALL_LOCK_FILENAME;
 import static org.publiccms.common.database.CmsDataSource.DATABASE_CONFIG_FILENAME;
 import static org.publiccms.common.servlet.InstallServlet.STEP_CHECKDATABASE;
 import static org.publiccms.common.tools.DatabaseUtils.getConnection;
@@ -25,6 +26,7 @@ import org.apache.commons.logging.Log;
 import org.publiccms.common.constants.CmsVersion;
 import org.publiccms.common.servlet.InstallServlet;
 import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.util.IntrospectorCleanupListener;
 
 import com.publiccms.common.base.Base;
 import com.publiccms.common.proxy.UsernamePasswordAuthenticator;
@@ -36,13 +38,11 @@ import com.publiccms.common.proxy.UsernamePasswordAuthenticator;
  */
 public class InitializationInitializer implements WebApplicationInitializer, Base {
     protected final Log log = getLog(getClass());
-    /**
-     * 配置文件
-     */
-    public static final String CMS_CONFIG_FILE = "cms.properties";
 
     @Override
     public void onStartup(ServletContext servletcontext) throws ServletException {
+        servletcontext.addListener(IntrospectorCleanupListener.class);
+
         Properties config = null;
         Connection connection = null;
         try {

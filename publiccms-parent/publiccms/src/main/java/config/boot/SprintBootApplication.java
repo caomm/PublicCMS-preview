@@ -1,5 +1,7 @@
 package config.boot;
 
+import static org.publiccms.common.constants.CommonConstants.applicationContext;
+
 import java.util.concurrent.TimeUnit;
 
 import javax.servlet.ServletContext;
@@ -33,7 +35,7 @@ public class SprintBootApplication {
      * @param args
      */
     public static void main(String[] args) {
-        SpringApplication.run(SprintBootApplication.class, args);
+        applicationContext = SpringApplication.run(SprintBootApplication.class, args);
     }
 
     /**
@@ -71,7 +73,7 @@ public class SprintBootApplication {
         return new ServletContextInitializer() {
             @Override
             public void onStartup(ServletContext servletContext) throws ServletException {
-                new AdminInitializer(true).onStartup(servletContext);
+                new AdminInitializer().onStartup(servletContext);
             }
         };
     }

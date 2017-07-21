@@ -70,7 +70,7 @@ public class GetHtmlMethod extends BaseMethod {
                     }
                 }
             } catch (Exception e) {
-                log.error(e.getMessage(), e);
+                log.error(e.getMessage());
                 return null;
             }
             return html;

@@ -22,8 +22,8 @@ public class AdminDispatcherServlet extends DispatcherServlet {
 
     private DefaultServletHttpRequestHandler installHandler;
 
-    public AdminDispatcherServlet(WebApplicationContext webApplicationContext) {
-        super(webApplicationContext);
+    public AdminDispatcherServlet(WebApplicationContext applicationContext) {
+        super(applicationContext);
     }
 
     protected void doService(HttpServletRequest request, HttpServletResponse response) throws Exception {

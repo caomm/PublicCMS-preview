@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.publiccms</groupId>
+	<groupId>com.publiccms</groupId>
 	<artifactId>publiccms-parent</artifactId>
 	<packaging>pom</packaging>
-	<version>3.0</version>
+	<version>V4.0-20170801</version>
 	<modules>
 		<!-- 商业版插件
         <module>publiccms-improve</module>
@@ -47,6 +47,12 @@
 	</properties>
 	<dependencyManagement>
 		<dependencies>
+			<!-- http://mvnrepository.com/artifact/cglib/cglib-nodep -->
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib-nodep</artifactId>
+				<version>3.2.5</version>
+			</dependency>
 			<!-- http://mvnrepository.com/artifact/commons-io/commons-io -->
 			<dependency>
 				<groupId>commons-io</groupId>
@@ -199,12 +205,6 @@
 				<artifactId>thumbnailator</artifactId>
 				<version>0.4.8</version>
 			</dependency>
-			<!-- http://mvnrepository.com/artifact/cglib/cglib-nodep -->
-			<dependency>
-				<groupId>cglib</groupId>
-				<artifactId>cglib-nodep</artifactId>
-				<version>3.2.5</version>
-			</dependency>
 			<!-- http://mvnrepository.com/artifact/org.apache.ant/ant -->
 			<dependency>
 				<groupId>org.apache.ant</groupId>
@@ -274,6 +274,13 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>1.5.4.RELEASE</version>
+				<executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
 			</plugin>
 			<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-maven-plugin -->
 			<plugin>

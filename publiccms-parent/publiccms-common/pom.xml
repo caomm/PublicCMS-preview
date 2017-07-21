@@ -2,11 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.publiccms</groupId>
+		<groupId>com.publiccms</groupId>
 		<artifactId>publiccms-parent</artifactId>
-		<version>3.0</version>
+		<version>V4.0-20170801</version>
 	</parent>
-	<groupId>com.publiccms</groupId>
 	<artifactId>publiccms-common</artifactId>
 	<name>publiccms-common</name>
 	<dependencies>
@@ -19,12 +18,12 @@
 			<artifactId>commons-io</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>

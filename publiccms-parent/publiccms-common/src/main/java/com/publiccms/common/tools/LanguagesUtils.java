@@ -2,8 +2,8 @@ package com.publiccms.common.tools;
 
 import java.util.Locale;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.NoSuchMessageException;
-import org.springframework.web.context.WebApplicationContext;
 
 /**
  * 获得国际化信息
@@ -23,10 +23,10 @@ public final class LanguagesUtils {
      *            替换参数
      * @return
      */
-    public static String getMessage(WebApplicationContext webApplicationContext, Locale locale, String code, Object... args) {
+    public static String getMessage(ApplicationContext applicationContext, Locale locale, String code, Object... args) {
         String result;
         try {
-            result = webApplicationContext.getMessage(code, args, locale);
+            result = applicationContext.getMessage(code, args, locale);
         } catch (NoSuchMessageException e) {
             result = code;
         }

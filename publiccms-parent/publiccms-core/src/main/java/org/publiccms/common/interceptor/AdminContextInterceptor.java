@@ -5,7 +5,6 @@ import static org.apache.commons.lang3.StringUtils.split;
 import static org.publiccms.common.base.AbstractController.getAdminFromSession;
 import static org.publiccms.common.base.AbstractController.setAdminToSession;
 import static org.publiccms.common.constants.CmsVersion.getVersion;
-import static org.publiccms.common.constants.CommonConstants.ADMIN_BASE_PATH;
 import static org.publiccms.common.constants.CommonConstants.getXPowered;
 
 import java.io.IOException;
@@ -13,7 +12,9 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.publiccms.entities.sys.SysSite;
 import org.publiccms.entities.sys.SysUser;
+import org.publiccms.logic.component.site.SiteComponent;
 import org.publiccms.logic.service.sys.SysRoleAuthorizedService;
 import org.publiccms.logic.service.sys.SysRoleService;
 import org.publiccms.logic.service.sys.SysUserService;
@@ -28,26 +29,32 @@ import com.publiccms.common.base.BaseInterceptor;
  *
  */
 public class AdminContextInterceptor extends BaseInterceptor implements Base {
-    private String[] needNotLoginUrls;
-    private String[] needNotAuthorizedUrls;
+    private String adminBasePath;
     private String loginUrl;
     private String loginJsonUrl;
     private String unauthorizedUrl;
+    private String[] needNotLoginUrls;
+    private String[] needNotAuthorizedUrls;
+
     @Autowired
     private SysRoleAuthorizedService roleAuthorizedService;
     @Autowired
     private SysRoleService sysRoleService;
     @Autowired
     private SysUserService sysUserService;
+    @Autowired
+    private SiteComponent siteComponent;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         response.addHeader(getXPowered(), getVersion());
         String path = urlPathHelper.getLookupPathForRequest(request);
         String ctxPath = urlPathHelper.getOriginatingContextPath(request);
-        if (ADMIN_BASE_PATH.equals(path)) {
+        if (adminBasePath.equals(path)) {
             try {
-                response.sendRedirect(ctxPath + ADMIN_BASE_PATH + SEPARATOR);
+                StringBuilder sb = new StringBuilder(ctxPath);
+                sb.append(adminBasePath).append(SEPARATOR);
+                response.sendRedirect(sb.toString());
                 return false;
             } catch (IOException e) {
                 return true;
@@ -62,8 +69,10 @@ public class AdminContextInterceptor extends BaseInterceptor implements Base {
                     return true;
                 }
             }
+            SysSite site = siteComponent.getSite(request.getServerName());
             SysUser entity = sysUserService.getEntity(user.getId());
-            if (!entity.isDisabled() && !entity.isSuperuserAccess()) {
+            if (!entity.isDisabled() && !entity.isSuperuserAccess() && null != site && site.getId() != entity.getSiteId()
+                    && !site.isDisabled()) {
                 try {
                     redirectLogin(ctxPath, path, request.getQueryString(), request.getHeader("X-Requested-With"), response);
                     return false;
@@ -76,7 +85,9 @@ public class AdminContextInterceptor extends BaseInterceptor implements Base {
                     path = path.substring(path.indexOf(SEPARATOR) > 0 ? 0 : 1, index > -1 ? index : path.length());
                     if (0 == roleAuthorizedService.count(entity.getRoles(), path) && !ownsAllRight(entity.getRoles())) {
                         try {
-                            response.sendRedirect(ctxPath + unauthorizedUrl);
+                            StringBuilder sb = new StringBuilder(ctxPath);
+                            sb.append(adminBasePath).append(unauthorizedUrl);
+                            response.sendRedirect(sb.toString());
                             return false;
                         } catch (IOException e) {
                             return true;
@@ -96,12 +107,13 @@ public class AdminContextInterceptor extends BaseInterceptor implements Base {
     private void redirectLogin(String ctxPath, String path, String queryString, String requestedWith,
             HttpServletResponse response) throws IOException {
         if ("XMLHttpRequest".equalsIgnoreCase(requestedWith)) {
-            response.sendRedirect(ctxPath + loginJsonUrl);
+            StringBuilder sb = new StringBuilder(ctxPath);
+            sb.append(adminBasePath).append(loginJsonUrl);
+            response.sendRedirect(sb.toString());
         } else {
             StringBuilder sb = new StringBuilder(ctxPath);
-            sb.append(loginUrl);
-            sb.append("?returnUrl=");
-            sb.append(getEncodePath(ADMIN_BASE_PATH + path, queryString));
+            sb.append(adminBasePath).append(loginUrl).append("?returnUrl=");
+            sb.append(getEncodePath(adminBasePath + path, queryString));
             response.sendRedirect(sb.toString());
         }
     }
@@ -149,10 +161,32 @@ public class AdminContextInterceptor extends BaseInterceptor implements Base {
     }
 
     /**
+     * @param adminBasePath
+     *            the adminBasePath to set
+     */
+    public void setAdminBasePath(String adminBasePath) {
+        this.adminBasePath = adminBasePath;
+    }
+
+    /**
      * @param loginUrl
      */
     public void setLoginUrl(String loginUrl) {
-        this.loginUrl = ADMIN_BASE_PATH + loginUrl;
+        this.loginUrl = loginUrl;
+    }
+
+    /**
+     * @param loginJsonUrl
+     */
+    public void setLoginJsonUrl(String loginJsonUrl) {
+        this.loginJsonUrl = loginJsonUrl;
+    }
+
+    /**
+     * @param unauthorizedUrl
+     */
+    public void setUnauthorizedUrl(String unauthorizedUrl) {
+        this.unauthorizedUrl = unauthorizedUrl;
     }
 
     /**
@@ -160,20 +194,6 @@ public class AdminContextInterceptor extends BaseInterceptor implements Base {
      */
     public void setNeedNotLoginUrls(String[] needNotLoginUrls) {
         this.needNotLoginUrls = needNotLoginUrls;
-    }
-
-    /**
-     * @param loginJsonUrl
-     */
-    public void setLoginJsonUrl(String loginJsonUrl) {
-        this.loginJsonUrl = ADMIN_BASE_PATH + loginJsonUrl;
-    }
-
-    /**
-     * @param unauthorizedUrl
-     */
-    public void setUnauthorizedUrl(String unauthorizedUrl) {
-        this.unauthorizedUrl = ADMIN_BASE_PATH + unauthorizedUrl;
     }
 
     /**

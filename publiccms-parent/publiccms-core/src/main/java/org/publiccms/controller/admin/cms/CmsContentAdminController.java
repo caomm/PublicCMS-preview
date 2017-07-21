@@ -13,7 +13,7 @@ import static com.publiccms.common.tools.RequestUtils.getIpAddress;
 import static org.apache.commons.lang3.ArrayUtils.addAll;
 import static org.apache.commons.lang3.ArrayUtils.removeElements;
 import static org.apache.commons.lang3.StringUtils.join;
-import static org.publiccms.common.constants.CommonConstants.webApplicationContext;
+import static org.publiccms.common.constants.CommonConstants.applicationContext;
 import static org.publiccms.common.tools.ExtendUtils.getExtendString;
 import static org.publiccms.common.tools.ExtendUtils.getExtentDataMap;
 import static org.publiccms.common.tools.ExtendUtils.getSysExtentDataMap;
@@ -351,7 +351,7 @@ public class CmsContentAdminController extends AbstractController {
             StringBuilder sb = new StringBuilder();
             for (CmsContent entity : service.getEntitys(ids)) {
                 if (!move(site, entity, categoryId)) {
-                    sb.append(getMessage(webApplicationContext, getLocale(request), "message.content.categoryModel.empty",
+                    sb.append(getMessage(applicationContext, getLocale(request), "message.content.categoryModel.empty",
                             new StringBuilder().append(entity.getId()).append(":").append(entity.getTitle()).toString(),
                             new StringBuilder().append(categoryId).append(":").append(category.getName()).toString()))
                             .append(COMMA_DELIMITED);

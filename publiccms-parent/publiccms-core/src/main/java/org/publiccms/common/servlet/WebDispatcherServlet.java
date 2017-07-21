@@ -43,10 +43,10 @@ public class WebDispatcherServlet extends ErrorToNotFoundDispatcherServlet {
     }
 
     /**
-     * @param webApplicationContext
+     * @param applicationContext
      */
-    public WebDispatcherServlet(WebApplicationContext webApplicationContext) {
-        super(webApplicationContext);
+    public WebDispatcherServlet(WebApplicationContext applicationContext) {
+        super(applicationContext);
     }
 
     @Override

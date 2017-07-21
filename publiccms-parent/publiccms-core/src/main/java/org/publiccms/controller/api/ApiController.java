@@ -113,7 +113,7 @@ public class ApiController extends AbstractController {
             try {
                 handler.put(ERROR, EXCEPTION_MAP).render();
             } catch (Exception renderException) {
-                log.error(renderException.getMessage(), e);
+                log.error(renderException.getMessage());
             }
             log.error(e.getMessage(), e);
         }
