@@ -1,10 +1,11 @@
 package org.publiccms.common.database;
 
+import static com.publiccms.common.tools.CommonUtils.notEmpty;
 import static org.publiccms.common.constants.CommonConstants.CMS_FILEPATH;
 import static org.publiccms.logic.component.site.SiteComponent.MODEL_FILE;
 import static org.publiccms.logic.component.site.SiteComponent.SITE_PATH_PREFIX;
 import static org.publiccms.logic.component.site.SiteComponent.TEMPLATE_PATH;
-import static com.publiccms.common.tools.CommonUtils.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -62,8 +63,12 @@ public class CmsUpgrader implements Base {
     /**
      *
      */
-    public final static List<String> VERSION_LIST = Arrays
-            .asList(new String[] { VERSION_20160423, VERSION_20160510, VERSION_20160828, VERSION_20170318, VERSION_20170520 });
+    public final static String VERSION_20170708 = "V2017.0708";
+    /**
+     *
+     */
+    public final static List<String> VERSION_LIST = Arrays.asList(new String[] { VERSION_20160423, VERSION_20160510,
+            VERSION_20160828, VERSION_20170318, VERSION_20170520, VERSION_20170708 });
     private Connection connection;
     private String version;
     @SuppressWarnings("unused")
@@ -97,7 +102,9 @@ public class CmsUpgrader implements Base {
         case VERSION_20170318:
             runScript(VERSION_20170318, VERSION_20170520);
         case VERSION_20170520:
-            runScript(VERSION_20170520, CmsVersion.getVersion());
+            runScript(VERSION_20170520, VERSION_20170708);
+        case VERSION_20170708:
+            runScript(VERSION_20170708, CmsVersion.getVersion());
             break;
         }
     }

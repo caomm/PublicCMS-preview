@@ -8,14 +8,17 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.4.RELEASE")
     }
 }
+
 apply plugin: 'idea'
+apply plugin: 'eclipse'
 
 subprojects{
     apply plugin: "java"
     apply plugin: 'idea'
+    apply plugin: "eclipse-wtp"
 	
 	group = 'com.publiccms'
-	version = 'V4.0-20170801'
+	version = 'V4.0.20170801'
 	
 	test.enabled = false
 	
@@ -58,4 +61,11 @@ subprojects{
 		jcenter()
         mavenCentral()
     }
+    eclipse {
+	    wtp {
+	        facet {
+	            facet name: "jst.java", version: "1.7"
+	        }
+	    }
+	}
 }

@@ -13,7 +13,7 @@ import org.springframework.context.NoSuchMessageException;
  */
 public final class LanguagesUtils {
     /**
-     * @param webApplicationContext 
+     * @param applicationContext 
      * @param locale
      *            语言
      * 

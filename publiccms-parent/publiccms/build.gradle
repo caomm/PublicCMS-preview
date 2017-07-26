@@ -6,7 +6,7 @@ delete this line for spring boot */
 group = 'org.publiccms'
 
 dependencies {
-	/** 商业版插件
+    /** 商业版插件
     compile project(':publiccms-improve')
     商业版插件 **/
     compile project(':publiccms-core')
@@ -23,12 +23,23 @@ dependencies {
     )
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
     /** delete this line for spring boot
-    compile("org.springframework.boot:spring-boot-starter-web:1.5.4.RELEASE") {
+    compile(
+    delete this line for spring boot */
+    compileOnly( // delete this line for spring boot
+        "org.springframework.boot:spring-boot-starter-web:1.5.4.RELEASE") {
         exclude group:"org.springframework.boot", module: 'spring-boot-starter-logging'
     }
-    delete this line for spring boot */
     compile fileTree(dir: 'src/main/webapp/WEB-INF/lib', include: ['*.jar'])
 }
 war{
     archiveName = "${project.name}.war"
+}
+eclipse {
+    wtp {
+        facet {
+            facets = facets
+            facet name: "jst.web", version: "3.0"
+            facet name: "wst.jsdt.web", version: "1.0"
+        }
+    }
 }
